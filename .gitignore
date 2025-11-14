@@ -1,0 +1,49 @@
+#  ARCHIVOS GENERALES
+*.log
+*.tmp
+*.sqlite3
+*.pyc
+__pycache__/
+.DS_Store
+Thumbs.db
+
+#  ENTORNOS VIRTUALES (Python)
+venv/
+*/venv/
+backend/venv/
+
+#  ARCHIVOS DE AMBIENTE
+.env
+.env.local
+frontend/.env
+frontend/.env.local
+
+#  BACKEND (DJANGO)
+backend/__pycache__/
+backend/*/__pycache__/
+backend/*/*.pyc
+backend/*/*/*.pyc
+
+# Migraciones compiladas
+backend/apps/*/migrations/__pycache__/
+backend/apps/*/migrations/*.pyc
+
+# Archivos generados
+backend/staticfiles/
+backend/media/
+
+#  FRONTEND (REACT - VITE)
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+#  EDITORES Y SISTEMA
+.vscode/
+.idea/
+*.swp
+
+#  DOCUMENTACIÓN
+docs/**/*.aux
+docs/**/*.out
+docs/**/*.toc
+docs/**/*.pdf~
