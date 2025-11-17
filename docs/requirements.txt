@@ -4,3 +4,5 @@ pip install djangorestframework
 npm install react-router-dom
 npm install axios
 npm install zustand
+npm install tailwindcss @tailwindcss/vite
+npm install @headlessui/react @heroicons/react
