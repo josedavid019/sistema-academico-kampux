@@ -12,9 +12,11 @@ export function Navbar() {
   const menuRef = useClickOutside(() => setIsMenuOpen(false));
 
   const handleLogout = () => {
-    logout();
-    setIsMenuOpen(false);
-    navigate("/login");
+    (async () => {
+      await logout();
+      setIsMenuOpen(false);
+      navigate("/", { replace: true });
+    })();
   };
 
   return (

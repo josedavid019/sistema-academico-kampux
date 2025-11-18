@@ -47,13 +47,15 @@ export const useAuthStore = create((set) => ({
   },
 
   // Logout action
-  logout: () => {
+  logout: async () => {
+    // allow callers to await the logout operation
     localStorage.removeItem('token');
     set({
       user: null,
       isAuthenticated: false,
       error: null,
     });
+    return Promise.resolve();
   },
 
   // Clear error
