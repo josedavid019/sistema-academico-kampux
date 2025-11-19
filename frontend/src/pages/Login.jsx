@@ -1,51 +1,51 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useAuthStore } from '../store/authStore';
-import { AuthLayout } from '../components/AuthLayout';
-import { FormInput } from '../components/FormInput';
-import { FormButton } from '../components/FormButton';
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuthStore } from "../store/authStore";
+import { AuthLayout } from "../components/AuthLayout";
+import { FormInput } from "../components/FormInput";
+import { FormButton } from "../components/FormButton";
 
 export function Login() {
   const navigate = useNavigate();
   const { login, isLoading, error, clearError } = useAuthStore();
-  
+
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
-  
+
   const [validationErrors, setValidationErrors] = useState({});
 
   const validateForm = () => {
     const errors = {};
-    
+
     if (!formData.email) {
-      errors.email = 'El email es requerido';
+      errors.email = "El email es requerido";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      errors.email = 'Ingresa un email válido';
+      errors.email = "Ingresa un email válido";
     }
-    
+
     if (!formData.password) {
-      errors.password = 'La contraseña es requerida';
+      errors.password = "La contraseña es requerida";
     } else if (formData.password.length < 6) {
-      errors.password = 'La contraseña debe tener al menos 6 caracteres';
+      errors.password = "La contraseña debe tener al menos 6 caracteres";
     }
-    
+
     setValidationErrors(errors);
     return Object.keys(errors).length === 0;
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
     // Limpiar errores al escribir
     if (validationErrors[name]) {
-      setValidationErrors(prev => ({
+      setValidationErrors((prev) => ({
         ...prev,
-        [name]: '',
+        [name]: "",
       }));
     }
     clearError();
@@ -53,13 +53,13 @@ export function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
 
     await login(formData.email, formData.password);
-    navigate('/tareas');
+    navigate("/dashboard");
   };
 
   return (
@@ -117,7 +117,7 @@ export function Login() {
 
         <div className="text-center">
           <p className="text-gray-600 text-sm">
-            ¿No tienes cuenta?{' '}
+            ¿No tienes cuenta?{" "}
             <Link
               to="/register"
               className="text-blue-600 hover:text-blue-700 font-medium transition"

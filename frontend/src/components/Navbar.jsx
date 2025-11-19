@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
-import { useClickOutside } from "../hooks/useClickOutside";
+import { Menu, Transition } from "@headlessui/react";
+import {
+  ChevronDownIcon,
+  ChevronUpDownIcon,
+  UserCircleIcon,
+  ArrowRightOnRectangleIcon,
+  Cog6ToothIcon,
+} from "@heroicons/react/24/outline";
 
 export function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user, isAuthenticated, logout } = useAuthStore();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showAcademico, setShowAcademico] = useState(false);
-
-  const menuRef = useClickOutside(() => setIsMenuOpen(false));
-
-  const handleLogout = () => {
-    (async () => {
-      await logout();
-      setIsMenuOpen(false);
-      navigate("/", { replace: true });
-    })();
+  const handleLogout = async () => {
+    await logout();
+    navigate("/", { replace: true });
   };
 
   return (
@@ -28,45 +28,92 @@ export function Navbar() {
             src="https://i.ibb.co/27cwjzyJ/Logo-Kampux.png"
             alt="Logo Kampux"
           />
-          <h1 className="text-white font-bold text-xl hidden sm:block">Kampux</h1>
+          <h1 className="text-white font-bold text-xl hidden sm:block">
+            Kampux
+          </h1>
         </Link>
         {isAuthenticated && (
           <>
-            {/* Menú Académico */}
-            <div className="relative">
-              <button
-                onClick={() => setShowAcademico((v) => !v)}
-                className="text-white font-medium px-3 py-2 rounded-lg hover:bg-[#2a3f52] transition flex items-center gap-1"
+            {/* Botón Dashboard (antes de Académico) */}
+            <Link
+              to="/dashboard"
+              className={`font-medium px-3 py-2 rounded-lg transition ${
+                location.pathname === "/dashboard"
+                  ? "bg-white text-[#2563eb]" // fondo blanco, azul tailwind 600
+                  : "text-white hover:bg-[#2a3f52]"
+              }`}
+            >
+              Dashboard
+            </Link>
+
+            {/* Menú Académico con Headless UI */}
+            <Menu as="div" className="relative inline-block text-left">
+              <Menu.Button
+                className={`font-medium px-3 py-2 rounded-lg transition flex items-center gap-1 focus:outline-none cursor-pointer ${
+                  ["/horarios", "/resultados"].includes(location.pathname)
+                    ? "bg-white text-[#2563eb]"
+                    : "text-white hover:bg-[#2a3f52]"
+                }`}
               >
                 Académico
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {showAcademico && (
-                <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-xl z-50 border border-gray-200">
-                  <Link
-                    to="/horarios"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition"
-                    onClick={() => setShowAcademico(false)}
-                  >
-                    Horarios
-                  </Link>
-                  <Link
-                    to="/resultados"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition"
-                    onClick={() => setShowAcademico(false)}
-                  >
-                    Resultados
-                  </Link>
-                </div>
-              )}
-            </div>
+                <ChevronDownIcon className="w-4 h-4" aria-hidden="true" />
+              </Menu.Button>
+              <Transition
+                as={React.Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+              >
+                <Menu.Items className="absolute left-0 mt-2 w-48 origin-top-left bg-white rounded-lg shadow-xl z-50 border border-gray-200 focus:outline-none">
+                  <div className="py-1">
+                    <Menu.Item>
+                      {({ active }) => (
+                        <Link
+                          to="/horarios"
+                          className={`block px-4 py-2 text-sm transition ${
+                            location.pathname === "/horarios"
+                              ? "bg-white text-[#2563eb]"
+                              : active
+                              ? "bg-gray-100 text-gray-700"
+                              : "text-gray-700 hover:bg-gray-100"
+                          }`}
+                        >
+                          Horarios
+                        </Link>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item>
+                      {({ active }) => (
+                        <Link
+                          to="/resultados"
+                          className={`block px-4 py-2 text-sm transition ${
+                            location.pathname === "/resultados"
+                              ? "bg-white text-[#2563eb]"
+                              : active
+                              ? "bg-gray-100 text-gray-700"
+                              : "text-gray-700 hover:bg-gray-100"
+                          }`}
+                        >
+                          Resultados
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  </div>
+                </Menu.Items>
+              </Transition>
+            </Menu>
 
             {/* Botón Mis cursos */}
             <Link
               to="/cursos"
-              className="text-white font-medium px-3 py-2 rounded-lg hover:bg-[#2a3f52] transition"
+              className={`font-medium px-3 py-2 rounded-lg transition ${
+                location.pathname === "/cursos"
+                  ? "bg-white text-[#2563eb]"
+                  : "text-white hover:bg-[#2a3f52]"
+              }`}
             >
               Mis cursos
             </Link>
@@ -74,56 +121,74 @@ export function Navbar() {
         )}
       </div>
 
-      {/* Menú de usuario a la derecha */}
+      {/* Menú de usuario a la derecha con Headless UI */}
       {isAuthenticated && (
-        <div className="relative" ref={menuRef}>
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex items-center gap-2 text-white hover:bg-[#2a3f52] px-3 py-2 rounded-lg transition"
-          >
+        <Menu as="div" className="relative inline-block text-left">
+          <Menu.Button className="flex items-center gap-2 text-white hover:bg-[#2a3f52] px-3 py-2 rounded-lg transition focus:outline-none cursor-pointer">
             <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-sm font-bold">
-              {user?.email?.charAt(0).toUpperCase() || 'U'}
+              {user?.email?.charAt(0).toUpperCase() || "U"}
             </div>
-            <span className="hidden md:block">{user?.email || 'Usuario'}</span>
-            <svg
-              className={`w-4 h-4 transition-transform ${isMenuOpen ? 'rotate-180' : ''}`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </button>
-          {isMenuOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl z-50 animate-slide-in">
+            <span className="hidden md:block">{user?.email || "Usuario"}</span>
+            <ChevronDownIcon className="w-4 h-4" aria-hidden="true" />
+          </Menu.Button>
+          <Transition
+            as={React.Fragment}
+            enter="transition ease-out duration-100"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+          >
+            <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right bg-white rounded-lg shadow-xl z-50 border border-gray-200 focus:outline-none">
               <div className="px-4 py-3 border-b border-gray-200">
-                <p className="text-sm font-medium text-gray-900">{user?.email}</p>
+                <p className="text-sm font-medium text-gray-900">
+                  {user?.email}
+                </p>
               </div>
-              <Link
-                to="/perfil"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Mi Perfil
-              </Link>
-              <Link
-                to="/configuracion"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Configuración
-              </Link>
-              <button
-                onClick={handleLogout}
-                className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition border-t border-gray-200"
-              >
-                Cerrar Sesión
-              </button>
-            </div>
-          )}
-        </div>
+              <div className="py-1">
+                <Menu.Item>
+                  {({ active }) => (
+                    <Link
+                      to="/perfil"
+                      className={`flex items-center gap-2 px-4 py-2 text-sm text-gray-700 transition ${
+                        active ? "bg-gray-100" : ""
+                      }`}
+                    >
+                      <UserCircleIcon className="w-5 h-5" /> Mi Perfil
+                    </Link>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <Link
+                      to="/configuracion"
+                      className={`flex items-center gap-2 px-4 py-2 text-sm text-gray-700 transition ${
+                        active ? "bg-gray-100" : ""
+                      }`}
+                    >
+                      <Cog6ToothIcon className="w-5 h-5" /> Configuración
+                    </Link>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      onClick={handleLogout}
+                      className={`w-full flex items-center gap-2 text-left px-4 py-2 text-sm text-red-600 transition border-t border-gray-200 cursor-pointer ${
+                        active ? "bg-red-50" : ""
+                      }`}
+                    >
+                      <ArrowRightOnRectangleIcon className="w-5 h-5" /> Cerrar
+                      Sesión
+                    </button>
+                  )}
+                </Menu.Item>
+              </div>
+            </Menu.Items>
+          </Transition>
+        </Menu>
       )}
-
       {!isAuthenticated && (
         <div className="flex gap-3">
           <Link

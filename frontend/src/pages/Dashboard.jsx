@@ -1,121 +1,198 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useAuthStore } from "../store/authStore";
+
+// Datos de ejemplo para tareas y calendario
+const tareasEjemplo = [
+  {
+    id: 1,
+    fecha: "2025-11-19",
+    hora: "00:00",
+    titulo: "ACTIVIDAD 3 CORTE 3",
+    descripcion:
+      "Vencimiento de Tarea - ZISVIIA-Electiva Disciplinar (Redes) 25-2",
+  },
+  {
+    id: 2,
+    fecha: "2025-11-19",
+    hora: "23:59",
+    titulo: "Protección de datos",
+    descripcion:
+      "Vencimiento de Tarea - ZISVIIA-Legislación del Software REMOTO 25-2",
+  },
+  {
+    id: 3,
+    fecha: "2025-11-21",
+    hora: "00:00",
+    titulo:
+      "ACTIVIDAD PRÁCTICA: Instalación de Splunk y Análisis Básico de Logs",
+    descripcion: "Vencimiento de Tarea - ZISVIIA-Auditoría Informática 25-2",
+  },
+];
+
+function getDiasDelMes(year, month) {
+  const dias = [];
+  const date = new Date(year, month, 1);
+  while (date.getMonth() === month) {
+    dias.push(new Date(date));
+    date.setDate(date.getDate() + 1);
+  }
+  return dias;
+}
 
 export function Dashboard() {
-  const menuItems = [
-    {
-      id: 1,
-      title: "Manuales",
-      description: "Da clic aquí",
-      icon: "📚",
-      color: "bg-blue-50",
-      borderColor: "border-blue-200",
-      link: "/manuales",
-    },
-    {
-      id: 2,
-      title: "Soporte",
-      description: "Da clic aquí",
-      icon: "🎧",
-      color: "bg-orange-50",
-      borderColor: "border-orange-200",
-      link: "/soporte",
-    },
-    {
-      id: 3,
-      title: "Recursos educativos",
-      description: "Reservas | Sira\nBase de datos | EBSCO\nBase de datos | eLibro",
-      icon: "👥",
-      color: "bg-green-50",
-      borderColor: "border-green-200",
-      link: "/recursos-educativos",
-    },
-    {
-      id: 4,
-      title: "Herramientas",
-      description: "Da clic aquí",
-      icon: "🛠️",
-      color: "bg-purple-50",
-      borderColor: "border-purple-200",
-      link: "/herramientas",
-    },
-  ];
+  const { user } = useAuthStore();
+  const nombre = user?.nombre || "Estudiante";
+
+  // Calendario
+  const hoy = new Date();
+  const year = hoy.getFullYear();
+  const month = hoy.getMonth();
+  const diasMes = getDiasDelMes(year, month);
+
+  // Agrupar tareas por fecha
+  const tareasPorFecha = tareasEjemplo.reduce((acc, tarea) => {
+    if (!acc[tarea.fecha]) acc[tarea.fecha] = [];
+    acc[tarea.fecha].push(tarea);
+    return acc;
+  }, {});
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 md:p-8">
-      {/* Header Section */}
-      <div className="max-w-7xl mx-auto mb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          {/* Left side - Title and Description */}
-          <div className="md:pr-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Plataforma Virtual
-              <br />
-              <span className="text-blue-600">Kampux</span>
-            </h1>
-            <p className="text-gray-600 text-lg leading-relaxed">
-              En este espacio encontrarás todo el apoyo que necesitas para usar nuestra plataforma Kampux y aprovechar al máximo las TIC.
-            </p>
-          </div>
+    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto">
+        {/* Saludo */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-blue-900 mb-2">
+            ¡Hola, {nombre}! <span className="text-2xl">👋</span>
+          </h1>
+        </div>
 
-          {/* Right side - Logo Area */}
-          <div className="flex justify-center md:justify-end">
-            <img
-              src="https://i.ibb.co/27cwjzyJ/Logo-Kampux.png"
-              alt="Logo Kampux"
-              className="h-48 md:h-56 object-contain"
+        {/* Línea de tiempo de tareas */}
+        <div className="bg-white rounded-lg shadow p-6 mb-8">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">
+            Línea de tiempo
+          </h2>
+          <div className="flex flex-col md:flex-row gap-4 mb-4">
+            <select className="border rounded-lg px-3 py-2 text-gray-700">
+              <option>Próximos 7 días</option>
+              <option>Próximos 30 días</option>
+            </select>
+            <select className="border rounded-lg px-3 py-2 text-gray-700">
+              <option>Ordenar por fecha</option>
+              <option>Ordenar por materia</option>
+            </select>
+            <input
+              type="text"
+              className="border rounded-lg px-3 py-2 flex-1"
+              placeholder="Buscar por tipo o nombre de actividad"
             />
           </div>
-        </div>
-      </div>
-
-      {/* Menu Grid */}
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {menuItems.map((item) => (
-            <Link
-              key={item.id}
-              to={item.link}
-              className={`${item.color} border-2 ${item.borderColor} rounded-lg p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105 cursor-pointer group`}
-            >
-              <div className="flex items-start gap-4">
-                {/* Icon */}
-                <div className="text-5xl flex-shrink-0">{item.icon}</div>
-
-                {/* Content */}
-                <div className="flex-1">
-                  <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-700 text-sm md:text-base whitespace-pre-line">
-                    {item.description}
-                  </p>
-                </div>
-
-                {/* Arrow */}
-                <div className="flex-shrink-0 text-blue-600 text-2xl group-hover:translate-x-1 transition">
-                  →
-                </div>
+          {/* Tareas agrupadas por fecha */}
+          {Object.entries(tareasPorFecha).map(([fecha, tareas]) => (
+            <div key={fecha} className="mb-6">
+              <div className="font-semibold text-gray-700 mb-2">
+                {new Date(fecha).toLocaleDateString("es-ES", {
+                  weekday: "long",
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
               </div>
-            </Link>
+              {tareas.map((tarea) => (
+                <div
+                  key={tarea.id}
+                  className="flex items-center justify-between bg-blue-50 rounded-lg p-4 mb-2 shadow-sm"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="bg-pink-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">
+                      <span>📄</span>
+                    </div>
+                    <div>
+                      <div className="font-bold text-pink-700 text-base">
+                        {tarea.titulo}
+                      </div>
+                      <div className="text-gray-600 text-sm">
+                        {tarea.descripcion}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-xs text-gray-500 font-semibold">
+                    {tarea.hora}
+                  </div>
+                  <button className="ml-4 px-4 py-2 bg-blue-600 text-white rounded-lg font-medium text-sm hover:bg-blue-700 transition">
+                    Agregar entrega
+                  </button>
+                </div>
+              ))}
+            </div>
           ))}
         </div>
-      </div>
 
-      {/* Additional Info Section */}
-      <div className="max-w-7xl mx-auto mt-12">
-        <div className="bg-white rounded-lg shadow-md p-6 md:p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            ¿Necesitas ayuda?
-          </h2>
-          <p className="text-gray-600 mb-4">
-            Nuestra plataforma está diseñada para ser intuitiva y fácil de usar. 
-            Si tienes alguna pregunta o necesitas asistencia, no dudes en contactar 
-            a nuestro equipo de soporte.
-          </p>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition">
-            Contactar Soporte
-          </button>
+        {/* Calendario de vencimientos */}
+        <div className="bg-white rounded-lg shadow p-6">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">Calendario</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-center">
+              <thead>
+                <tr>
+                  <th className="py-2">Lun</th>
+                  <th>Mar</th>
+                  <th>Mié</th>
+                  <th>Jue</th>
+                  <th>Vie</th>
+                  <th>Sáb</th>
+                  <th>Dom</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* Renderizar semanas */}
+                {(() => {
+                  const semanas = [];
+                  let semana = [];
+                  let diaInicio = new Date(year, month, 1).getDay();
+                  if (diaInicio === 0) diaInicio = 7; // Domingo como 7
+                  // Primera semana
+                  for (let i = 1; i < diaInicio; i++) {
+                    semana.push(<td key={"empty-" + i}></td>);
+                  }
+                  diasMes.forEach((dia, idx) => {
+                    const fechaStr = dia.toISOString().slice(0, 10);
+                    const tareasDia = tareasPorFecha[fechaStr] || [];
+                    semana.push(
+                      <td key={fechaStr} className="align-top h-20 w-20">
+                        <div className="font-semibold text-gray-700">
+                          {dia.getDate()}
+                        </div>
+                        {/* Mostrar vencimientos */}
+                        {tareasDia.map((tarea) => (
+                          <div
+                            key={tarea.id}
+                            className="mt-1 text-xs bg-pink-100 text-pink-700 rounded px-2 py-1 font-medium"
+                          >
+                            {tarea.titulo}
+                          </div>
+                        ))}
+                      </td>
+                    );
+                    if (
+                      (dia.getDay() === 0 && semana.length) ||
+                      idx === diasMes.length - 1
+                    ) {
+                      // Fin de semana o fin de mes
+                      while (semana.length < 7)
+                        semana.push(
+                          <td key={"empty-end-" + semana.length}></td>
+                        );
+                      semanas.push(
+                        <tr key={"semana-" + semanas.length}>{semana}</tr>
+                      );
+                      semana = [];
+                    }
+                  });
+                  return semanas;
+                })()}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

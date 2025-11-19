@@ -6,15 +6,15 @@ import { Navbar } from "./components/Navbar";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
-import { Dashboard } from "./pages/Dashboard";
+import { Home } from "./pages/Home";
 import { Manuales } from "./pages/Manuales";
 import { Soporte } from "./pages/Soporte";
 import { RecursosEducativos } from "./pages/RecursosEducativos";
 import { Herramientas } from "./pages/Herramientas";
 import { Perfil } from "./pages/Perfil";
-import Configuracion from "./pages/Configuracion";
+import { Configuracion } from "./pages/Configuracion";
 import { NotFound } from "./pages/NotFound";
-import { TareasPendientes } from "./pages/TareasPendientes";
+import { Dashboard } from "./pages/Dashboard";
 import { Horarios } from "./pages/Horarios";
 import { Resultados } from "./pages/Resultados";
 import { MisCursos } from "./pages/MisCursos";
@@ -37,22 +37,22 @@ function App() {
             isAuthenticated ? (
               <>
                 <Navbar />
-                <Navigate to="/tareas" />
+                <Navigate to="/dashboard" />
               </>
             ) : (
               <>
                 <Navbar />
-                <Dashboard />
+                <Home />
               </>
             )
           }
         />
         <Route
-          path="/tareas"
+          path="/dashboard"
           element={
             <ProtectedRoute>
               <Navbar />
-              <TareasPendientes />
+              <Dashboard />
             </ProtectedRoute>
           }
         />
