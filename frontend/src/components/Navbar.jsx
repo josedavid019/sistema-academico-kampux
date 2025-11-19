@@ -88,6 +88,22 @@ export function Navbar() {
                     <Menu.Item>
                       {({ active }) => (
                         <Link
+                          to="/prematriculas"
+                          className={`block px-4 py-2 text-sm transition ${
+                            location.pathname === "/prematriculas"
+                              ? "bg-white text-[#2563eb]"
+                              : active
+                              ? "bg-gray-100 text-gray-700"
+                              : "text-gray-700 hover:bg-gray-100"
+                          }`}
+                        >
+                          Prematrículas
+                        </Link>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item>
+                      {({ active }) => (
+                        <Link
                           to="/resultados"
                           className={`block px-4 py-2 text-sm transition ${
                             location.pathname === "/resultados"
