@@ -17,6 +17,7 @@ import { NotFound } from "./pages/NotFound";
 import { TareasPendientes } from "./pages/TareasPendientes";
 import { Horarios } from "./pages/Horarios";
 import { Resultados } from "./pages/Resultados";
+import { Prematricula } from "./pages/Prematricula";
 import { MisCursos } from "./pages/MisCursos";
 
 function App() {
@@ -116,6 +117,15 @@ function App() {
             <ProtectedRoute>
               <Navbar />
               <Horarios />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/prematricula"
+          element={
+            <ProtectedRoute>
+              <Navbar />
+              <Prematricula />
             </ProtectedRoute>
           }
         />

@@ -27,8 +27,8 @@ export function Login() {
     
     if (!formData.password) {
       errors.password = 'La contraseña es requerida';
-    } else if (formData.password.length < 6) {
-      errors.password = 'La contraseña debe tener al menos 6 caracteres';
+    } else if (formData.password.length < 3) {
+      errors.password = 'La contraseña debe tener al menos 3 caracteres';
     }
     
     setValidationErrors(errors);
