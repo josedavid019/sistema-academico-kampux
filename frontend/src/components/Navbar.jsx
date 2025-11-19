@@ -37,11 +37,16 @@ export function Navbar() {
             {/* Botón Dashboard (antes de Académico) */}
             <Link
               to="/dashboard"
-              className={`font-medium px-3 py-2 rounded-lg transition ${
+              className={`font-medium px-3 py-2 transition relative z-20 ${
                 location.pathname === "/dashboard"
-                  ? "bg-white text-[#2563eb]" // fondo blanco, azul tailwind 600
-                  : "text-white hover:bg-[#2a3f52]"
+                  ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                  : "text-white hover:bg-[#2a3f52] rounded-lg"
               }`}
+              style={
+                location.pathname === "/dashboard"
+                  ? { borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }
+                  : {}
+              }
             >
               Dashboard
             </Link>
@@ -49,10 +54,12 @@ export function Navbar() {
             {/* Menú Académico con Headless UI */}
             <Menu as="div" className="relative inline-block text-left">
               <Menu.Button
-                className={`font-medium px-3 py-2 rounded-lg transition flex items-center gap-1 focus:outline-none cursor-pointer ${
-                  ["/horarios", "/resultados"].includes(location.pathname)
-                    ? "bg-white text-[#2563eb]"
-                    : "text-white hover:bg-[#2a3f52]"
+                className={`font-medium px-3 py-2 transition flex items-center gap-1 focus:outline-none cursor-pointer relative z-20 ${
+                  ["/horarios", "/prematricula", "/resultados"].includes(
+                    location.pathname
+                  )
+                    ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                    : "text-white hover:bg-[#2a3f52] rounded-lg"
                 }`}
               >
                 Académico
@@ -73,12 +80,12 @@ export function Navbar() {
                       {({ active }) => (
                         <Link
                           to="/horarios"
-                          className={`block px-4 py-2 text-sm transition ${
+                          className={`block px-4 py-2 text-sm transition relative z-10 ${
                             location.pathname === "/horarios"
-                              ? "bg-white text-[#2563eb]"
+                              ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
                               : active
                               ? "bg-gray-100 text-gray-700"
-                              : "text-gray-700 hover:bg-gray-100"
+                              : "text-gray-700 hover:bg-gray-100 rounded-lg"
                           }`}
                         >
                           Horarios
@@ -89,12 +96,12 @@ export function Navbar() {
                       {({ active }) => (
                         <Link
                           to="/prematricula"
-                          className={`block px-4 py-2 text-sm transition ${
-                            location.pathname === "/prematriculas"
-                              ? "bg-white text-[#2563eb]"
+                          className={`block px-4 py-2 text-sm transition relative z-10 ${
+                            location.pathname === "/prematricula"
+                              ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
                               : active
                               ? "bg-gray-100 text-gray-700"
-                              : "text-gray-700 hover:bg-gray-100"
+                              : "text-gray-700 hover:bg-gray-100 rounded-lg"
                           }`}
                         >
                           Prematrículas
@@ -105,12 +112,12 @@ export function Navbar() {
                       {({ active }) => (
                         <Link
                           to="/resultados"
-                          className={`block px-4 py-2 text-sm transition ${
+                          className={`block px-4 py-2 text-sm transition relative z-10 ${
                             location.pathname === "/resultados"
-                              ? "bg-white text-[#2563eb]"
+                              ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
                               : active
                               ? "bg-gray-100 text-gray-700"
-                              : "text-gray-700 hover:bg-gray-100"
+                              : "text-gray-700 hover:bg-gray-100 rounded-lg"
                           }`}
                         >
                           Resultados
@@ -124,10 +131,10 @@ export function Navbar() {
             {/* Botón Mis cursos */}
             <Link
               to="/cursos"
-              className={`font-medium px-3 py-2 rounded-lg transition ${
+              className={`font-medium px-3 py-2 transition relative z-20 ${
                 location.pathname === "/cursos"
-                  ? "bg-white text-[#2563eb]"
-                  : "text-white hover:bg-[#2a3f52]"
+                  ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                  : "text-white hover:bg-[#2a3f52] rounded-lg"
               }`}
             >
               Mis cursos
