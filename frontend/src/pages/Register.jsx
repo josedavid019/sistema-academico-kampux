@@ -39,8 +39,8 @@ export function Register() {
     
     if (!formData.password) {
       errors.password = 'La contraseña es requerida';
-    } else if (formData.password.length < 8) {
-      errors.password = 'La contraseña debe tener al menos 8 caracteres';
+    } else if (formData.password.length < 3) {
+      errors.password = 'La contraseña debe tener al menos 3 caracteres';
     }
     
     if (!formData.passwordConfirm) {

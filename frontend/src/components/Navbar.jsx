@@ -105,7 +105,6 @@ export function Navbar() {
                 </Menu.Items>
               </Transition>
             </Menu>
-
             {/* Botón Mis cursos */}
             <Link
               to="/cursos"
