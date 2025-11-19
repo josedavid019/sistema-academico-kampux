@@ -88,7 +88,7 @@ export function Navbar() {
                     <Menu.Item>
                       {({ active }) => (
                         <Link
-                          to="/prematriculas"
+                          to="/prematricula"
                           className={`block px-4 py-2 text-sm transition ${
                             location.pathname === "/prematriculas"
                               ? "bg-white text-[#2563eb]"
