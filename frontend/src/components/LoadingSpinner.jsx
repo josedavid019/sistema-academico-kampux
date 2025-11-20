@@ -9,8 +9,16 @@ export function LoadingSpinner({ size = 'md', message = 'Cargando...' }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4">
-      <div className={`${sizes[size]} animate-spin rounded-full border-4 border-gray-300 border-t-blue-600`}></div>
+    <div className="flex flex-col items-center justify-center gap-3">
+      <div className={`${sizes[size]} relative`}> 
+        <svg className="absolute inset-0 h-full w-full animate-spin text-blue-600" viewBox="0 0 50 50">
+          <circle className="opacity-20" cx="25" cy="25" r="20" stroke="currentColor" strokeWidth="5" fill="none" />
+          <path className="opacity-100" fill="currentColor" d="M43.94 25.04a18 18 0 11-7.51-13.68" />
+        </svg>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="h-2 w-2 rounded-full bg-blue-600 animate-pulse"></div>
+        </div>
+      </div>
       {message && <p className="text-gray-600 text-sm">{message}</p>}
     </div>
   );
