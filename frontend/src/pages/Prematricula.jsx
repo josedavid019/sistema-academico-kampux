@@ -26,9 +26,7 @@ export function Prematricula() {
   const [view, setView] = useState('tarjeta');
   const [modalOpen, setModalOpen] = useState(false);
 
-  function togglePreinscripcion(id) {
-    setClases(prev => prev.map(c => c.id === id ? { ...c, estado: c.estado === 'Preinscrito' ? 'Disponible' : 'Preinscrito' } : c));
-  }
+  // Preinscripción desde esta página fue removida; usar "Buscar asignaturas".
 
   function handleAgregarSeleccionadas(ids) {
     setClases(prev => prev.map(c => ids.includes(c.id) ? { ...c, estado: 'Preinscrito' } : c));
@@ -45,8 +43,8 @@ export function Prematricula() {
           <p className="text-blue-100 mt-1">Selecciona las asignaturas para el periodo y confirma tu pre-matrícula.</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-          <div className="col-span-2 bg-white rounded-lg shadow p-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          <div className="bg-white rounded-lg shadow p-6 lg:p-8">
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h2 className="text-lg font-semibold text-gray-900">Programa</h2>
@@ -79,17 +77,17 @@ export function Prematricula() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="font-semibold text-gray-900 mb-3">Acciones</h3>
+          <div className="bg-white rounded-lg shadow p-6 lg:p-8 flex flex-col justify-between">
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-3">Buscar</h3>
+              <p className="text-sm text-gray-600 mb-4">Busca y selecciona las asignaturas que quieras agregar a tu pre-matrícula.</p>
+            </div>
+
             <div className="flex flex-col gap-3">
-              <button className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Confirmar pre-matrícula</button>
-              <button className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300" onClick={() => { setClases(clasesMock); setQuery(''); }}>Limpiar selección</button>
-              <div className="flex gap-2 items-center mt-2">
-                <select value={view} onChange={e => setView(e.target.value)} className="px-3 py-2 border rounded">
-                  <option value="tarjeta">Tarjeta</option>
-                  <option value="lista">Lista</option>
-                </select>
-                <input value={query} onChange={e => setQuery(e.target.value)} className="px-3 py-2 border rounded flex-1" placeholder="Buscar por código o nombre" />
+              <button onClick={() => setModalOpen(true)} className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Buscar asignaturas</button>
+
+              <div className="text-sm text-gray-600 bg-gray-50 p-3 rounded">
+                <div><span className="font-semibold text-gray-800">{clases.filter(c => c.estado === 'Preinscrito').length}</span> asignaturas pre-matriculadas</div>
               </div>
             </div>
           </div>
@@ -98,11 +96,8 @@ export function Prematricula() {
         <div className="bg-white rounded-lg shadow p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Asignaturas disponibles</h3>
 
-          <div className="flex items-center justify-between mb-4">
+          <div className="mb-4">
             <div className="text-sm text-gray-600">Selecciona las asignaturas que quieres pre-matricular.</div>
-            <div className="flex items-center gap-2">
-              <button onClick={() => setModalOpen(true)} className="px-3 py-2 bg-blue-600 text-white rounded">Buscar asignaturas</button>
-            </div>
           </div>
 
           {/* Mostrar pre-matriculadas */}
@@ -115,65 +110,6 @@ export function Prematricula() {
               ))}
             </div>
           </div>
-
-          {view === 'tarjeta' ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filtered.map(c => (
-                <div key={c.id} className="border rounded-lg overflow-hidden shadow-sm bg-gray-50">
-                  <div className="p-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <div>
-                        <div className="text-xs text-gray-500">{c.codigo}</div>
-                        <div className="font-semibold text-gray-800">{c.nombre}</div>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-sm font-medium">{c.creditos} cr</div>
-                        <div className={`text-xs mt-1 ${c.estado === 'Preinscrito' ? 'text-green-700' : 'text-gray-500'}`}>{c.estado}</div>
-                      </div>
-                    </div>
-
-                    <div className="text-sm text-gray-600 mb-3">Docente: {c.docente}</div>
-
-                    <div className="flex gap-2">
-                      <button onClick={() => togglePreinscripcion(c.id)} className={`px-3 py-2 rounded text-sm font-semibold ${c.estado === 'Preinscrito' ? 'bg-red-100 text-red-700' : 'bg-blue-600 text-white hover:bg-blue-700'}`}>
-                        {c.estado === 'Preinscrito' ? 'Cancelar' : 'Preinscribir'}
-                      </button>
-                      <button className="px-3 py-2 rounded text-sm bg-white border">Ver</button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <table className="w-full table-auto">
-              <thead>
-                <tr className="text-left text-sm text-gray-600">
-                  <th className="p-2">Código</th>
-                  <th className="p-2">Nombre</th>
-                  <th className="p-2">Créditos</th>
-                  <th className="p-2">Docente</th>
-                  <th className="p-2">Estado</th>
-                  <th className="p-2">Acción</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filtered.map(c => (
-                  <tr key={c.id} className="border-t">
-                    <td className="p-2">{c.codigo}</td>
-                    <td className="p-2">{c.nombre}</td>
-                    <td className="p-2">{c.creditos}</td>
-                    <td className="p-2">{c.docente}</td>
-                    <td className="p-2">{c.estado}</td>
-                    <td className="p-2"><button onClick={() => togglePreinscripcion(c.id)} className={`px-3 py-1 rounded ${c.estado === 'Preinscrito' ? 'bg-red-100 text-red-700' : 'bg-blue-600 text-white'}`}>{c.estado === 'Preinscrito' ? 'Cancelar' : 'Preinscribir'}</button></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-
-          {filtered.length === 0 && (
-            <div className="text-center py-8 text-gray-500">No se encontraron asignaturas.</div>
-          )}
         </div>
         <SeleccionAsignaturasModal
           open={modalOpen}
