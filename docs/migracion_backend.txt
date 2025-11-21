@@ -1,0 +1,19 @@
+1. Comentar en academico/models.py:
+- MateriaDocente.docente
+- MateriaDocente.Class Meta
+- CargaAcademica.docente
+- CargaAcademica.aula
+
+2. Haces la migracion
+python manage.py makemigrations academico
+python manage.py makemigrations usuarios
+python manage.py makemigrations asistencia
+python manage.py makemigrations microcurriculo
+python manage.py makemigrations horarios
+python manage.py migrate
+
+3. Quitas los comentarios en academico/models.py
+
+4. Haces la migracion
+python manage.py makemigrations academico
+python manage.py migrate
