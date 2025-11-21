@@ -1,5 +1,22 @@
-import { create } from 'zustand';
+import { create } from "zustand";
+import { loginUsuario, registerUsuario, logoutUsuario } from "../api/usuarios";
 
+function parseApiError(data) {
+  if (!data) return null;
+  if (typeof data === "string") return data;
+  if (data.detail) return data.detail;
+  // if it's an object, flatten values (arrays or strings)
+  if (typeof data === "object") {
+    const parts = [];
+    for (const val of Object.values(data)) {
+      if (Array.isArray(val)) parts.push(val.join(" "));
+      else if (typeof val === "object") parts.push(JSON.stringify(val));
+      else parts.push(String(val));
+    }
+    return parts.join(" | ");
+  }
+  return String(data);
+}
 export const useAuthStore = create((set) => ({
   user: null,
   isAuthenticated: false,
@@ -10,19 +27,24 @@ export const useAuthStore = create((set) => ({
   login: async (email, password) => {
     set({ isLoading: true, error: null });
     try {
-      // TODO: Reemplazar con llamada real a la API
-      // const response = await authAPI.login(email, password);
-      // localStorage.setItem('token', response.token);
+      const data = await loginUsuario({ email, password });
+      // backend returns { user: {...} }
+      const user = data.user || null;
       set({
-        user: { email },
-        isAuthenticated: true,
+        user,
+        isAuthenticated: !!user,
         isLoading: false,
       });
+      return user;
     } catch (error) {
+      const respData = error.response?.data;
+      const msg =
+        parseApiError(respData) || error.message || "Error en el login";
       set({
-        error: error.message || 'Error en el login',
+        error: msg,
         isLoading: false,
       });
+      throw error;
     }
   },
 
@@ -30,29 +52,38 @@ export const useAuthStore = create((set) => ({
   register: async (userData) => {
     set({ isLoading: true, error: null });
     try {
-      // TODO: Reemplazar con llamada real a la API
-      // const response = await authAPI.register(userData);
-      // localStorage.setItem('token', response.token);
+      const data = await registerUsuario(userData);
+      const user = data.user || null;
       set({
-        user: userData,
-        isAuthenticated: true,
+        user,
+        isAuthenticated: !!user,
         isLoading: false,
       });
+      return user;
     } catch (error) {
+      const respData = error.response?.data;
+      const msg =
+        parseApiError(respData) || error.message || "Error en el registro";
       set({
-        error: error.message || 'Error en el registro',
+        error: msg,
         isLoading: false,
       });
+      throw error;
     }
   },
 
   // Logout action
   logout: async () => {
-    // allow callers to await the logout operation
-    localStorage.removeItem('token');
+    set({ isLoading: true, error: null });
+    try {
+      await logoutUsuario();
+    } catch (err) {
+      // ignore error but clear state
+    }
     set({
       user: null,
       isAuthenticated: false,
+      isLoading: false,
       error: null,
     });
     return Promise.resolve();
@@ -61,12 +92,8 @@ export const useAuthStore = create((set) => ({
   // Clear error
   clearError: () => set({ error: null }),
 
-  // Load user from localStorage (para persistencia)
+  // Load user from previous session (optional placeholder)
   loadUser: () => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      // TODO: Validar token con el backend
-      set({ isAuthenticated: true });
-    }
+    // Could call an endpoint to fetch current user if needed
   },
 }));

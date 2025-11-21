@@ -1,11 +1,11 @@
 from django.db import models
 
-class HorarioEstudiante(models.Model):
-    DIA_CHOICES = (
+DIA_CHOICES = (
         ('Lunes','Lunes'),('Martes','Martes'),('Miercoles','Miercoles'),
         ('Jueves','Jueves'),('Viernes','Viernes'),('Sabado','Sabado'),('Domingo','Domingo')
     )
 
+class HorarioEstudiante(models.Model):
     estudiante = models.ForeignKey(
         'usuarios.Estudiante',
         on_delete=models.CASCADE,
@@ -28,7 +28,6 @@ class HorarioEstudiante(models.Model):
     hora = models.TimeField()
     grupo = models.CharField(max_length=100)
     dia = models.CharField(max_length=10, choices=DIA_CHOICES)
-
     activo = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -39,13 +38,7 @@ class HorarioEstudiante(models.Model):
     def __str__(self):
         return f"{self.estudiante} - {self.materia} ({self.dia} {self.hora})"
 
-
 class HorarioDocente(models.Model):
-    DIA_CHOICES = (
-        ('Lunes','Lunes'),('Martes','Martes'),('Miercoles','Miercoles'),
-        ('Jueves','Jueves'),('Viernes','Viernes'),('Sabado','Sabado'),('Domingo','Domingo')
-    )
-
     docente = models.ForeignKey(
         'usuarios.Docente',
         on_delete=models.SET_NULL,
@@ -68,7 +61,6 @@ class HorarioDocente(models.Model):
     hora = models.TimeField()
     grupo = models.CharField(max_length=100)
     dia = models.CharField(max_length=10, choices=DIA_CHOICES)
-
     activo = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

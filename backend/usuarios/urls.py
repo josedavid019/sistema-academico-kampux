@@ -1,8 +1,17 @@
+# usuarios/urls.py
 from django.urls import path
-from . import views
+from .views import (
+    RegisterAPIView, LoginAPIView, LogoutAPIView,
+    EstudianteCreateAPIView, DocenteCreateAPIView,
+    CoordinadorCreateAPIView, AdministradorCreateAPIView
+)
 
 urlpatterns = [
-    path('register/', views.RegisterAPIView.as_view(), name='api-register'),
-    path('login/', views.LoginAPIView.as_view(), name='api-login'),
-    path('logout/', views.LogoutAPIView.as_view(), name='api-logout'),
+    path('register/', RegisterAPIView.as_view(), name='usuarios-register'),
+    path('login/', LoginAPIView.as_view(), name='usuarios-login'),
+    path('logout/', LogoutAPIView.as_view(), name='usuarios-logout'),
+    path('estudiantes/', EstudianteCreateAPIView.as_view(), name='estudiantes-create'),
+    path('docentes/', DocenteCreateAPIView.as_view(), name='docentes-create'),
+    path('coordinadores/', CoordinadorCreateAPIView.as_view(), name='coordinadores-create'),
+    path('administradores/', AdministradorCreateAPIView.as_view(), name='administradores-create'),
 ]

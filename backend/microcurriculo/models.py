@@ -14,12 +14,10 @@ class Microcurriculo(models.Model):
         related_name='microcurriculos',
         db_index=True
     )
-
     nivel_superior = models.IntegerField(default=0)
     nivel_normal = models.IntegerField(default=0)
     nivel_bajo = models.IntegerField(default=0)
     nivel_deficiente = models.IntegerField(default=0)
-
     prerequisitos = models.TextField(blank=True, null=True)
     departamento_oferente = models.CharField(max_length=120, blank=True, null=True)
     tipo_asignatura = models.CharField(max_length=50, blank=True, null=True)
@@ -30,18 +28,15 @@ class Microcurriculo(models.Model):
     competencias_genericas = models.TextField(blank=True, null=True)
     estrategias_pedagogicas_metodologicas = models.TextField(blank=True, null=True)
     referencias_bibliograficas = models.TextField(blank=True, null=True)
-
     primer_parcial = models.IntegerField(default=0)
     segundo_parcial = models.IntegerField(default=0)
     tercer_parcial = models.IntegerField(default=0)
-
     activo = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"Micro {self.pk} - {self.programa}"
-
 
 class ContenidoCompetenciasEspecificas(models.Model):
     microcurriculo = models.ForeignKey(
@@ -53,19 +48,16 @@ class ContenidoCompetenciasEspecificas(models.Model):
     unidad_tematica = models.CharField(max_length=150, blank=True, null=True)
     competencias_especificas = models.TextField(blank=True, null=True)
     resultados_de_aprendizaje = models.TextField(blank=True, null=True)
-
     nivel_superior = models.IntegerField(default=0)
     nivel_normal = models.IntegerField(default=0)
     nivel_bajo = models.IntegerField(default=0)
     nivel_deficiente = models.IntegerField(default=0)
-
     activo = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"Contenido {self.pk} - {self.unidad_tematica or ''}"
-
 
 class PlanMicrocurriculo(models.Model):
     microcurriculo = models.ForeignKey(
@@ -88,7 +80,6 @@ class PlanMicrocurriculo(models.Model):
         related_name='planes_micro',
         db_index=True
     )
-
     creditos = models.IntegerField(blank=True, null=True)
     tipo_asignatura = models.CharField(max_length=50, blank=True, null=True)
     naturaleza_asignatura = models.CharField(max_length=50, blank=True, null=True)
@@ -97,14 +88,12 @@ class PlanMicrocurriculo(models.Model):
     fecha_inicio = models.DateField(blank=True, null=True)
     total_horas = models.IntegerField(blank=True, null=True)
     fecha_terminacion = models.DateField(blank=True, null=True)
-
     activo = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"Plan {self.pk} - Micro {self.microcurriculo.pk}"
-
 
 class DetallePlanMicrocurriculo(models.Model):
     plan = models.ForeignKey(
@@ -116,7 +105,6 @@ class DetallePlanMicrocurriculo(models.Model):
     semana = models.IntegerField()
     tema = models.CharField(max_length=200, blank=True, null=True)
     actividades = models.TextField(blank=True, null=True)
-
     activo = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
