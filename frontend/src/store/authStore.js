@@ -1,11 +1,14 @@
 import { create } from "zustand";
-import { loginUsuario, registerUsuario, logoutUsuario } from "../api/usuarios";
+import {
+  loginUsuario,
+  registerUsuario,
+  logoutUsuario,
+} from "../api/usuarios.api";
 
 function parseApiError(data) {
   if (!data) return null;
   if (typeof data === "string") return data;
   if (data.detail) return data.detail;
-  // if it's an object, flatten values (arrays or strings)
   if (typeof data === "object") {
     const parts = [];
     for (const val of Object.values(data)) {
@@ -17,24 +20,47 @@ function parseApiError(data) {
   }
   return String(data);
 }
+
 export const useAuthStore = create((set) => ({
   user: null,
   isAuthenticated: false,
   isLoading: false,
   error: null,
 
+  // Load user from localStorage (or later from /auth/me)
+  loadUser: () => {
+    const raw = localStorage.getItem("kampux_user");
+    if (raw) {
+      try {
+        const user = JSON.parse(raw);
+        set({ user, isAuthenticated: true });
+      } catch (e) {
+        localStorage.removeItem("kampux_user");
+        set({ user: null, isAuthenticated: false });
+      }
+    } else {
+      set({ user: null, isAuthenticated: false });
+    }
+  },
+
   // Login action
   login: async (email, password) => {
     set({ isLoading: true, error: null });
     try {
-      const data = await loginUsuario({ email, password });
-      // backend returns { user: {...} }
-      const user = data.user || null;
+      // loginUsuario ahora retorna response.data (el usuario)
+      const user = await loginUsuario({ email, password });
+      // guardar en estado y localStorage
       set({
         user,
         isAuthenticated: !!user,
         isLoading: false,
+        error: null,
       });
+      try {
+        localStorage.setItem("kampux_user", JSON.stringify(user));
+      } catch (e) {
+        console.warn("No se pudo guardar usuario en localStorage", e);
+      }
       return user;
     } catch (error) {
       const respData = error.response?.data;
@@ -43,6 +69,8 @@ export const useAuthStore = create((set) => ({
       set({
         error: msg,
         isLoading: false,
+        user: null,
+        isAuthenticated: false,
       });
       throw error;
     }
@@ -52,13 +80,15 @@ export const useAuthStore = create((set) => ({
   register: async (userData) => {
     set({ isLoading: true, error: null });
     try {
-      const data = await registerUsuario(userData);
-      const user = data.user || null;
+      const user = await registerUsuario(userData);
       set({
         user,
         isAuthenticated: !!user,
         isLoading: false,
       });
+      try {
+        localStorage.setItem("kampux_user", JSON.stringify(user));
+      } catch (e) {}
       return user;
     } catch (error) {
       const respData = error.response?.data;
@@ -78,8 +108,9 @@ export const useAuthStore = create((set) => ({
     try {
       await logoutUsuario();
     } catch (err) {
-      // ignore error but clear state
+      // ignore error (server may clear session), but clear client state
     }
+    localStorage.removeItem("kampux_user");
     set({
       user: null,
       isAuthenticated: false,
@@ -89,11 +120,5 @@ export const useAuthStore = create((set) => ({
     return Promise.resolve();
   },
 
-  // Clear error
   clearError: () => set({ error: null }),
-
-  // Load user from previous session (optional placeholder)
-  loadUser: () => {
-    // Could call an endpoint to fetch current user if needed
-  },
 }));

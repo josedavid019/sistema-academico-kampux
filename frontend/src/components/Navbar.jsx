@@ -14,9 +14,20 @@ export function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const { user, isAuthenticated, logout } = useAuthStore();
+  const [isLoggingOut, setIsLoggingOut] = React.useState(false);
+
   const handleLogout = async () => {
-    await logout();
-    navigate("/", { replace: true });
+    try {
+      setIsLoggingOut(true);
+      await logout();
+      navigate("/", { replace: true });
+    } catch (err) {
+      // opcional: mostrar toast o setError
+      console.error("Error al cerrar sesión:", err);
+      // puedes usar setState para mostrar mensaje
+    } finally {
+      setIsLoggingOut(false);
+    }
   };
 
   return (
@@ -197,12 +208,13 @@ export function Navbar() {
                   {({ active }) => (
                     <button
                       onClick={handleLogout}
+                      disabled={isLoggingOut}
                       className={`w-full flex items-center gap-2 text-left px-4 py-2 text-sm text-red-600 transition border-t border-gray-200 cursor-pointer ${
                         active ? "bg-red-50" : ""
                       }`}
                     >
-                      <ArrowRightOnRectangleIcon className="w-5 h-5" /> Cerrar
-                      Sesión
+                      <ArrowRightOnRectangleIcon className="w-5 h-5" />{" "}
+                      {isLoggingOut ? "Cerrando..." : "Cerrar Sesión"}
                     </button>
                   )}
                 </Menu.Item>

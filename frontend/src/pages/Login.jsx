@@ -58,8 +58,21 @@ export function Login() {
       return;
     }
 
-    await login(formData.email, formData.password);
-    navigate("/dashboard");
+    try {
+      const user = await login(formData.email, formData.password);
+      // user viene del backend (UsuarioSerializer) y debe incluir "rol"
+      const role = user?.rol || user?.role || "sin_rol";
+
+      // redirigir según rol (ajusta rutas a tu preferencia)
+      if (role === "estudiante") navigate("/dashboard");
+      else if (role === "docente") navigate("/dashboard");
+      else if (role === "coordinador") navigate("/dashboard");
+      else if (role === "administrador") navigate("/dashboard");
+      else navigate("/dashboard");
+    } catch (err) {
+      // error ya almacenado por el store; opcionalmente mostrar algo local
+      console.error("Login error:", err);
+    }
   };
 
   return (
