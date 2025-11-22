@@ -1,0 +1,9 @@
+superuser django:
+username: admin
+password: admin
+
+Usuarios kampux:
+
+administrador:
+email: admin@example.com
+password: admin_123
