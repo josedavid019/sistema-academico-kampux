@@ -1,0 +1,237 @@
+[
+{
+"nombre_materia": "Historia de la educación y la pedagogía",
+"numero_creditos": 3,
+"descripcion": "Recorrido histórico de las ideas educativas y corrientes pedagógicas que han influido en la formación docente y la construcción de sistemas educativos."
+},
+{
+"nombre_materia": "Constitución política",
+"numero_creditos": 2,
+"descripcion": "Estudio de la normativa constitucional y los derechos y deberes ciudadanos aplicados al ámbito educativo."
+},
+{
+"nombre_materia": "Juego, lúdica y creatividad",
+"numero_creditos": 2,
+"descripcion": "Explora el juego como herramienta pedagógica para el aprendizaje, el desarrollo creativo y la exploración infantil."
+},
+{
+"nombre_materia": "Psicología evolutiva",
+"numero_creditos": 3,
+"descripcion": "Análisis del desarrollo psicológico en la infancia: etapas, hitos, y factores que inciden en el crecimiento emocional y cognitivo."
+},
+{
+"nombre_materia": "Proyecto de vida",
+"numero_creditos": 2,
+"descripcion": "Taller orientado a la construcción de proyectos personales y profesionales, autoconocimiento y toma de decisiones."
+},
+{
+"nombre_materia": "Comunicación oral y escrita II",
+"numero_creditos": 3,
+"descripcion": "Profundización en técnicas de argumentación, presentación y escritura académica orientada a contextos educativos."
+},
+{
+"nombre_materia": "Creatividad e innovación empresarial",
+"numero_creditos": 2,
+"descripcion": "Introducción a procesos creativos e innovación con aplicación en proyectos pedagógicos y emprendimientos educativos."
+},
+{
+"nombre_materia": "Epistemología de la pedagogía",
+"numero_creditos": 3,
+"descripcion": "Reflexión sobre los fundamentos epistemológicos del conocimiento pedagógico y las bases teóricas de la práctica docente."
+},
+{
+"nombre_materia": "Expresión plástica",
+"numero_creditos": 2,
+"descripcion": "Recursos y técnicas de expresión artística para el desarrollo sensorial, creativo y comunicativo en la infancia."
+},
+{
+"nombre_materia": "Psicología del aprendizaje",
+"numero_creditos": 3,
+"descripcion": "Teorías y procesos del aprendizaje, estrategias instruccionales y factores que facilitan la adquisición de conocimientos."
+},
+{
+"nombre_materia": "Cuidado y atención infantil",
+"numero_creditos": 3,
+"descripcion": "Prácticas y principios para el cuidado integral del niño: salud, higiene, rutinas y atención en contextos educativos y familiares."
+},
+{
+"nombre_materia": "Condición socio familiar de la infancia",
+"numero_creditos": 2,
+"descripcion": "Análisis de las condiciones familiares y sociales que afectan el desarrollo infantil y estrategias de intervención comunitaria."
+},
+{
+"nombre_materia": "Estadística",
+"numero_creditos": 3,
+"descripcion": "Herramientas estadísticas básicas para la recolección, análisis e interpretación de datos en investigación educativa."
+},
+{
+"nombre_materia": "Evaluación educativa",
+"numero_creditos": 3,
+"descripcion": "Principios y técnicas de evaluación de aprendizaje, diseño de instrumentos y criterios de retroalimentación formativa."
+},
+{
+"nombre_materia": "Fundamentos de neurodesarrollo",
+"numero_creditos": 3,
+"descripcion": "Bases neurobiológicas del desarrollo infantil y su implicación en el aprendizaje, la atención y la conducta."
+},
+{
+"nombre_materia": "Ovas",
+"numero_creditos": 1,
+"descripcion": "Unidad destinada a actividades específicas (seminarios/observatorios) para complementar la formación práctica y teórica."
+},
+{
+"nombre_materia": "Prácticas de observación",
+"numero_creditos": 2,
+"descripcion": "Técnicas de observación en entornos educativos: registro, análisis e interpretación de comportamientos y dinámicas grupales."
+},
+{
+"nombre_materia": "Rol docente",
+"numero_creditos": 2,
+"descripcion": "Reflexión sobre la identidad profesional del docente, funciones, responsabilidades y relaciones con la comunidad escolar."
+},
+{
+"nombre_materia": "Didáctica general",
+"numero_creditos": 3,
+"descripcion": "Principios y métodos didácticos generales aplicables al diseño de planeaciones, secuencias y actividades de aula."
+},
+{
+"nombre_materia": "Investigación pedagógica",
+"numero_creditos": 3,
+"descripcion": "Aplicación de métodos de investigación en proyectos pedagógicos orientados a mejorar prácticas y resultados educativos."
+},
+{
+"nombre_materia": "Modelos pedagógicos",
+"numero_creditos": 3,
+"descripcion": "Estudio comparado de modelos y enfoques pedagógicos contemporáneos y su aplicación en contextos escolares."
+},
+{
+"nombre_materia": "Prac. en cuidado y estimu. al infante",
+"numero_creditos": 3,
+"descripcion": "Prácticas orientadas al cuidado y la estimulación temprana del niño en ambientes educativos y de salud."
+},
+{
+"nombre_materia": "Psicomotricidad",
+"numero_creditos": 2,
+"descripcion": "Estudio y aplicación de técnicas psicomotrices para el desarrollo integral de la motricidad en la infancia."
+},
+{
+"nombre_materia": "Didáctica de la lectoescritura",
+"numero_creditos": 3,
+"descripcion": "Estrategias y métodos para la enseñanza de la lectura y la escritura en los primeros ciclos educativos."
+},
+{
+"nombre_materia": "Lenguaje y cognición",
+"numero_creditos": 3,
+"descripcion": "Relación entre procesos lingüísticos y cognitivos en la infancia y su implicación en el aprendizaje escolar."
+},
+{
+"nombre_materia": "Proyectos pedagógicos",
+"numero_creditos": 3,
+"descripcion": "Diseño, implementación y evaluación de proyectos educativos orientados a resolver problemáticas del contexto escolar."
+},
+{
+"nombre_materia": "P.P.I en competencias ciudadanas",
+"numero_creditos": 2,
+"descripcion": "Programas pedagógicos integrados para el desarrollo de competencias ciudadanas en la formación infantil."
+},
+{
+"nombre_materia": "Administración educativa",
+"numero_creditos": 3,
+"descripcion": "Principios de gestión escolar, organización institucional, planeación y liderazgo en centros educativos."
+},
+{
+"nombre_materia": "Didácticas de las matemáticas",
+"numero_creditos": 3,
+"descripcion": "Estrategias para la enseñanza de conceptos matemáticos en edades tempranas, con énfasis en actividades significativas."
+},
+{
+"nombre_materia": "Problemas del aprendizaje",
+"numero_creditos": 3,
+"descripcion": "Identificación, diagnóstico e intervención de dificultades y trastornos del aprendizaje en la infancia."
+},
+{
+"nombre_materia": "P.P.I en competencias comunicativas",
+"numero_creditos": 2,
+"descripcion": "Programas integrados centrados en el desarrollo de competencias comunicativas en contextos educativos."
+},
+{
+"nombre_materia": "Cátedra de paz",
+"numero_creditos": 2,
+"descripcion": "Formación en cultura de paz, resolución no violenta de conflictos y ética social aplicada a la escuela."
+},
+{
+"nombre_materia": "Didácticas de las ciencias",
+"numero_creditos": 3,
+"descripcion": "Métodos y recursos para la enseñanza de ciencias naturales adaptados a la etapa infantil."
+},
+{
+"nombre_materia": "Desarrollo psicoafectivo",
+"numero_creditos": 3,
+"descripcion": "Estudio del desarrollo afectivo y socioemocional del niño y estrategias para su promoción desde la educación."
+},
+{
+"nombre_materia": "Electiva de profundización IV",
+"numero_creditos": 2,
+"descripcion": "Optativa de profundización temática para fortalecer competencias específicas avanzadas."
+},
+{
+"nombre_materia": "Diseño y evaluación curricular",
+"numero_creditos": 3,
+"descripcion": "Principios para diseñar currículos, establecer objetivos, secuenciar contenidos y evaluar programas educativos."
+},
+{
+"nombre_materia": "P.P.I en competencias matemáticas",
+"numero_creditos": 2,
+"descripcion": "Programas pedagógicos integrados para el desarrollo de competencias matemáticas en los primeros niveles."
+},
+{
+"nombre_materia": "Diseño de proyectos",
+"numero_creditos": 3,
+"descripcion": "Metodologías para planificar y estructurar proyectos educativos con enfoque en impacto y viabilidad."
+},
+{
+"nombre_materia": "Educación inclusiva",
+"numero_creditos": 3,
+"descripcion": "Enfoques, estrategias y adaptaciones curriculares para garantizar la inclusión de estudiantes con diversidad funcional."
+},
+{
+"nombre_materia": "Electiva de profundización V",
+"numero_creditos": 2,
+"descripcion": "Última optativa de profundización para consolidar una línea temática de especialización."
+},
+{
+"nombre_materia": "P.P.I en competencias científicas",
+"numero_creditos": 2,
+"descripcion": "Programas integrados para el desarrollo de competencias científicas básicas en la educación infantil."
+},
+{
+"nombre_materia": "Didácticas del inglés",
+"numero_creditos": 3,
+"descripcion": "Estrategias para la enseñanza del inglés como segunda lengua orientadas a niños en etapa inicial."
+},
+{
+"nombre_materia": "Desarrollo de proyectos",
+"numero_creditos": 3,
+"descripcion": "Ejecución y seguimiento de proyectos diseñados previamente, con énfasis en gestión y evaluación."
+},
+{
+"nombre_materia": "Proceso de calidad educativa",
+"numero_creditos": 3,
+"descripcion": "Sistemas de aseguramiento de la calidad, evaluación institucional y mejora continua en centros educativos."
+},
+{
+"nombre_materia": "P.P en gestión familiar y comunitaria",
+"numero_creditos": 2,
+"descripcion": "Programas y prácticas para fortalecer la vinculación escuela-familia y la gestión comunitaria en educación."
+},
+{
+"nombre_materia": "Implementación de proyectos",
+"numero_creditos": 4,
+"descripcion": "Puesta en marcha de proyectos pedagógicos integrales, evaluación de resultados y sostenibilidad de intervenciones."
+},
+{
+"nombre_materia": "Prácticas docente profesional",
+"numero_creditos": 4,
+"descripcion": "Estancia profesional supervisada en entornos reales de enseñanza que integra competencias didácticas y éticas."
+}
+]

@@ -1,0 +1,242 @@
+[
+  {
+    "nombre_materia": "Física mecánica",
+    "numero_creditos": 3,
+    "descripcion": "Estudio del movimiento, fuerzas, equilibrio y leyes fundamentales de la mecánica clásica."
+  },
+  {
+    "nombre_materia": "Química general",
+    "numero_creditos": 2,
+    "descripcion": "Principios básicos de estructura atómica, enlaces químicos y reacciones aplicadas a procesos industriales."
+  },
+  {
+    "nombre_materia": "Introducción a la ingeniería industrial",
+    "numero_creditos": 2,
+    "descripcion": "Panorama general de la ingeniería industrial, sus áreas, aplicaciones y campo profesional."
+  },
+  {
+    "nombre_materia": "Álgebra lineal",
+    "numero_creditos": 3,
+    "descripcion": "Análisis de matrices, vectores, espacios vectoriales y transformaciones lineales aplicadas a problemas de ingeniería."
+  },
+  {
+    "nombre_materia": "Cálculo diferencial",
+    "numero_creditos": 3,
+    "descripcion": "Conceptos fundamentales de derivadas y su aplicación en fenómenos físicos e industriales."
+  },
+  {
+    "nombre_materia": "Física calor y ondas",
+    "numero_creditos": 3,
+    "descripcion": "Estudio del calor, transferencia térmica, ondas y fenómenos asociados en sistemas industriales."
+  },
+  {
+    "nombre_materia": "Procesos industriales",
+    "numero_creditos": 3,
+    "descripcion": "Introducción a los principales procesos productivos utilizados en la industria moderna."
+  },
+  {
+    "nombre_materia": "Constitución Política",
+    "numero_creditos": 1,
+    "descripcion": "Estudio del marco constitucional colombiano y sus implicaciones sociales y profesionales."
+  },
+  {
+    "nombre_materia": "Cálculo integral",
+    "numero_creditos": 3,
+    "descripcion": "Cálculo de integrales y aplicaciones en ingeniería, incluyendo áreas, volúmenes y modelamiento."
+  },
+  {
+    "nombre_materia": "Dibujo de ingeniería",
+    "numero_creditos": 2,
+    "descripcion": "Representación gráfica de objetos y sistemas mediante normas técnicas y herramientas de diseño."
+  },
+  {
+    "nombre_materia": "Materiales de la ingeniería",
+    "numero_creditos": 2,
+    "descripcion": "Estudio de propiedades, clasificación y selección de materiales utilizados en procesos industriales."
+  },
+  {
+    "nombre_materia": "Física eléctrica",
+    "numero_creditos": 2,
+    "descripcion": "Conceptos fundamentales de electricidad, circuitos y su aplicación en sistemas industriales."
+  },
+  {
+    "nombre_materia": "Fundamentos de logística",
+    "numero_creditos": 3,
+    "descripcion": "Conceptos esenciales de gestión logística, cadenas de suministro y operaciones."
+  },
+  {
+    "nombre_materia": "Funda. de seguridad y salud en el trabajo",
+    "numero_creditos": 2,
+    "descripcion": "Principios de seguridad industrial, prevención de riesgos y normativas laborales."
+  },
+  {
+    "nombre_materia": "Métodos y tiempos",
+    "numero_creditos": 3,
+    "descripcion": "Análisis y optimización de procesos mediante estudio de tiempos, movimientos y productividad."
+  },
+  {
+    "nombre_materia": "Fundamentos administrativos",
+    "numero_creditos": 2,
+    "descripcion": "Conceptos básicos de administración, gestión y funcionamiento organizacional."
+  },
+  {
+    "nombre_materia": "Higiene y seguridad industrial",
+    "numero_creditos": 2,
+    "descripcion": "Identificación y control de riesgos físicos, químicos y mecánicos en entornos de trabajo."
+  },
+  {
+    "nombre_materia": "Ecuaciones diferenciales",
+    "numero_creditos": 3,
+    "descripcion": "Modelamiento matemático mediante ecuaciones diferenciales aplicadas a sistemas dinámicos."
+  },
+  {
+    "nombre_materia": "Estadísticas descriptivas",
+    "numero_creditos": 3,
+    "descripcion": "Métodos estadísticos para el análisis y descripción de datos en procesos industriales."
+  },
+  {
+    "nombre_materia": "Gestión de la calidad",
+    "numero_creditos": 3,
+    "descripcion": "Principios, modelos y herramientas para asegurar la calidad en procesos y productos."
+  },
+  {
+    "nombre_materia": "Gestión de la cadena de suministro",
+    "numero_creditos": 3,
+    "descripcion": "Diseño, planificación y control estratégico de cadenas de suministro."
+  },
+  {
+    "nombre_materia": "Sistema de manufactura",
+    "numero_creditos": 3,
+    "descripcion": "Estudio de sistemas productivos, automatización y procesos de fabricación."
+  },
+  {
+    "nombre_materia": "Marketing",
+    "numero_creditos": 2,
+    "descripcion": "Estrategias de mercadeo y análisis de mercado aplicados a sectores industriales."
+  },
+  {
+    "nombre_materia": "Gestión del talento humano",
+    "numero_creditos": 2,
+    "descripcion": "Procesos de reclutamiento, selección, formación y desarrollo del personal."
+  },
+  {
+    "nombre_materia": "Ergonomía",
+    "numero_creditos": 2,
+    "descripcion": "Análisis de la interacción humano–máquina para mejorar seguridad y rendimiento laboral."
+  },
+  {
+    "nombre_materia": "Control y aseguramiento de la calidad",
+    "numero_creditos": 3,
+    "descripcion": "Métodos de control estadístico de procesos y sistemas de aseguramiento de calidad."
+  },
+  {
+    "nombre_materia": "Investigación de operaciones I",
+    "numero_creditos": 3,
+    "descripcion": "Modelos matemáticos para optimización de recursos y toma de decisiones."
+  },
+  {
+    "nombre_materia": "Economía y globalización",
+    "numero_creditos": 2,
+    "descripcion": "Impacto de la economía global en los mercados, producción y comercio."
+  },
+  {
+    "nombre_materia": "Diseño de experimentos",
+    "numero_creditos": 3,
+    "descripcion": "Técnicas para planear y analizar experimentos aplicados a procesos productivos."
+  },
+  {
+    "nombre_materia": "Gerencia estratégica",
+    "numero_creditos": 2,
+    "descripcion": "Formulación e implementación de estrategias empresariales."
+  },
+  {
+    "nombre_materia": "Modelos de productividad",
+    "numero_creditos": 3,
+    "descripcion": "Herramientas para medir, analizar y mejorar la productividad organizacional."
+  },
+  {
+    "nombre_materia": "Diseño organizacional",
+    "numero_creditos": 2,
+    "descripcion": "Estructuración y mejora de procesos y departamentos en una organización."
+  },
+  {
+    "nombre_materia": "Finanzas",
+    "numero_creditos": 2,
+    "descripcion": "Principios financieros aplicados a decisiones económicas en ingeniería."
+  },
+  {
+    "nombre_materia": "Investigación de operaciones II",
+    "numero_creditos": 3,
+    "descripcion": "Modelos avanzados de optimización, programación lineal y simulación."
+  },
+  {
+    "nombre_materia": "Gerencia de operaciones",
+    "numero_creditos": 3,
+    "descripcion": "Gestión integral de procesos productivos y operativos."
+  },
+  {
+    "nombre_materia": "Diseño de productos y procesos",
+    "numero_creditos": 3,
+    "descripcion": "Desarrollo, análisis y mejora de productos y procesos industriales."
+  },
+  {
+    "nombre_materia": "Ingeniería económica",
+    "numero_creditos": 3,
+    "descripcion": "Evaluación económica de proyectos de inversión y análisis financiero."
+  },
+  {
+    "nombre_materia": "Costos de producción",
+    "numero_creditos": 2,
+    "descripcion": "Sistemas de costos aplicados a manufactura y servicios."
+  },
+  {
+    "nombre_materia": "Proceso de simulación",
+    "numero_creditos": 2,
+    "descripcion": "Modelado y simulación de procesos mediante software especializado."
+  },
+  {
+    "nombre_materia": "Gestión ambiental",
+    "numero_creditos": 2,
+    "descripcion": "Prácticas y normativas de sostenibilidad aplicadas a la industria."
+  },
+  {
+    "nombre_materia": "Mantenimiento industrial",
+    "numero_creditos": 3,
+    "descripcion": "Técnicas de mantenimiento preventivo, predictivo y correctivo en equipos industriales."
+  },
+  {
+    "nombre_materia": "Gerencia de proyectos",
+    "numero_creditos": 3,
+    "descripcion": "Gestión de proyectos bajo estándares internacionales y metodologías modernas."
+  },
+  {
+    "nombre_materia": "Gerencia de HSEQ",
+    "numero_creditos": 2,
+    "descripcion": "Implementación y mantenimiento de sistemas de calidad, seguridad y ambiente."
+  },
+  {
+    "nombre_materia": "Gestión del cambio",
+    "numero_creditos": 2,
+    "descripcion": "Procesos de transformación organizacional y adaptación estratégica."
+  },
+  {
+    "nombre_materia": "Automatización en procesos industriales",
+    "numero_creditos": 3,
+    "descripcion": "Aplicación de tecnologías de control automático en sistemas productivos."
+  },
+  {
+    "nombre_materia": "Proyecto de grado I",
+    "numero_creditos": 2,
+    "descripcion": "Formulación del proyecto de investigación o aplicación industrial final."
+  },
+  {
+    "nombre_materia": "Práctica empresarial",
+    "numero_creditos": 3,
+    "descripcion": "Experiencia laboral supervisada en un entorno profesional real."
+  },
+  {
+    "nombre_materia": "Proyecto de grado II",
+    "numero_creditos": 2,
+    "descripcion": "Ejecución y sustentación del proyecto de grado en ingeniería industrial."
+  }
+]

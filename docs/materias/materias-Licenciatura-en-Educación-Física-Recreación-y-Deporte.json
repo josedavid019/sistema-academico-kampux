@@ -1,0 +1,272 @@
+[
+{
+"nombre_materia": "Comunicación oral y escrita I",
+"numero_creditos": 3,
+"descripcion": "Desarrollo de habilidades básicas de expresión oral y escrita orientadas a contextos educativos y comunicativos en el aula."
+},
+{
+"nombre_materia": "Introducción a la educación física",
+"numero_creditos": 3,
+"descripcion": "Panorama general de la educación física como disciplina, sus objetivos, métodos y papel en la formación integral."
+},
+{
+"nombre_materia": "Didácticas evolutiva",
+"numero_creditos": 3,
+"descripcion": "Fundamentos didácticos vinculados al desarrollo evolutivo y su implicación en la planificación de la enseñanza."
+},
+{
+"nombre_materia": "Didáctica de la gimnasia",
+"numero_creditos": 3,
+"descripcion": "Principios y estrategias para la enseñanza de la gimnasia en diferentes niveles de educación física."
+},
+{
+"nombre_materia": "Didáctica educación psicomotriz II",
+"numero_creditos": 3,
+"descripcion": "Métodos para la intervención psicomotriz en contextos educativos, centrados en el desarrollo sensoriomotor de los niños."
+},
+{
+"nombre_materia": "Bases biológicas - anatomía",
+"numero_creditos": 3,
+"descripcion": "Introducción a la anatomía y bases biológicas relevantes para la práctica de la educación física."
+},
+{
+"nombre_materia": "Epistemología",
+"numero_creditos": 3,
+"descripcion": "Reflexión sobre los fundamentos epistemológicos del conocimiento pedagógico y científico en educación física."
+},
+{
+"nombre_materia": "Didáctica del atletismo",
+"numero_creditos": 3,
+"descripcion": "Estrategias y organización para la enseñanza de habilidades atléticas básicas: carreras, saltos y lanzamientos."
+},
+{
+"nombre_materia": "Didáctica del juego",
+"numero_creditos": 2,
+"descripcion": "Uso pedagógico del juego como recurso didáctico para el aprendizaje y desarrollo integral en la educación física."
+},
+{
+"nombre_materia": "Musicomotricidad",
+"numero_creditos": 2,
+"descripcion": "Integración de la música y el movimiento para el desarrollo motriz, expresivo y rítmico en la infancia."
+},
+{
+"nombre_materia": "Epistemología de la educación física",
+"numero_creditos": 2,
+"descripcion": "Análisis crítico de los fundamentos teóricos y del conocimiento específico de la educación física."
+},
+{
+"nombre_materia": "Legislación educativa",
+"numero_creditos": 2,
+"descripcion": "Marco legal de la educación nacional, normativa aplicada a la gestión y desempeño docente."
+},
+{
+"nombre_materia": "Didácticas especiales a la educación física",
+"numero_creditos": 3,
+"descripcion": "Adaptaciones metodológicas para atender la diversidad y necesidades educativas especiales en la materia."
+},
+{
+"nombre_materia": "Fundamentos matemáticos",
+"numero_creditos": 2,
+"descripcion": "Bases matemáticas básicas necesarias para el análisis de datos y planificación en educación física."
+},
+{
+"nombre_materia": "Didáctica de la natación",
+"numero_creditos": 3,
+"descripcion": "Estrategias didácticas y de seguridad para la enseñanza de la natación en contextos escolares."
+},
+{
+"nombre_materia": "Electiva I",
+"numero_creditos": 2,
+"descripcion": "Asignatura optativa para profundizar en un área específica de interés profesional o académico."
+},
+{
+"nombre_materia": "Fisiología del ejercicio",
+"numero_creditos": 3,
+"descripcion": "Estudio de las respuestas y adaptaciones fisiológicas al ejercicio físico y su aplicación educativa."
+},
+{
+"nombre_materia": "Observación y la práctica de la enseñanza",
+"numero_creditos": 2,
+"descripcion": "Técnicas de observación en aula y primeras experiencias prácticas de enseñanza supervisada."
+},
+{
+"nombre_materia": "Didáctica del voleibol",
+"numero_creditos": 3,
+"descripcion": "Métodos y secuencias para la enseñanza del voleibol en etapas iniciales y escolares."
+},
+{
+"nombre_materia": "Lúdica y uso del tiempo libre",
+"numero_creditos": 2,
+"descripcion": "Propuestas lúdicas y de recreación para el aprovechamiento del tiempo libre con fines educativos."
+},
+{
+"nombre_materia": "Biomecánica",
+"numero_creditos": 3,
+"descripcion": "Análisis biomecánico del movimiento humano aplicado a la enseñanza y corrección de habilidades motrices."
+},
+{
+"nombre_materia": "Práctica de la enseñanza",
+"numero_creditos": 3,
+"descripcion": "Experiencias prácticas en aula para desarrollar competencias didácticas y de gestión de grupos."
+},
+{
+"nombre_materia": "Currículo y educación",
+"numero_creditos": 2,
+"descripcion": "Diseño curricular, secuenciación de contenidos y su relación con las políticas educativas y la práctica docente."
+},
+{
+"nombre_materia": "Electiva II",
+"numero_creditos": 2,
+"descripcion": "Asignatura optativa para ampliar formación en áreas específicas de la profesión."
+},
+{
+"nombre_materia": "Escribir para publicar",
+"numero_creditos": 2,
+"descripcion": "Taller para la elaboración de artículos y materiales académicos orientados a la difusión científica y pedagógica."
+},
+{
+"nombre_materia": "Didáctica de baloncesto",
+"numero_creditos": 3,
+"descripcion": "Estrategias y recursos para la enseñanza del baloncesto en contextos escolares y recreativos."
+},
+{
+"nombre_materia": "Danza",
+"numero_creditos": 2,
+"descripcion": "Técnicas básicas de danza y su aplicación pedagógica para el desarrollo expresivo y corporal."
+},
+{
+"nombre_materia": "Electiva III",
+"numero_creditos": 2,
+"descripcion": "Optativa de profundización temática para fortalecer competencias específicas en educación física."
+},
+{
+"nombre_materia": "Diseño Curricular en educación física",
+"numero_creditos": 3,
+"descripcion": "Proceso de diseño curricular específico para la educación física: objetivos, contenidos y evaluación."
+},
+{
+"nombre_materia": "Práctica de la enseñanza II",
+"numero_creditos": 3,
+"descripcion": "Segunda fase de práctica supervisada enfocada en la aplicación avanzada de estrategias didácticas."
+},
+{
+"nombre_materia": "Desarrollo de proyecto",
+"numero_creditos": 2,
+"descripcion": "Ejecución y seguimiento de proyectos diseñados, focalizando gestión, recursos y resultados."
+},
+{
+"nombre_materia": "Didáctica de fútbol y fútbol sala",
+"numero_creditos": 3,
+"descripcion": "Metodologías para enseñar fútbol y futsal en diferentes niveles y contextos pedagógicos."
+},
+{
+"nombre_materia": "Electiva IV",
+"numero_creditos": 2,
+"descripcion": "Asignatura optativa para profundizar en temas específicos de interés del futuro profesional."
+},
+{
+"nombre_materia": "Práctica pedagógica I",
+"numero_creditos": 3,
+"descripcion": "Primera experiencia de práctica pedagógica con responsabilidad en la planificación y ejecución de clases."
+},
+{
+"nombre_materia": "Gestión de la calidad educativa",
+"numero_creditos": 3,
+"descripcion": "Conceptos y herramientas para implementar sistemas de calidad y mejora continua en instituciones educativas."
+},
+{
+"nombre_materia": "Educación inclusiva en edu. física",
+"numero_creditos": 2,
+"descripcion": "Estrategias y ajustes curriculares para asegurar la inclusión de estudiantes con diversidad funcional en EF."
+},
+{
+"nombre_materia": "TICs",
+"numero_creditos": 2,
+"descripcion": "Uso de tecnologías de la información y la comunicación aplicadas a la enseñanza y gestión de la educación física."
+},
+{
+"nombre_materia": "Tutoría de investigación I",
+"numero_creditos": 2,
+"descripcion": "Acompañamiento metodológico en el diseño y avance de proyectos de investigación orientados al campo educativo."
+},
+{
+"nombre_materia": "Didáctica de beisbol y softball",
+"numero_creditos": 3,
+"descripcion": "Estrategias para la enseñanza y práctica segura del béisbol y sóftbol en contextos escolares."
+},
+{
+"nombre_materia": "Recreación y eco campismo",
+"numero_creditos": 2,
+"descripcion": "Planificación de actividades recreativas y campamentos con criterios de sostenibilidad y educación ambiental."
+},
+{
+"nombre_materia": "Expresión corporal y artística",
+"numero_creditos": 2,
+"descripcion": "Recursos expresivos y artísticos para trabajar el cuerpo como medio de comunicación y aprendizaje."
+},
+{
+"nombre_materia": "Práctica pedagógica II",
+"numero_creditos": 3,
+"descripcion": "Continuación de la formación práctica con foco en docencia autónoma y supervisada en contextos reales."
+},
+{
+"nombre_materia": "Electiva V",
+"numero_creditos": 2,
+"descripcion": "Optativa para el desarrollo de saberes especializados según la trayectoria de formación del estudiante."
+},
+{
+"nombre_materia": "Procesos evaluativos en edu. física",
+"numero_creditos": 3,
+"descripcion": "Diseño y aplicación de instrumentos de evaluación específicos para la educación física y el rendimiento motriz."
+},
+{
+"nombre_materia": "Tutoría de investigación II",
+"numero_creditos": 2,
+"descripcion": "Segunda fase de tutoría dirigida al avance y consolidación del proyecto de investigación."
+},
+{
+"nombre_materia": "Entrenamiento deportivo",
+"numero_creditos": 3,
+"descripcion": "Principios del entrenamiento: planificación, carga, periodización y su aplicación en contextos formativos."
+},
+{
+"nombre_materia": "Profundización escuelas de formación",
+"numero_creditos": 2,
+"descripcion": "Análisis de modelos de formación deportiva y su relación con la educación física escolar y comunitaria."
+},
+{
+"nombre_materia": "Electiva VI",
+"numero_creditos": 2,
+"descripcion": "Asignatura optativa para consolidar conocimientos en una línea temática de interés profesional."
+},
+{
+"nombre_materia": "Práctica I",
+"numero_creditos": 3,
+"descripcion": "Práctica profesional inicial que integra planificación, intervención y evaluación en contextos reales."
+},
+{
+"nombre_materia": "Interdisciplinariedad de la edu. física",
+"numero_creditos": 2,
+"descripcion": "Enfoques interdisciplinarios que vinculan la educación física con otras áreas del currículo escolar."
+},
+{
+"nombre_materia": "Electiva VII",
+"numero_creditos": 2,
+"descripcion": "Última optativa para profundizar en una especialidad o área de interés profesional."
+},
+{
+"nombre_materia": "Profundización entrenamiento menores",
+"numero_creditos": 2,
+"descripcion": "Estudio específico de métodos y consideraciones para el entrenamiento de niños y adolescentes."
+},
+{
+"nombre_materia": "Prácticas profesionales",
+"numero_creditos": 4,
+"descripcion": "Estancia profesional supervisada de larga duración en instituciones educativas o deportivas."
+},
+{
+"nombre_materia": "Electiva VIII",
+"numero_creditos": 2,
+"descripcion": "Optativa final que permite completar la formación con contenidos especializados según interés del estudiante."
+}
+]
