@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import SectionHeader from '../components/SectionHeader';
 import SeleccionAsignaturasModal from '../components/SeleccionAsignaturasModal';
+import { getProgramas, getMaterias } from '../api/academico.api';
 
 const programaMock = {
   nombre: 'Ingeniería de Sistemas - Jornada Diurna',
@@ -20,13 +22,59 @@ const clasesMock = [
 
 export function Prematricula() {
   const [clases, setClases] = useState(clasesMock);
-  const creditosUsados = programaMock.creditosUsados + clases.filter(c => c.estado === 'Preinscrito').reduce((s, c) => s + c.creditos, 0) - clasesMock.filter(c => c.estado === 'Preinscrito').reduce((s, c) => s + c.creditos, 0);
-  const creditosDisponibles = programaMock.creditosMax - creditosUsados;
+  const [programa, setPrograma] = useState(programaMock);
+  const [programas, setProgramas] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  // recalcular créditos usando programa actual y clases
+  const creditosUsados = (programa?.creditosUsados || programaMock.creditosUsados) + clases.filter(c => c.estado === 'Preinscrito').reduce((s, c) => s + c.creditos, 0) - clasesMock.filter(c => c.estado === 'Preinscrito').reduce((s, c) => s + c.creditos, 0);
+  const creditosDisponibles = (programa?.creditosMax || programaMock.creditosMax) - creditosUsados;
   const [query, setQuery] = useState('');
   const [view, setView] = useState('tarjeta');
   const [modalOpen, setModalOpen] = useState(false);
 
   // Preinscripción desde esta página fue removida; usar "Buscar asignaturas".
+
+  useEffect(() => {
+    // fetch programas y materias del backend para reemplazar mocks cuando sea posible
+    async function loadData() {
+      setLoading(true);
+      try {
+        const progs = await getProgramas();
+        setProgramas(progs || []);
+        if (progs && progs.length > 0) {
+          const p = progs[0];
+          setPrograma({
+            nombre: p.nombre_programa,
+            periodo: '2025-2',
+            nivel: 'N/A',
+            creditosUsados: 0,
+            creditosMax: p.numero_creditos || 0,
+            estado: p.activo ? 'Activa' : 'Inactiva',
+          });
+        }
+
+        const materias = await getMaterias();
+        if (materias && materias.length > 0) {
+          // mapear materias a la estructura de clases
+          const mapped = materias.slice(0, 8).map((m, idx) => ({
+            id: m.id,
+            codigo: `M-${m.id}`,
+            nombre: m.nombre_materia,
+            creditos: m.numero_creditos || 2,
+            docente: '-',
+            estado: 'Disponible',
+          }));
+          setClases(mapped);
+        }
+      } catch (err) {
+        console.warn('No se pudo cargar programas/materias desde backend:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
+  }, []);
 
   function handleAgregarSeleccionadas(ids) {
     setClases(prev => prev.map(c => ids.includes(c.id) ? { ...c, estado: 'Preinscrito' } : c));
@@ -38,10 +86,7 @@ export function Prematricula() {
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-blue-900 text-white rounded-lg p-6 mb-8">
-          <h1 className="text-3xl font-bold">Pre-matrícula</h1>
-          <p className="text-blue-100 mt-1">Selecciona las asignaturas para el periodo y confirma tu pre-matrícula.</p>
-        </div>
+        <SectionHeader title={"Pre-matrícula"} subtitle={"Selecciona las asignaturas para el periodo y confirma tu pre-matrícula."} />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           <div className="bg-white rounded-lg shadow p-6 lg:p-8">

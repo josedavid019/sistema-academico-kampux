@@ -19,6 +19,7 @@ import { Horarios } from "./pages/Horarios";
 import { Resultados } from "./pages/Resultados";
 import { Prematricula } from "./pages/Prematricula";
 import { MisCursos } from "./pages/MisCursos";
+import { CursoDetalle } from "./pages/CursoDetalle";
 
 function App() {
   const { loadUser, isAuthenticated } = useAuthStore();
@@ -144,6 +145,15 @@ function App() {
             <ProtectedRoute>
               <Navbar />
               <MisCursos />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/cursos/:id"
+          element={
+            <ProtectedRoute>
+              <Navbar />
+              <CursoDetalle />
             </ProtectedRoute>
           }
         />
