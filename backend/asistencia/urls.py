@@ -1,6 +1,11 @@
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include
-from .views import AulaViewSet, SensorAsistenciaViewSet, AsistenciaViewSet, DetalleAsistenciaViewSet
+from .views import (
+    AulaViewSet,
+    SensorAsistenciaViewSet,
+    AsistenciaViewSet,
+    DetalleAsistenciaViewSet,
+)
 
 router = DefaultRouter()
 router.register(r"aulas", AulaViewSet, basename="aula")

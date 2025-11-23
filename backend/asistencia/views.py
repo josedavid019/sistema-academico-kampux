@@ -12,9 +12,11 @@ from .serializers import (
 # intentar importar permiso personalizado (si existe)
 try:
     from usuarios.permissions import IsOwnerOrAdminOrCoordinador
+
     CUSTOM_PERMISSION = IsOwnerOrAdminOrCoordinador
 except Exception:
     CUSTOM_PERMISSION = None
+
 
 class DefaultPagination(PageNumberPagination):
     page_size = 20
@@ -33,7 +35,11 @@ class AulaViewSet(viewsets.ModelViewSet):
 
 
 class SensorAsistenciaViewSet(viewsets.ModelViewSet):
-    queryset = SensorAsistencia.objects.all().select_related("codigo_aula").order_by("identificador_sensor")
+    queryset = (
+        SensorAsistencia.objects.all()
+        .select_related("codigo_aula")
+        .order_by("identificador_sensor")
+    )
     serializer_class = SensorAsistenciaSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     pagination_class = DefaultPagination
@@ -43,7 +49,11 @@ class SensorAsistenciaViewSet(viewsets.ModelViewSet):
 
 
 class AsistenciaViewSet(viewsets.ModelViewSet):
-    queryset = Asistencia.objects.all().select_related("docente", "materia", "aula", "sensor").order_by("-fecha", "-hora")
+    queryset = (
+        Asistencia.objects.all()
+        .select_related("docente", "materia", "aula", "sensor")
+        .order_by("-fecha", "-hora")
+    )
     serializer_class = AsistenciaSerializer
     # lectura abierta, escritura sólo para autenticados; si existe permiso personalizado, úsalo
     if CUSTOM_PERMISSION is not None:
@@ -52,7 +62,12 @@ class AsistenciaViewSet(viewsets.ModelViewSet):
         permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     pagination_class = DefaultPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
-    search_fields = ["docente__user__email", "materia__nombre_materia", "grupo", "fecha"]
+    search_fields = [
+        "docente__user__email",
+        "materia__nombre_materia",
+        "grupo",
+        "fecha",
+    ]
     ordering_fields = ["created_at", "fecha", "hora"]
 
     # El create y update los maneja el serializer (que soporta 'detalles'), así que no hace falta override.
@@ -65,7 +80,11 @@ class AsistenciaViewSet(viewsets.ModelViewSet):
 
 
 class DetalleAsistenciaViewSet(viewsets.ModelViewSet):
-    queryset = DetalleAsistencia.objects.all().select_related("estudiante", "asistencia").order_by("-created_at")
+    queryset = (
+        DetalleAsistencia.objects.all()
+        .select_related("estudiante", "asistencia")
+        .order_by("-created_at")
+    )
     serializer_class = DetalleAsistenciaSerializer
     if CUSTOM_PERMISSION is not None:
         permission_classes = [permissions.IsAuthenticatedOrReadOnly, CUSTOM_PERMISSION]

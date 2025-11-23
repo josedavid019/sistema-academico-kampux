@@ -7,9 +7,11 @@ from .serializers import HorarioEstudianteSerializer, HorarioDocenteSerializer
 # intentar importar permiso personalizado (si existe)
 try:
     from usuarios.permissions import IsOwnerOrAdminOrCoordinador
+
     CUSTOM_PERMISSION = IsOwnerOrAdminOrCoordinador
 except Exception:
     CUSTOM_PERMISSION = None
+
 
 class DefaultPagination(PageNumberPagination):
     page_size = 20
@@ -18,11 +20,20 @@ class DefaultPagination(PageNumberPagination):
 
 
 class HorarioEstudianteViewSet(viewsets.ModelViewSet):
-    queryset = HorarioEstudiante.objects.select_related('estudiante__user','materia','aula').all().order_by('dia','hora')
+    queryset = (
+        HorarioEstudiante.objects.select_related("estudiante__user", "materia", "aula")
+        .all()
+        .order_by("dia", "hora")
+    )
     serializer_class = HorarioEstudianteSerializer
     pagination_class = DefaultPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
-    search_fields = ["estudiante__user__email", "materia__nombre_materia", "dia", "grupo"]
+    search_fields = [
+        "estudiante__user__email",
+        "materia__nombre_materia",
+        "dia",
+        "grupo",
+    ]
     ordering_fields = ["created_at", "dia", "hora"]
 
     def get_permissions(self):
@@ -39,11 +50,21 @@ class HorarioEstudianteViewSet(viewsets.ModelViewSet):
 
 
 class HorarioDocenteViewSet(viewsets.ModelViewSet):
-    queryset = HorarioDocente.objects.select_related('docente__user','materia','aula').all().order_by('dia','hora')
+    queryset = (
+        HorarioDocente.objects.select_related("docente__user", "materia", "aula")
+        .all()
+        .order_by("dia", "hora")
+    )
     serializer_class = HorarioDocenteSerializer
     pagination_class = DefaultPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
-    search_fields = ["docente__user__email", "materia__nombre_materia", "dia", "grupo", "aula__nombre_aula"]
+    search_fields = [
+        "docente__user__email",
+        "materia__nombre_materia",
+        "dia",
+        "grupo",
+        "aula__nombre_aula",
+    ]
     ordering_fields = ["created_at", "dia", "hora"]
 
     def get_permissions(self):

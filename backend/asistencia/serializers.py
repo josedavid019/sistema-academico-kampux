@@ -3,6 +3,7 @@ from .models import Aula, SensorAsistencia, Asistencia, DetalleAsistencia
 from usuarios.models import Estudiante, Docente
 from academico.models import Materia
 
+
 class AulaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Aula
@@ -11,7 +12,9 @@ class AulaSerializer(serializers.ModelSerializer):
 
 
 class SensorAsistenciaSerializer(serializers.ModelSerializer):
-    codigo_aula = serializers.PrimaryKeyRelatedField(queryset=Aula.objects.all(), allow_null=True, required=False)
+    codigo_aula = serializers.PrimaryKeyRelatedField(
+        queryset=Aula.objects.all(), allow_null=True, required=False
+    )
 
     class Meta:
         model = SensorAsistencia
@@ -20,7 +23,9 @@ class SensorAsistenciaSerializer(serializers.ModelSerializer):
 
 
 class DetalleAsistenciaSerializer(serializers.ModelSerializer):
-    estudiante = serializers.PrimaryKeyRelatedField(queryset=Estudiante.objects.all(), allow_null=True, required=False)
+    estudiante = serializers.PrimaryKeyRelatedField(
+        queryset=Estudiante.objects.all(), allow_null=True, required=False
+    )
 
     class Meta:
         model = DetalleAsistencia
@@ -41,8 +46,12 @@ class DetalleAsistenciaSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         # validar que tenga al menos identificación o estudiante si no hay nombre completo
-        if not data.get("estudiante") and not (data.get("identificacion") or data.get("nombre")):
-            raise serializers.ValidationError("Debe proporcionar 'estudiante' o al menos 'identificacion'/'nombre'.")
+        if not data.get("estudiante") and not (
+            data.get("identificacion") or data.get("nombre")
+        ):
+            raise serializers.ValidationError(
+                "Debe proporcionar 'estudiante' o al menos 'identificacion'/'nombre'."
+            )
         return data
 
     def create(self, validated_data):
@@ -62,10 +71,18 @@ class DetalleAsistenciaSerializer(serializers.ModelSerializer):
 
 
 class AsistenciaSerializer(serializers.ModelSerializer):
-    docente = serializers.PrimaryKeyRelatedField(queryset=Docente.objects.all(), allow_null=True, required=False)
-    materia = serializers.PrimaryKeyRelatedField(queryset=Materia.objects.all(), allow_null=True, required=False)
-    aula = serializers.PrimaryKeyRelatedField(queryset=Aula.objects.all(), allow_null=True, required=False)
-    sensor = serializers.PrimaryKeyRelatedField(queryset=SensorAsistencia.objects.all(), allow_null=True, required=False)
+    docente = serializers.PrimaryKeyRelatedField(
+        queryset=Docente.objects.all(), allow_null=True, required=False
+    )
+    materia = serializers.PrimaryKeyRelatedField(
+        queryset=Materia.objects.all(), allow_null=True, required=False
+    )
+    aula = serializers.PrimaryKeyRelatedField(
+        queryset=Aula.objects.all(), allow_null=True, required=False
+    )
+    sensor = serializers.PrimaryKeyRelatedField(
+        queryset=SensorAsistencia.objects.all(), allow_null=True, required=False
+    )
     # campo anidado opcional para crear detalles en la misma petición
     detalles = DetalleAsistenciaSerializer(many=True, required=False)
 
@@ -105,7 +122,11 @@ class AsistenciaSerializer(serializers.ModelSerializer):
                 # asegurar relacion asistencia
                 d["asistencia"] = asistencia
                 # si viene estudiante (pk), DetalleAsistenciaSerializer.create rellenará campos
-                detalles_objs.append(DetalleAsistencia(**{k: v for k, v in d.items() if k != "asistencia" or False}))
+                detalles_objs.append(
+                    DetalleAsistencia(
+                        **{k: v for k, v in d.items() if k != "asistencia" or False}
+                    )
+                )
             # No usar bulk_create directo si quieres que se ejecuten signals -> pero aquí creamos a través del serializer
             created = []
             for d in detalles_data:

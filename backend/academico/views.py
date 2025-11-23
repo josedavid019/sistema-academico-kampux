@@ -10,6 +10,7 @@ from .serializers import (
     CargaAcademicaSerializer,
 )
 
+
 class DefaultPagination(PageNumberPagination):
     page_size = 20
     page_size_query_param = "page_size"
@@ -55,7 +56,9 @@ class MateriaViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        return Response(
+            serializer.data, status=status.HTTP_201_CREATED, headers=headers
+        )
 
     def perform_create(self, serializer):
         # Si el serializer es un ListSerializer personalizado, .save() ya hace bulk_create
@@ -63,7 +66,11 @@ class MateriaViewSet(viewsets.ModelViewSet):
 
 
 class MateriaDocenteViewSet(viewsets.ModelViewSet):
-    queryset = MateriaDocente.objects.all().select_related("docente", "materia").order_by("-created_at")
+    queryset = (
+        MateriaDocente.objects.all()
+        .select_related("docente", "materia")
+        .order_by("-created_at")
+    )
     serializer_class = MateriaDocenteSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     pagination_class = DefaultPagination
@@ -73,10 +80,19 @@ class MateriaDocenteViewSet(viewsets.ModelViewSet):
 
 
 class CargaAcademicaViewSet(viewsets.ModelViewSet):
-    queryset = CargaAcademica.objects.all().select_related("programa", "materia", "docente", "aula").order_by("dia", "hora")
+    queryset = (
+        CargaAcademica.objects.all()
+        .select_related("programa", "materia", "docente", "aula")
+        .order_by("dia", "hora")
+    )
     serializer_class = CargaAcademicaSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     pagination_class = DefaultPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
-    search_fields = ["programa__nombre_programa", "materia__nombre_materia", "docente__user__email", "grupo"]
+    search_fields = [
+        "programa__nombre_programa",
+        "materia__nombre_materia",
+        "docente__user__email",
+        "grupo",
+    ]
     ordering_fields = ["created_at", "dia", "hora"]

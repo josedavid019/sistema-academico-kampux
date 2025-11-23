@@ -9,7 +9,9 @@ from .views import (
 
 router = DefaultRouter()
 router.register(r"microcurriculos", MicrocurriculoViewSet, basename="microcurriculo")
-router.register(r"contenidos", ContenidoCompetenciasViewSet, basename="contenidocompetencias")
+router.register(
+    r"contenidos", ContenidoCompetenciasViewSet, basename="contenidocompetencias"
+)
 router.register(r"planes", PlanMicrocurriculoViewSet, basename="planmicro")
 router.register(r"detalles", DetallePlanViewSet, basename="detalleplan")
 

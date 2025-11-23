@@ -16,9 +16,11 @@ from .serializers import (
 # intentar importar permiso personalizado (si existe)
 try:
     from usuarios.permissions import IsOwnerOrAdminOrCoordinador
+
     CUSTOM_PERMISSION = IsOwnerOrAdminOrCoordinador
 except Exception:
     CUSTOM_PERMISSION = None
+
 
 class DefaultPagination(PageNumberPagination):
     page_size = 20
@@ -27,11 +29,19 @@ class DefaultPagination(PageNumberPagination):
 
 
 class MicrocurriculoViewSet(viewsets.ModelViewSet):
-    queryset = Microcurriculo.objects.select_related("programa","materia").all().order_by("-created_at")
+    queryset = (
+        Microcurriculo.objects.select_related("programa", "materia")
+        .all()
+        .order_by("-created_at")
+    )
     serializer_class = MicrocurriculoSerializer
     pagination_class = DefaultPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
-    search_fields = ["programa__nombre_programa", "materia__nombre_materia", "descripcion_asignatura"]
+    search_fields = [
+        "programa__nombre_programa",
+        "materia__nombre_materia",
+        "descripcion_asignatura",
+    ]
     ordering_fields = ["created_at"]
 
     def get_permissions(self):
@@ -44,7 +54,11 @@ class MicrocurriculoViewSet(viewsets.ModelViewSet):
 
 
 class ContenidoCompetenciasViewSet(viewsets.ModelViewSet):
-    queryset = ContenidoCompetenciasEspecificas.objects.select_related("microcurriculo").all().order_by("created_at")
+    queryset = (
+        ContenidoCompetenciasEspecificas.objects.select_related("microcurriculo")
+        .all()
+        .order_by("created_at")
+    )
     serializer_class = ContenidoCompetenciasSerializer
     pagination_class = DefaultPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
@@ -60,11 +74,21 @@ class ContenidoCompetenciasViewSet(viewsets.ModelViewSet):
 
 
 class PlanMicrocurriculoViewSet(viewsets.ModelViewSet):
-    queryset = PlanMicrocurriculo.objects.select_related("microcurriculo","docente","materia").all().order_by("-created_at")
+    queryset = (
+        PlanMicrocurriculo.objects.select_related(
+            "microcurriculo", "docente", "materia"
+        )
+        .all()
+        .order_by("-created_at")
+    )
     serializer_class = PlanMicrocurriculoSerializer
     pagination_class = DefaultPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
-    search_fields = ["microcurriculo__programa__nombre_programa", "docente__user__email", "periodo_academico"]
+    search_fields = [
+        "microcurriculo__programa__nombre_programa",
+        "docente__user__email",
+        "periodo_academico",
+    ]
     ordering_fields = ["created_at"]
 
     def get_permissions(self):
@@ -76,7 +100,11 @@ class PlanMicrocurriculoViewSet(viewsets.ModelViewSet):
 
 
 class DetallePlanViewSet(viewsets.ModelViewSet):
-    queryset = DetallePlanMicrocurriculo.objects.select_related("plan").all().order_by("semana")
+    queryset = (
+        DetallePlanMicrocurriculo.objects.select_related("plan")
+        .all()
+        .order_by("semana")
+    )
     serializer_class = DetallePlanSerializer
     pagination_class = DefaultPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
