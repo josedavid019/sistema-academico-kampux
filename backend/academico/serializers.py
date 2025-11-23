@@ -1,10 +1,7 @@
 from rest_framework import serializers
 from .models import Facultad, Programa, Materia, MateriaDocente, CargaAcademica
-
-# Si quieres presentar datos del docente o aula de forma más legible,
-# puedes importar los modelos correspondientes. Por ahora usamos PKs.
-from usuarios.models import Docente  # opcional: para validaciones
-from asistencia.models import Aula   # opcional
+from usuarios.models import Docente
+from asistencia.models import Aula
 
 
 class FacultadSerializer(serializers.ModelSerializer):
@@ -22,12 +19,24 @@ class ProgramaSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ("id", "created_at", "updated_at")
 
+class MateriaListSerializer(serializers.ListSerializer):
+    def create(self, validated_data):
+        """
+        validated_data is a list of dicts.
+        Usamos bulk_create para mejor performance.
+        """
+        model_class = self.child.Meta.model
+        objs = [model_class(**item) for item in validated_data]
+        # bulk_create devuelve la lista de objetos creados
+        created = model_class.objects.bulk_create(objs)
+        return created
 
 class MateriaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Materia
         fields = "__all__"
         read_only_fields = ("id", "created_at", "updated_at")
+        list_serializer_class = MateriaListSerializer
 
 
 class MateriaDocenteSerializer(serializers.ModelSerializer):

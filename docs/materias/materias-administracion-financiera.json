@@ -1,0 +1,287 @@
+[
+{
+"nombre_materia": "Fundamentos de administración",
+"numero_creditos": 3,
+"descripcion": "Introducción a los principios, funciones y procesos de la administración en organizaciones, con énfasis en toma de decisiones y coordinación de recursos."
+},
+{
+"nombre_materia": "Comunicación oral y escrita",
+"numero_creditos": 2,
+"descripcion": "Desarrollo de habilidades de expresión oral y escrita aplicadas al entorno académico y profesional, incluyendo redacción de informes y presentaciones."
+},
+{
+"nombre_materia": "Formación del espíritu científico",
+"numero_creditos": 2,
+"descripcion": "Fundamentos del método científico, pensamiento crítico y análisis riguroso para la generación y evaluación de conocimiento."
+},
+{
+"nombre_materia": "Fundamentos de matemáticas",
+"numero_creditos": 3,
+"descripcion": "Conceptos matemáticos básicos necesarios para el análisis cuantitativo en administración y finanzas, incluyendo álgebra y funciones."
+},
+{
+"nombre_materia": "Fundamentación y normativa contable",
+"numero_creditos": 3,
+"descripcion": "Principios y normas contables básicas que regulan el registro y presentación de la información financiera en las organizaciones."
+},
+{
+"nombre_materia": "Informática",
+"numero_creditos": 2,
+"descripcion": "Herramientas informáticas fundamentales para la gestión y análisis de información empresarial, incluyendo hojas de cálculo y software básico."
+},
+{
+"nombre_materia": "Fundamentos de economía",
+"numero_creditos": 3,
+"descripcion": "Introducción a los conceptos micro y macroeconómicos que afectan la toma de decisiones empresariales y el comportamiento de mercados."
+},
+{
+"nombre_materia": "Principios de administración financiera",
+"numero_creditos": 3,
+"descripcion": "Conceptos básicos de finanzas corporativas: valor del dinero en el tiempo, análisis de inversión y financiamiento empresarial."
+},
+{
+"nombre_materia": "Contabilidad I",
+"numero_creditos": 3,
+"descripcion": "Registro y ciclo contable básico, elaboración de estados financieros y aplicación de principios contables en operaciones comunes."
+},
+{
+"nombre_materia": "Creatividad e innovación",
+"numero_creditos": 2,
+"descripcion": "Técnicas para fomentar la creatividad y la generación de ideas innovadoras aplicadas a la solución de problemas organizacionales."
+},
+{
+"nombre_materia": "Constitución política colombiana",
+"numero_creditos": 2,
+"descripcion": "Estudio de los principios y normas de la Constitución colombiana y su aplicación en el contexto institucional y empresarial."
+},
+{
+"nombre_materia": "Desarrollo sostenible",
+"numero_creditos": 2,
+"descripcion": "Conceptos de sostenibilidad y responsabilidad social, con énfasis en prácticas empresariales que equilibran lo económico, social y ambiental."
+},
+{
+"nombre_materia": "Microeconomía",
+"numero_creditos": 3,
+"descripcion": "Análisis del comportamiento de consumidores y empresas, formación de precios y estructuras de mercado a nivel microeconómico."
+},
+{
+"nombre_materia": "Enfoque contemporáneo de la administración",
+"numero_creditos": 2,
+"descripcion": "Revisión de teorías y modelos administrativos modernos orientados a la gestión eficiente en entornos dinámicos y competitivos."
+},
+{
+"nombre_materia": "Metodología de la investigación",
+"numero_creditos": 3,
+"descripcion": "Métodos y técnicas de investigación científica aplicables a proyectos académicos y profesionales, incluyendo diseño y recolección de datos."
+},
+{
+"nombre_materia": "Electiva de humanidades",
+"numero_creditos": 2,
+"descripcion": "Asignatura optativa orientada al desarrollo de competencias culturales, éticas o sociales complementarias al perfil profesional."
+},
+{
+"nombre_materia": "Legislación comercial",
+"numero_creditos": 3,
+"descripcion": "Marco jurídico de las actividades comerciales, contratos, sociedades y obligaciones legales relevantes para la empresa."
+},
+{
+"nombre_materia": "Contabilidad II",
+"numero_creditos": 3,
+"descripcion": "Profundización en registros contables y tratamiento de operaciones complejas, ajustes y presentación de estados financieros."
+},
+{
+"nombre_materia": "Fundamentos de mercadeo",
+"numero_creditos": 2,
+"descripcion": "Principios básicos del marketing: segmentación, mezcla comercial, comportamiento del consumidor y estrategias de posicionamiento."
+},
+{
+"nombre_materia": "Matemática financiera",
+"numero_creditos": 3,
+"descripcion": "Herramientas matemáticas aplicadas a finanzas: interés simple y compuesto, anualidades, descuento y valoración de flujos."
+},
+{
+"nombre_materia": "Estadística descriptiva",
+"numero_creditos": 3,
+"descripcion": "Técnicas para resumen y análisis de datos: medidas de tendencia, dispersión, representación gráfica y distribución de datos."
+},
+{
+"nombre_materia": "Sistemas de información gerencial",
+"numero_creditos": 3,
+"descripcion": "Diseño y uso de sistemas de información para la toma de decisiones gerenciales y el soporte de procesos empresariales."
+},
+{
+"nombre_materia": "Contabilidad de costos",
+"numero_creditos": 3,
+"descripcion": "Métodos de costeo, análisis de costos por procesos y por órdenes, y su aplicación para la toma de decisiones operativas."
+},
+{
+"nombre_materia": "Análisis de estados financieros",
+"numero_creditos": 4,
+"descripcion": "Evaluación integral de la información financiera para determinar la situación económica y la capacidad de generación de valor de la empresa."
+},
+{
+"nombre_materia": "Gestión de talento humano",
+"numero_creditos": 3,
+"descripcion": "Procesos de reclutamiento, selección, formación y gestión del desempeño para optimizar el capital humano organizacional."
+},
+{
+"nombre_materia": "Fundamentación tributaria",
+"numero_creditos": 3,
+"descripcion": "Principios del sistema tributario, obligaciones fiscales de las empresas y fundamentos para la planificación tributaria."
+},
+{
+"nombre_materia": "Estadística inferencial",
+"numero_creditos": 3,
+"descripcion": "Técnicas de inferencia estadística: estimación, pruebas de hipótesis y análisis de regresión para la toma de decisiones."
+},
+{
+"nombre_materia": "Macroeconomía",
+"numero_creditos": 3,
+"descripcion": "Estudio de variables agregadas como inflación, desempleo y crecimiento económico, y su impacto en la gestión empresarial."
+},
+{
+"nombre_materia": "Administración financiera I",
+"numero_creditos": 4,
+"descripcion": "Fundamentos de la gestión financiera corporativa, incluyendo políticas de inversión, estructura de capital y gestión de liquidez."
+},
+{
+"nombre_materia": "Administración de operaciones",
+"numero_creditos": 3,
+"descripcion": "Gestión de procesos productivos y de servicios, planificación de la producción y optimización de recursos operativos."
+},
+{
+"nombre_materia": "Negocios internacionales",
+"numero_creditos": 3,
+"descripcion": "Teoría y práctica del comercio internacional, mercados globales, logística y estrategias de internacionalización empresarial."
+},
+{
+"nombre_materia": "Gestión tributaria",
+"numero_creditos": 3,
+"descripcion": "Aplicación práctica de la normativa tributaria en la gestión de obligaciones fiscales y la planificación tributaria empresarial."
+},
+{
+"nombre_materia": "Emprendimiento",
+"numero_creditos": 2,
+"descripcion": "Desarrollo de competencias emprendedoras, diseño de modelos de negocio y herramientas para la creación de nuevas empresas."
+},
+{
+"nombre_materia": "Moneda y banca",
+"numero_creditos": 3,
+"descripcion": "Funcionamiento del sistema monetario y bancario, instrumentos financieros y su rol en la intermediación y estabilidad económica."
+},
+{
+"nombre_materia": "Marketing financiero",
+"numero_creditos": 3,
+"descripcion": "Estrategias de comercialización de productos y servicios financieros, segmentación y posicionamiento en mercados financieros."
+},
+{
+"nombre_materia": "Gerencia financiera",
+"numero_creditos": 4,
+"descripcion": "Estrategias avanzadas de dirección financiera, gestión de portafolios, financiación corporativa y toma de decisiones estratégicas."
+},
+{
+"nombre_materia": "Electiva de profundización I",
+"numero_creditos": 2,
+"descripcion": "Asignatura optativa para especializar conocimientos en áreas específicas de interés dentro de la disciplina financiera."
+},
+{
+"nombre_materia": "Administración del riesgo financiero",
+"numero_creditos": 3,
+"descripcion": "Identificación, evaluación y gestión de riesgos financieros incluyendo mercado, crédito y liquidez; instrumentos de cobertura."
+},
+{
+"nombre_materia": "Presupuesto de inversión",
+"numero_creditos": 3,
+"descripcion": "Métodos y criterios para la evaluación de proyectos de inversión, flujo de caja proyectado y análisis de rentabilidad."
+},
+{
+"nombre_materia": "Laboratorio empresarial I",
+"numero_creditos": 2,
+"descripcion": "Espacio práctico para aplicar herramientas de gestión y finanzas en casos empresariales y simulaciones."
+},
+{
+"nombre_materia": "Administración financiera II",
+"numero_creditos": 4,
+"descripcion": "Continuación avanzada de administración financiera con enfoque en decisiones estratégicas, fusiones y valoración empresarial."
+},
+{
+"nombre_materia": "Gerencia Estratégica",
+"numero_creditos": 3,
+"descripcion": "Formulación e implementación de estrategias empresariales para alcanzar ventajas competitivas sostenibles."
+},
+{
+"nombre_materia": "Diseño y evaluación de proyectos",
+"numero_creditos": 3,
+"descripcion": "Metodologías para la planificación, evaluación económica y social de proyectos de inversión y desarrollo."
+},
+{
+"nombre_materia": "Laboratorio Empresarial II",
+"numero_creditos": 2,
+"descripcion": "Continuación práctica para aplicar conceptos gerenciales y financieros en proyectos y casos reales avanzados."
+},
+{
+"nombre_materia": "Finanzas internacionales",
+"numero_creditos": 3,
+"descripcion": "Análisis de mercados financieros internacionales, riesgo cambiario, financiamiento y estrategias en entornos globales."
+},
+{
+"nombre_materia": "Electiva de profundización II",
+"numero_creditos": 2,
+"descripcion": "Asignatura optativa para profundizar en temas especializados de la formación financiera."
+},
+{
+"nombre_materia": "Anteproyecto de investigación",
+"numero_creditos": 3,
+"descripcion": "Desarrollo y estructuración de un proyecto de investigación aplicado al campo financiero como preparación del trabajo final."
+},
+{
+"nombre_materia": "Valoración de empresas",
+"numero_creditos": 4,
+"descripcion": "Métodos de valoración empresarial, flujo de caja descontado, múltiplos y técnicas para determinar el valor de una compañía."
+},
+{
+"nombre_materia": "Legislación laboral",
+"numero_creditos": 3,
+"descripcion": "Marco normativo del trabajo y relaciones laborales, derechos y obligaciones tanto para empleados como para empleadores."
+},
+{
+"nombre_materia": "Modelación financiera",
+"numero_creditos": 4,
+"descripcion": "Construcción y uso de modelos financieros cuantitativos para proyectar estados financieros y evaluar decisiones corporativas."
+},
+{
+"nombre_materia": "Auditoría financiera",
+"numero_creditos": 3,
+"descripcion": "Principios y técnicas de auditoría externa e interna aplicadas a la verificación de información financiera."
+},
+{
+"nombre_materia": "Finanzas Públicas",
+"numero_creditos": 3,
+"descripcion": "Análisis del papel del sector público en la economía, políticas fiscales y su impacto en la actividad empresarial."
+},
+{
+"nombre_materia": "Electiva de profundización III",
+"numero_creditos": 2,
+"descripcion": "Última opción optativa para consolidar especializaciones en áreas concretas del campo financiero."
+},
+{
+"nombre_materia": "Mercado de capitales",
+"numero_creditos": 3,
+"descripcion": "Funcionamiento, instrumentos y regulación de los mercados de capitales; emisores, inversores y mecanismos de negociación."
+},
+{
+"nombre_materia": "Ética profesional",
+"numero_creditos": 2,
+"descripcion": "Normas y principios éticos aplicados a la práctica profesional en administración y finanzas."
+},
+{
+"nombre_materia": "Proyecto de Investigación",
+"numero_creditos": 4,
+"descripcion": "Desarrollo final de investigación aplicada que integra conocimientos adquiridos y propone soluciones a problemas reales."
+},
+{
+"nombre_materia": "Prácticas empresariales",
+"numero_creditos": 4,
+"descripcion": "Experiencia profesional en empresas que permite aplicar competencias técnicas y gerenciales en un entorno real."
+}
+]

@@ -1,5 +1,6 @@
-from rest_framework import viewsets, permissions, filters
+from rest_framework import viewsets, permissions, filters, status
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
 from .models import Facultad, Programa, Materia, MateriaDocente, CargaAcademica
 from .serializers import (
     FacultadSerializer,
@@ -43,6 +44,22 @@ class MateriaViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ["nombre_materia", "descripcion"]
     ordering_fields = ["created_at", "nombre_materia"]
+
+    def create(self, request, *args, **kwargs):
+        """
+        Soportar tanto POST individual como POST con lista (bulk).
+        Cuando llega una lista, many=True y usamos el ListSerializer personalizado que hace bulk_create.
+        """
+        is_bulk = isinstance(request.data, list)
+        serializer = self.get_serializer(data=request.data, many=is_bulk)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def perform_create(self, serializer):
+        # Si el serializer es un ListSerializer personalizado, .save() ya hace bulk_create
+        serializer.save()
 
 
 class MateriaDocenteViewSet(viewsets.ModelViewSet):

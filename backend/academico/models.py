@@ -26,7 +26,7 @@ class Programa(models.Model):
         return self.nombre_programa
 
 class Materia(models.Model):
-    nombre_materia = models.CharField(max_length=150)
+    nombre_materia = models.CharField(max_length=150, unique=True)
     numero_creditos = models.IntegerField()
     descripcion = models.TextField(blank=True, null=True)
     activo = models.BooleanField(default=True)

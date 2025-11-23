@@ -1,0 +1,137 @@
+[
+  {
+    "nombre_materia": "Pensamiento Empresarial",
+    "numero_creditos": 2,
+    "descripcion": "Introducción a conceptos de gestión, cultura emprendedora y actitud empresarial orientada a la creación de valor."
+  },
+  {
+    "nombre_materia": "Contabilidad de Activos",
+    "numero_creditos": 3,
+    "descripcion": "Registro y tratamiento contable de activos, depreciaciones, revalorizaciones y revelaciones en estados financieros."
+  },
+  {
+    "nombre_materia": "Liderazgo",
+    "numero_creditos": 2,
+    "descripcion": "Competencias de liderazgo y gestión de equipos orientadas al desempeño organizacional."
+  },
+  {
+    "nombre_materia": "Contabilidad de Pasivos",
+    "numero_creditos": 3,
+    "descripcion": "Tratamiento contable de pasivos, provisiones, obligaciones y su presentación en los estados financieros."
+  },
+  {
+    "nombre_materia": "Fundamentos de Costos",
+    "numero_creditos": 3,
+    "descripcion": "Conceptos básicos de contabilidad de costos y su uso para la toma de decisiones operativas."
+  },
+  {
+    "nombre_materia": "Investigación Contable",
+    "numero_creditos": 3,
+    "descripcion": "Aplicación de métodos de investigación para resolver problemas y generar conocimiento en contabilidad."
+  },
+  {
+    "nombre_materia": "Código de Ética Profesional",
+    "numero_creditos": 2,
+    "descripcion": "Normas y responsabilidades éticas específicas del contador público y su ejercicio profesional."
+  },
+  {
+    "nombre_materia": "Costos por Proceso",
+    "numero_creditos": 3,
+    "descripcion": "Sistemas de costeo por procesos, control de inventarios y análisis de costos industriales."
+  },
+  {
+    "nombre_materia": "Contabilidad de Patrimonio y Resultado",
+    "numero_creditos": 3,
+    "descripcion": "Registro y análisis de patrimonio, resultados del periodo y presentación de estados financieros consolidados."
+  },
+  {
+    "nombre_materia": "Legislación Laboral",
+    "numero_creditos": 3,
+    "descripcion": "Normativa laboral, obligaciones de empleadores y aspectos relacionados con nómina y seguridad social."
+  },
+  {
+    "nombre_materia": "Consolidación y Conversión de Estados",
+    "numero_creditos": 4,
+    "descripcion": "Técnicas de consolidación de estados financieros y conversión de información contable en contextos internacionales."
+  },
+  {
+    "nombre_materia": "Costos Estándar",
+    "numero_creditos": 3,
+    "descripcion": "Determinación y análisis de costos estándar, variaciones y su uso para el control de gestión."
+  },
+  {
+    "nombre_materia": "Seminario de Investigación",
+    "numero_creditos": 2,
+    "descripcion": "Desarrollo de temas de investigación aplicada y preparación para trabajos académicos avanzados."
+  },
+  {
+    "nombre_materia": "Auditoría Área de Activos",
+    "numero_creditos": 3,
+    "descripcion": "Procedimientos de auditoría enfocada en activos: verificación, valoración y procedimientos de control."
+  },
+  {
+    "nombre_materia": "Finanzas I",
+    "numero_creditos": 3,
+    "descripcion": "Fundamentos de finanzas corporativas: gestión de tesorería, inversión y financiación a corto plazo."
+  },
+  {
+    "nombre_materia": "Presupuesto",
+    "numero_creditos": 3,
+    "descripcion": "Elaboración y control de presupuestos como herramienta de planificación y control de la entidad."
+  },
+  {
+    "nombre_materia": "Contabilidad Sistematizada",
+    "numero_creditos": 3,
+    "descripcion": "Uso de sistemas contables informatizados y procedimientos para el registro eficiente de operaciones."
+  },
+  {
+    "nombre_materia": "Auditoría Área de Pasivos y Patrimonio",
+    "numero_creditos": 3,
+    "descripcion": "Técnicas de auditoría para pasivos, patrimonio y evaluación de riesgos en información financiera."
+  },
+  {
+    "nombre_materia": "Finanzas II",
+    "numero_creditos": 3,
+    "descripcion": "Profundización en análisis financiero, valoración y decisiones de inversión y financiación a mediano plazo."
+  },
+  {
+    "nombre_materia": "Gestión Aduanera y Cambiaria",
+    "numero_creditos": 3,
+    "descripcion": "Normativa y procedimientos aduaneros, regímenes de comercio exterior y gestión del riesgo cambiario."
+  },
+  {
+    "nombre_materia": "Presupuesto Público",
+    "numero_creditos": 3,
+    "descripcion": "Principios y procesos de la formulación, ejecución y control del presupuesto en el sector público."
+  },
+  {
+    "nombre_materia": "Emprendimiento (Modelación empresarial)",
+    "numero_creditos": 2,
+    "descripcion": "Diseño y modelación de negocios, desarrollo de propuestas de valor y evaluación de viabilidad."
+  },
+  {
+    "nombre_materia": "Anteproyecto de Investigación",
+    "numero_creditos": 3,
+    "descripcion": "Formulación inicial de un proyecto de investigación aplicable a la práctica contable y financiera."
+  },
+  {
+    "nombre_materia": "Auditoría de Sistemas",
+    "numero_creditos": 3,
+    "descripcion": "Evaluación de controles, seguridad y fiabilidad de sistemas de información que soportan la contabilidad."
+  },
+  {
+    "nombre_materia": "Contabilidad Oficial",
+    "numero_creditos": 3,
+    "descripcion": "Normas y procedimientos de la contabilidad pública y su adaptación al marco regulatorio oficial."
+  },
+  {
+    "nombre_materia": "Planeación de Auditoría",
+    "numero_creditos": 2,
+    "descripcion": "Técnicas para planificar auditorías, evaluación de riesgos y definición de procedimientos de trabajo."
+  },
+  {
+    "nombre_materia": "Revisoría Fiscal",
+    "numero_creditos": 3,
+    "descripcion": "Funciones, responsabilidades y procedimientos del revisor fiscal en la supervisión de la entidad."
+  }
+]

@@ -1,0 +1,232 @@
+[
+{
+"nombre_materia": "Fundamentos de seguridad y salud en el trabajo",
+"numero_creditos": 3,
+"descripcion": "Introducción a los conceptos, objetivos y marco normativo de la seguridad y salud en el trabajo."
+},
+{
+"nombre_materia": "Fundamento de matemáticas",
+"numero_creditos": 3,
+"descripcion": "Conceptos matemáticos básicos necesarios para el análisis y la toma de decisiones técnicas."
+},
+{
+"nombre_materia": "Química",
+"numero_creditos": 3,
+"descripcion": "Principios fundamentales de química aplicados a riesgos físicos y químicos en el trabajo."
+},
+{
+"nombre_materia": "Física aplicada en seguridad y salud en el trabajo",
+"numero_creditos": 3,
+"descripcion": "Conceptos físicos relevantes para la prevención de riesgos: fuerzas, energía, ruido, vibraciones y temperaturas."
+},
+{
+"nombre_materia": "Fundamentos de la economía",
+"numero_creditos": 3,
+"descripcion": "Introducción a los principios micro y macroeconómicos que afectan la gestión de riesgos y recursos."
+},
+{
+"nombre_materia": "Matemáticas aplicadas",
+"numero_creditos": 3,
+"descripcion": "Herramientas matemáticas para modelado, cálculo y análisis cuantitativo en seguridad y salud."
+},
+{
+"nombre_materia": "Ciencias ambientales",
+"numero_creditos": 2,
+"descripcion": "Conceptos ambientales que interactúan con la salud ocupacional y la gestión de impactos."
+},
+{
+"nombre_materia": "Ruido - Vibraciones",
+"numero_creditos": 3,
+"descripcion": "Estudio de fuentes, medición y control de ruido y vibraciones en ambientes laborales."
+},
+{
+"nombre_materia": "Matemáticas financieras",
+"numero_creditos": 3,
+"descripcion": "Herramientas financieras básicas para evaluar costos y decisiones económicas en proyectos de seguridad."
+},
+{
+"nombre_materia": "Fundamentos de saneamiento básico ambiental",
+"numero_creditos": 3,
+"descripcion": "Principios de saneamiento que afectan la salud pública y ocupacional en contextos productivos."
+},
+{
+"nombre_materia": "Gestión y prevención de accidentes y enfermedades laborales",
+"numero_creditos": 4,
+"descripcion": "Métodos para identificación, análisis y control de accidentes y enfermedades relacionadas con el trabajo."
+},
+{
+"nombre_materia": "Legislación en seguridad y salud en el trabajo",
+"numero_creditos": 3,
+"descripcion": "Marco legal y regulaciones nacionales e internacionales aplicables a la seguridad y salud ocupacional."
+},
+{
+"nombre_materia": "Gestión por procesos",
+"numero_creditos": 3,
+"descripcion": "Enfoque por procesos para la gestión organizacional y la mejora continua en sistemas de SST."
+},
+{
+"nombre_materia": "Fundamentos de Mercado",
+"numero_creditos": 2,
+"descripcion": "Principios básicos de mercadeo y su relación con la gestión de servicios y consultoría en SST."
+},
+{
+"nombre_materia": "Epidemiología ocupacional",
+"numero_creditos": 3,
+"descripcion": "Estudio de la distribución y determinantes de enfermedades laborales para la prevención basada en evidencia."
+},
+{
+"nombre_materia": "Sistemas de información en seguridad y salud en el trabajo",
+"numero_creditos": 3,
+"descripcion": "Diseño y uso de sistemas informáticos para la gestión de incidentes, registros y estadísticas de SST."
+},
+{
+"nombre_materia": "Medicina del trabajo",
+"numero_creditos": 4,
+"descripcion": "Conceptos clínicos y preventivos sobre salud del trabajador, exámenes ocupacionales y vigilancia epidemiológica."
+},
+{
+"nombre_materia": "Gestión de la seguridad en tareas de alto riesgo I",
+"numero_creditos": 4,
+"descripcion": "Prevención y control en trabajos de altura, espacios confinados, energía y operaciones en caliente."
+},
+{
+"nombre_materia": "Ética",
+"numero_creditos": 2,
+"descripcion": "Principios éticos aplicados a la práctica profesional en seguridad y salud en el trabajo."
+},
+{
+"nombre_materia": "Gestión de promoción de la salud y prevención de la enfermedad",
+"numero_creditos": 3,
+"descripcion": "Estrategias para promover salud y prevenir enfermedades en poblaciones laborales."
+},
+{
+"nombre_materia": "Radiaciones ionizantes - no ionizantes",
+"numero_creditos": 2,
+"descripcion": "Fundamentos sobre radiaciones, riesgos, normativa y medidas de protección en el ambiente laboral."
+},
+{
+"nombre_materia": "Gestión de la seguridad en tareas de alto riesgo II",
+"numero_creditos": 4,
+"descripcion": "Control de riesgos en manejo de sustancias, izaje, excavaciones y rescate en escenarios críticos."
+},
+{
+"nombre_materia": "Iluminación - temperaturas extremas",
+"numero_creditos": 2,
+"descripcion": "Evaluación y control de condiciones físicas del ambiente que afectan la salud y seguridad laboral."
+},
+{
+"nombre_materia": "Gestión de emergencias con materiales peligrosos (NFPA)",
+"numero_creditos": 3,
+"descripcion": "Protocolos y procedimientos para respuesta y contención ante incidentes con materiales peligrosos."
+},
+{
+"nombre_materia": "Sistema de gestión de seguridad vial",
+"numero_creditos": 3,
+"descripcion": "Herramientas para gestionar riesgos viales en empresas y programas de prevención de siniestros."
+},
+{
+"nombre_materia": "Riesgos biomecánicos",
+"numero_creditos": 3,
+"descripcion": "Evaluación y prevención de riesgos musculoesqueléticos derivados de la carga física y posturas de trabajo."
+},
+{
+"nombre_materia": "Gestión psicosocial y prevención de la salud mental",
+"numero_creditos": 3,
+"descripcion": "Identificación y manejo de factores psicosociales que afectan la salud mental en el trabajo."
+},
+{
+"nombre_materia": "Electiva de profundización I (capital emocional y felicidad organizacional)",
+"numero_creditos": 2,
+"descripcion": "Asignatura optativa centrada en bienestar organizacional y estrategias para mejorar el clima laboral."
+},
+{
+"nombre_materia": "Gestión de emergencias y desastres (práctica de campo)",
+"numero_creditos": 3,
+"descripcion": "Planificación y ejecución de ejercicios y respuestas prácticas ante emergencias y desastres."
+},
+{
+"nombre_materia": "Sistema de gestión de la seguridad y salud en el trabajo",
+"numero_creditos": 4,
+"descripcion": "Diseño, implementación y evaluación de sistemas de gestión integrados de SST conforme a normas internacionales."
+},
+{
+"nombre_materia": "Planeación estratégica",
+"numero_creditos": 3,
+"descripcion": "Herramientas para la formulación de estrategias organizacionales vinculadas a la gestión de riesgos."
+},
+{
+"nombre_materia": "Gestión integral del riesgo químico",
+"numero_creditos": 3,
+"descripcion": "Identificación, evaluación y control de riesgos químicos en procesos productivos."
+},
+{
+"nombre_materia": "Administración de los costos en seguridad y salud en el trabajo",
+"numero_creditos": 3,
+"descripcion": "Análisis de costos y presupuestos asociados a programas y proyectos de seguridad y salud ocupacional."
+},
+{
+"nombre_materia": "Sistema de Gestión ambiental (ISO 14000)",
+"numero_creditos": 2,
+"descripcion": "Fundamentos de sistemas de gestión ambiental y su relación con la SST y el cumplimiento normativo."
+},
+{
+"nombre_materia": "Gestión integral del riesgo en la cadena de suministro",
+"numero_creditos": 3,
+"descripcion": "Evaluación de riesgos a lo largo de la cadena de suministro y estrategias de mitigación."
+},
+{
+"nombre_materia": "Gestión gerencial",
+"numero_creditos": 3,
+"descripcion": "Competencias gerenciales para la dirección de equipos y la toma de decisiones en contextos de riesgo."
+},
+{
+"nombre_materia": "Electiva de profundización II (guía del sistema de SST y ambiente para contratistas)",
+"numero_creditos": 2,
+"descripcion": "Optativa orientada a gestión de SST en contratistas y empresas proveedoras."
+},
+{
+"nombre_materia": "Análisis de estados financiero",
+"numero_creditos": 3,
+"descripcion": "Interpretación de estados financieros para la toma de decisiones en gestión de riesgos y programas."
+},
+{
+"nombre_materia": "Electiva de humanidades (responsabilidad social - recreación y deporte)",
+"numero_creditos": 2,
+"descripcion": "Asignatura optativa sobre responsabilidad social empresarial y actividades de bienestar."
+},
+{
+"nombre_materia": "Manejo de crisis y continuidad del negocio (Norma NFPA / ISO 22301)",
+"numero_creditos": 3,
+"descripcion": "Planes de continuidad y gestión de crisis aplicados a la protección de personas y activos."
+},
+{
+"nombre_materia": "Administración de riesgos laborales (prestaciones y rehabilitación)",
+"numero_creditos": 3,
+"descripcion": "Gestión de prestaciones económicas y procesos de rehabilitación y adecuación laboral."
+},
+{
+"nombre_materia": "Electiva de profundización III (gerencia de sistemas de gestión)",
+"numero_creditos": 2,
+"descripcion": "Optativa enfocada en la dirección y mejora de sistemas integrados de gestión."
+},
+{
+"nombre_materia": "Marketing en riesgos laborales",
+"numero_creditos": 2,
+"descripcion": "Estrategias de comunicación y comercialización de servicios en gestión del riesgo laboral."
+},
+{
+"nombre_materia": "Emprendimiento (modelación empresarial)",
+"numero_creditos": 2,
+"descripcion": "Herramientas para la creación y modelación de negocios relacionados con servicios de SST."
+},
+{
+"nombre_materia": "Administración integral de riesgos empresariales",
+"numero_creditos": 3,
+"descripcion": "Enfoque integral de identificación y gestión de riesgos operativos, financieros y reputacionales."
+},
+{
+"nombre_materia": "Auditoría y mejora continua de sistemas de gestión",
+"numero_creditos": 3,
+"descripcion": "Técnicas de auditoría, evaluación de cumplimiento y acciones de mejora para sistemas de gestión."
+}
+]
