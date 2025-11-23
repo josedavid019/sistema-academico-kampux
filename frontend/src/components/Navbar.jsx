@@ -14,6 +14,13 @@ export function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const { user, isAuthenticated, logout } = useAuthStore();
+  const isAdmin = !!(
+    user &&
+    (user.rol === "administrador" ||
+      user.role === "administrador" ||
+      user.is_staff ||
+      user.is_superuser)
+  );
   const [isLoggingOut, setIsLoggingOut] = React.useState(false);
 
   const handleLogout = async () => {
@@ -139,6 +146,99 @@ export function Navbar() {
                 </Menu.Items>
               </Transition>
             </Menu>
+            {/* Menú Administración - visible solo para admins */}
+            {isAdmin && (
+              <Menu as="div" className="relative inline-block text-left ml-2">
+                <Menu.Button
+                  className={`font-medium px-3 py-2 transition flex items-center gap-1 focus:outline-none cursor-pointer relative z-20 ${
+                    location.pathname.startsWith("/admin")
+                      ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                      : "text-white hover:bg-[#2a3f52] rounded-lg"
+                  }`}
+                >
+                  Administrador
+                  <ChevronDownIcon className="w-4 h-4" aria-hidden="true" />
+                </Menu.Button>
+                <Transition
+                  as={React.Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Menu.Items className="absolute left-0 mt-2 w-56 origin-top-left bg-white rounded-lg shadow-xl z-50 border border-gray-200 focus:outline-none">
+                    <div className="py-1">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <Link
+                            to="/admin"
+                            className={`block px-4 py-2 text-sm transition relative z-10 ${
+                              location.pathname === "/admin"
+                                ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                                : active
+                                ? "bg-gray-100 text-gray-700"
+                                : "text-gray-700 hover:bg-gray-100 rounded-lg"
+                            }`}
+                          >
+                            Panel Admin
+                          </Link>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <Link
+                            to="/admin/materias"
+                            className={`block px-4 py-2 text-sm transition relative z-10 ${
+                              location.pathname === "/admin/materias"
+                                ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                                : active
+                                ? "bg-gray-100 text-gray-700"
+                                : "text-gray-700 hover:bg-gray-100 rounded-lg"
+                            }`}
+                          >
+                            Materias
+                          </Link>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <Link
+                            to="/admin/programas"
+                            className={`block px-4 py-2 text-sm transition relative z-10 ${
+                              location.pathname === "/admin/programas"
+                                ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                                : active
+                                ? "bg-gray-100 text-gray-700"
+                                : "text-gray-700 hover:bg-gray-100 rounded-lg"
+                            }`}
+                          >
+                            Programas
+                          </Link>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <Link
+                            to="/admin/usuarios"
+                            className={`block px-4 py-2 text-sm transition relative z-10 ${
+                              location.pathname === "/admin/usuarios"
+                                ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                                : active
+                                ? "bg-gray-100 text-gray-700"
+                                : "text-gray-700 hover:bg-gray-100 rounded-lg"
+                            }`}
+                          >
+                            Usuarios
+                          </Link>
+                        )}
+                      </Menu.Item>
+                    </div>
+                  </Menu.Items>
+                </Transition>
+              </Menu>
+            )}
             {/* Botón Mis cursos */}
             <Link
               to="/cursos"

@@ -1,62 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import SectionHeader from "../components/SectionHeader";
+import { getMaterias } from "../api/academico.api";
 
-const cursosEjemplo = [
-  {
-    id: 1,
-    codigo: "ZAFIA",
-    nombre: "ZAFIA: Creatividad e Innovación REMOTA 25-2",
-    semestre: "SEGUNDO SEMESTRE",
-    progreso: 5,
-    imagen: "https://via.placeholder.com/300x150/1e3a8a/ffffff?text=Creatividad",
-  },
-  {
-    id: 2,
-    codigo: "ZISVIIA",
-    nombre: "ZISVIIA: Auditoría Informática 25-2",
-    semestre: "SÉPTIMO SEMESTRE",
-    progreso: 33,
-    imagen: "https://via.placeholder.com/300x150/1e3a8a/ffffff?text=Auditoria",
-  },
-  {
-    id: 3,
-    codigo: "ZISVIIA",
-    nombre: "ZISVIIA: Electiva Disciplinar (Redes) 25-2",
-    semestre: "SÉPTIMO SEMESTRE",
-    progreso: 35,
-    imagen: "https://via.placeholder.com/300x150/1e3a8a/ffffff?text=Redes",
-  },
-  {
-    id: 4,
-    codigo: "ZISVIIA",
-    nombre: "ZISVIIA: Ingeniería de Software II 25-2",
-    semestre: "SÉPTIMO SEMESTRE",
-    progreso: 28,
-    imagen: "https://via.placeholder.com/300x150/1e3a8a/ffffff?text=Software",
-  },
-  {
-    id: 5,
-    codigo: "ZISVIIA",
-    nombre: "ZISVIIA: Legislación del Software REMOTA 25-2",
-    semestre: "SÉPTIMO SEMESTRE",
-    progreso: 40,
-    imagen: "https://via.placeholder.com/300x150/1e3a8a/ffffff?text=Legislacion",
-  },
-  {
-    id: 6,
-    codigo: "ZISVIIA",
-    nombre: "ZISVIIA: Sistemas de Control 25-2",
-    semestre: "SÉPTIMO SEMESTRE",
-    progreso: 22,
-    imagen: "https://via.placeholder.com/300x150/1e3a8a/ffffff?text=Control",
-  },
-];
+// Nota: mapeamos los campos de la API de materias a la UI existente.
 
 export function MisCursos() {
+  const navigate = useNavigate();
   const [filtro, setFiltro] = useState("Todos");
   const [busqueda, setBusqueda] = useState("");
   const [ordenar, setOrdenar] = useState("nombre");
+  const [materias, setMaterias] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const cursosFiltrados = cursosEjemplo
+  useEffect(() => {
+    async function load() {
+      setLoading(true);
+      try {
+        const data = await getMaterias();
+        // mapear respuesta a la forma esperada por la UI
+        const mapped = (data || []).map((m) => ({
+          id: m.id,
+          codigo: `M-${m.id}`,
+          nombre: m.nombre_materia || m.nombre || "Sin nombre",
+          semestre: "N/A",
+          progreso: 0,
+          imagen: `https://via.placeholder.com/600x300/1e3a8a/ffffff?text=${encodeURIComponent(m.nombre_materia || 'Materia')}`,
+          descripcion: m.descripcion || "",
+        }));
+        setMaterias(mapped);
+      } catch (err) {
+        console.error("No se pudieron cargar materias:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, []);
+
+  const cursosFiltrados = materias
     .filter((curso) => {
       if (filtro !== "Todos" && curso.semestre !== filtro) return false;
       if (busqueda && !curso.nombre.toLowerCase().includes(busqueda.toLowerCase())) return false;
@@ -68,14 +50,12 @@ export function MisCursos() {
       return 0;
     });
 
-  const semestraUniqa = ["Todos", ...new Set(cursosEjemplo.map((c) => c.semestre))];
+  const semestraUniqa = ["Todos", ...new Set(materias.map((c) => c.semestre))];
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-2 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-blue-900 text-white rounded-lg p-6 mb-8">
-          <h1 className="text-4xl font-bold">Mis cursos</h1>
-        </div>
+        <SectionHeader title={"Mis cursos"} subtitle={"Selecciona un curso para ver sus actividades e información."} />
 
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Vista general de curso</h2>
@@ -119,32 +99,47 @@ export function MisCursos() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {cursosFiltrados.map((curso) => (
-            <div key={curso.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer">
-              <div className="relative h-40 bg-gray-200 overflow-hidden">
+            <div
+              key={curso.id}
+              onClick={() => navigate(`/cursos/${curso.id}`)}
+              className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-1 transform transition-all cursor-pointer"
+            >
+              <div className="relative h-44 bg-gray-200 overflow-hidden">
                 <img src={curso.imagen} alt={curso.nombre} className="w-full h-full object-cover" />
-                <div className="absolute top-0 left-0 bg-blue-900 text-white px-3 py-1 text-xs font-bold">
-                  {curso.codigo}
-                </div>
-                <div className="absolute top-0 right-0 bg-yellow-500 text-gray-900 px-3 py-1 text-xs font-bold">
-                  {curso.semestre.split(" ")[0]}
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3 bg-blue-900 text-white px-3 py-1 text-xs font-bold rounded">{curso.codigo}</div>
+                <div className="absolute top-3 right-3 bg-yellow-500 text-gray-900 px-3 py-1 text-xs font-bold rounded">{curso.semestre.split(" ")[0]}</div>
               </div>
 
               <div className="p-4">
-                <h3 className="font-bold text-gray-800 mb-3 text-sm">{curso.nombre}</h3>
+                <h3 className="font-semibold text-gray-800 mb-2 text-sm truncate">{curso.nombre}</h3>
 
                 <div className="mb-3">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs text-gray-600 font-semibold">{curso.progreso}% completado</span>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs text-gray-600 font-medium">{curso.progreso}% completado</span>
+                    <span className="text-xs text-gray-500">{curso.semestre}</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-blue-900 h-2 rounded-full" style={{ width: `${curso.progreso}%` }}></div>
+                    <div className="bg-gradient-to-r from-blue-800 to-blue-500 h-2 rounded-full" style={{ width: `${curso.progreso}%` }} />
                   </div>
                 </div>
 
-                <button className="ml-auto block px-3 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800 font-semibold text-sm">
-                  ℹ️
-                </button>
+                <div className="flex items-center justify-end">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/cursos/${curso.id}`);
+                    }}
+                    title="Ver detalles"
+                    className="inline-flex items-center gap-2 px-3 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800 font-semibold text-sm"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M2 10s3-6 8-6 8 6 8 6-3 6-8 6-8-6-8-6z" />
+                      <path d="M10 13a3 3 0 100-6 3 3 0 000 6z" className="text-white/90" />
+                    </svg>
+                    <span className="hidden sm:inline">Detalles</span>
+                  </button>
+                </div>
               </div>
             </div>
           ))}
