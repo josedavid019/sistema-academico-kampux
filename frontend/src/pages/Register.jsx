@@ -80,7 +80,19 @@ export function Register() {
       return;
     }
 
-    await register(formData);
+    // Map frontend form fields to backend expected fields
+    const payload = {
+      email: formData.email,
+      password: formData.password,
+      password2: formData.passwordConfirm,
+      nombre: formData.firstName,
+      apellido: formData.lastName,
+      // optional fields left empty; backend serializer will accept defaults
+      numero_documento: formData.numeroDocumento || null,
+      tipo_documento: formData.tipoDocumento || null,
+    };
+
+    await register(payload);
     // La redirección ocurrirá después de un registro exitoso
     // navigate('/');
   };

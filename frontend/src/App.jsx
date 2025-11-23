@@ -20,6 +20,11 @@ import { Resultados } from "./pages/Resultados";
 import { Prematricula } from "./pages/Prematricula";
 import { MisCursos } from "./pages/MisCursos";
 import { CursoDetalle } from "./pages/CursoDetalle";
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminMaterias from './pages/admin/AdminMaterias';
+import AdminProgramas from './pages/admin/AdminProgramas';
+import AdminUsuarios from './pages/admin/AdminUsuarios';
+import { AdminRoute } from './components/AdminRoute';
 
 function App() {
   const { loadUser, isAuthenticated } = useAuthStore();
@@ -155,6 +160,42 @@ function App() {
               <Navbar />
               <CursoDetalle />
             </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <Navbar />
+              <AdminDashboard />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/materias"
+          element={
+            <AdminRoute>
+              <Navbar />
+              <AdminMaterias />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/programas"
+          element={
+            <AdminRoute>
+              <Navbar />
+              <AdminProgramas />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin/usuarios"
+          element={
+            <AdminRoute>
+              <Navbar />
+              <AdminUsuarios />
+            </AdminRoute>
           }
         />
         <Route path="/404" element={<NotFound />} />
