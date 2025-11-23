@@ -7,3 +7,15 @@ Usuarios kampux:
 administrador:
 email: admin@example.com
 password: admin_123
+
+coordinador:
+email: coordinador@example.com
+password: coordinador_123
+
+docente:
+email: docente@example.com
+password: docente_123
+
+estudiante:
+email: estudiante@example.com
+password: estudiante_123
