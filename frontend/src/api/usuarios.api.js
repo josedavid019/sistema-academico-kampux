@@ -71,19 +71,6 @@ export const deleteCoordinador = async (id) =>
 
 export const postAdministrador = async (administrador) =>
   (await usuariosApi.post("administradores/", administrador)).data;
-
-<<<<<<< HEAD
-// Estudiantes - list & detail
-export const getEstudiantes = async () => {
-  const res = await usuariosApi.get("estudiantes/");
-  return res.data;
-};
-
-export const getEstudiante = async (id) => {
-  const res = await usuariosApi.get(`estudiantes/${id}/`);
-  return res.data;
-};
-=======
 export const getAdministradores = async () =>
   (await usuariosApi.get("administradores/all/")).data;
 
@@ -95,4 +82,5 @@ export const putAdministrador = async (id, administrador) =>
 
 export const deleteAdministrador = async (id) =>
   (await usuariosApi.delete(`administradores/${id}/`)).data;
->>>>>>> c35a9dc5fd44b20c9943227359697765d98ae49d
+
+// Note: estudiantes list/detail are defined earlier; avoid duplicate exports.
