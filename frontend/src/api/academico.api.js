@@ -7,7 +7,7 @@ const academicoApi = axios.create({
 // Facultad
 export const getFacultades = async () => {
   const res = await academicoApi.get("facultades/");
-  return res.data;
+  return res.data.results ?? res.data;
 };
 export const getFacultad = async (id) => {
   const res = await academicoApi.get(`facultades/${id}/`);
@@ -29,7 +29,7 @@ export const deleteFacultad = async (id) => {
 // Programa
 export const getProgramas = async () => {
   const res = await academicoApi.get("programas/");
-  return res.data;
+  return res.data.results ?? res.data;
 };
 export const getPrograma = async (id) => {
   const res = await academicoApi.get(`programas/${id}/`);
@@ -51,7 +51,7 @@ export const deletePrograma = async (id) => {
 // Materia
 export const getMaterias = async () => {
   const res = await academicoApi.get("materias/");
-  return res.data;
+  return res.data.results ?? res.data;
 };
 export const getMateria = async (id) => {
   const res = await academicoApi.get(`materias/${id}/`);
@@ -73,7 +73,7 @@ export const deleteMateria = async (id) => {
 // MateriaDocente
 export const getMateriaDocentes = async () => {
   const res = await academicoApi.get("materias-docente/");
-  return res.data;
+  return res.data.results ?? res.data;
 };
 export const getMateriaDocente = async (id) => {
   const res = await academicoApi.get(`materias-docente/${id}/`);
@@ -95,7 +95,7 @@ export const deleteMateriaDocente = async (id) => {
 // CargaAcademica
 export const getCargaAcademicas = async () => {
   const res = await academicoApi.get("cargas/");
-  return res.data;
+  return res.data.results ?? res.data;
 };
 export const getCargaAcademica = async (id) => {
   const res = await academicoApi.get(`cargas/${id}/`);

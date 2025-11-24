@@ -35,3 +35,14 @@ export const postCoordinador = async (coordinador) =>
 
 export const postAdministrador = async (administrador) =>
   (await usuariosApi.post("administradores/", administrador)).data;
+
+// Estudiantes - list & detail
+export const getEstudiantes = async () => {
+  const res = await usuariosApi.get("estudiantes/");
+  return res.data;
+};
+
+export const getEstudiante = async (id) => {
+  const res = await usuariosApi.get(`estudiantes/${id}/`);
+  return res.data;
+};

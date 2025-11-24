@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import SectionHeader from '../components/SectionHeader';
 import SeleccionAsignaturasModal from '../components/SeleccionAsignaturasModal';
-import { getProgramas, getMaterias } from '../api/academico.api';
+import { getProgramas, getMaterias, getCargaAcademicas } from '../api/academico.api';
+import { getEstudiantes } from '../api/usuarios.api';
+import { useAuthStore } from '../store/authStore';
 
 const programaMock = {
   nombre: 'Ingeniería de Sistemas - Jornada Diurna',
@@ -21,13 +23,17 @@ const clasesMock = [
 ];
 
 export function Prematricula() {
+  const { user } = useAuthStore();
   const [clases, setClases] = useState(clasesMock);
   const [programa, setPrograma] = useState(programaMock);
+  const [estudiante, setEstudiante] = useState(null);
   const [programas, setProgramas] = useState([]);
   const [loading, setLoading] = useState(false);
+  // selected carga ids persisted per user (load/save after user is known)
+  const [selectedIds, setSelectedIds] = useState([]);
 
-  // recalcular créditos usando programa actual y clases
-  const creditosUsados = (programa?.creditosUsados || programaMock.creditosUsados) + clases.filter(c => c.estado === 'Preinscrito').reduce((s, c) => s + c.creditos, 0) - clasesMock.filter(c => c.estado === 'Preinscrito').reduce((s, c) => s + c.creditos, 0);
+  // recalcular créditos usando programa actual y seleccionadas
+  const creditosUsados = (programa?.creditosUsados || 0) + clases.filter(c => selectedIds.includes(c.id)).reduce((s, c) => s + (c.creditos || 0), 0);
   const creditosDisponibles = (programa?.creditosMax || programaMock.creditosMax) - creditosUsados;
   const [query, setQuery] = useState('');
   const [view, setView] = useState('tarjeta');
@@ -53,19 +59,52 @@ export function Prematricula() {
             estado: p.activo ? 'Activa' : 'Inactiva',
           });
         }
-
-        const materias = await getMaterias();
-        if (materias && materias.length > 0) {
-          // mapear materias a la estructura de clases
-          const mapped = materias.slice(0, 8).map((m, idx) => ({
-            id: m.id,
-            codigo: `M-${m.id}`,
-            nombre: m.nombre_materia,
-            creditos: m.numero_creditos || 2,
-            docente: '-',
-            estado: 'Disponible',
+        // cargar ofertas (cargas) desde backend
+        const cargas = await getCargaAcademicas();
+        if (cargas && cargas.length > 0) {
+          const mapped = cargas.map((c) => ({
+            id: c.id,
+            codigo: `C-${c.id}`,
+            nombre: c.materia?.nombre_materia || 'Asignatura',
+            creditos: c.materia?.numero_creditos || 2,
+            docente: c.docente || '-',
+            estado: selectedIds.includes(c.id) ? 'Preinscrito' : 'Disponible',
+            carga_obj: c,
           }));
           setClases(mapped);
+          // try to set programa from carga if not already
+          if ((!programa || programa.nombre === programaMock.nombre) && mapped.length > 0) {
+            // leave programa as-is; prefer Estudiante->Programa when available
+          }
+        }
+
+        // obtener perfil de estudiante para el usuario autenticado (si existe)
+        try {
+          if (user && user.id) {
+            const estudiantes = await getEstudiantes();
+            const mine = (estudiantes || []).find(e => Number(e.user) === Number(user.id));
+            if (mine) {
+              setEstudiante(mine);
+              // si el estudiante tiene programa, intentar cargar info del programa
+              const programaId = mine.programa;
+              if (programaId) {
+                const matching = (progs || []).find(p => Number(p.id) === Number(programaId));
+                if (matching) {
+                  setPrograma({
+                    nombre: matching.nombre_programa,
+                    periodo: '2025-2',
+                    nivel: 'N/A',
+                    creditosUsados: 0,
+                    creditosMax: matching.numero_creditos || 0,
+                    estado: matching.activo ? 'Activa' : 'Inactiva',
+                  });
+                }
+              }
+            }
+          }
+        } catch (err) {
+          // no crítico
+          console.debug('No se obtuvo perfil de estudiante', err);
         }
       } catch (err) {
         console.warn('No se pudo cargar programas/materias desde backend:', err);
@@ -74,14 +113,64 @@ export function Prematricula() {
       }
     }
     loadData();
-  }, []);
+  }, [user]);
+
+  // load persisted selections for the authenticated user
+  useEffect(() => {
+    if (!user || !user.id) return;
+    const key = `prematricula_user_${user.id}`;
+    try {
+      const raw = localStorage.getItem(key);
+      const parsed = raw ? JSON.parse(raw) : [];
+      if (Array.isArray(parsed)) {
+        setSelectedIds(parsed);
+        // mark loaded selections in current clases
+        setClases(prev => prev.map(c => (parsed.includes(c.id) ? { ...c, estado: 'Preinscrito' } : { ...c, estado: 'Disponible' })));
+      }
+    } catch (e) {
+      console.debug('No persisted prematricula for user', e);
+    }
+  }, [user]);
+
+  // persist selections when they change (per user) and keep clases in sync
+  useEffect(() => {
+    if (!user || !user.id) return;
+    const key = `prematricula_user_${user.id}`;
+    try {
+      localStorage.setItem(key, JSON.stringify(selectedIds));
+    } catch (e) {
+      // ignore
+    }
+    setClases(prev => prev.map(c => (selectedIds.includes(c.id) ? { ...c, estado: 'Preinscrito' } : { ...c, estado: 'Disponible' })));
+  }, [selectedIds, user]);
 
   function handleAgregarSeleccionadas(ids) {
-    setClases(prev => prev.map(c => ids.includes(c.id) ? { ...c, estado: 'Preinscrito' } : c));
+    // persistir selección en localStorage y actualizar UI
+    const next = Array.from(new Set([...selectedIds, ...ids]));
+    setSelectedIds(next);
+    try { localStorage.setItem(storageKey, JSON.stringify(next)); } catch (e) { /* ignore */ }
+    setClases(prev => prev.map(c => next.includes(c.id) ? { ...c, estado: 'Preinscrito' } : c));
     setModalOpen(false);
   }
 
+  const handleCancelarPre = (cargaId) => {
+    const next = selectedIds.filter(id => id !== cargaId);
+    setSelectedIds(next);
+    try { localStorage.setItem(storageKey, JSON.stringify(next)); } catch (e) { /* ignore */ }
+    setClases(prev => prev.map(c => (c.id === cargaId ? { ...c, estado: 'Disponible' } : c)));
+  };
+
   const filtered = clases.filter(c => c.nombre.toLowerCase().includes(query.toLowerCase()) || c.codigo.toLowerCase().includes(query.toLowerCase()));
+
+  // helper: estimate semester (only an estimate since backend doesn't store it)
+  const estimateSemester = () => {
+    // if programa creditosMax available and creditosUsados known, estimate
+    try {
+      const perSemester = 18; // heuristic
+      const used = creditosUsados || 0;
+      return Math.max(1, Math.floor(used / perSemester) + 1);
+    } catch (e) { return 'N/D'; }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
@@ -93,23 +182,25 @@ export function Prematricula() {
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h2 className="text-lg font-semibold text-gray-900">Programa</h2>
-                <p className="text-sm text-gray-600">{programaMock.nombre}</p>
+                <p className="text-sm text-gray-600">{programa?.nombre || programaMock.nombre}</p>
+                <div className="text-sm text-gray-500">Estudiante: {user ? user.email : (estudiante ? `ID ${estudiante.user}` : 'No identificado')}</div>
+                <div className="text-sm text-gray-500">Semestre: {estudiante ? `Estimado ${estimateSemester()}` : 'N/D'}</div>
               </div>
 
               <div className="text-right">
                 <div className="text-sm text-gray-500">Periodo</div>
-                <div className="font-semibold">{programaMock.periodo}</div>
+                <div className="font-semibold">{programa?.periodo || programa.periodo || 'N/D'}</div>
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-gray-50 p-4 rounded">
                 <div className="text-xs text-gray-500">Nivel</div>
-                <div className="font-semibold">{programaMock.nivel}</div>
+                <div className="font-semibold">{programa?.nivel || 'N/A'}</div>
               </div>
               <div className="bg-gray-50 p-4 rounded">
                 <div className="text-xs text-gray-500">Estado</div>
-                <div className="font-semibold">{programaMock.estado}</div>
+                <div className="font-semibold">{programa?.estado || (estudiante ? (estudiante.activo ? 'Activo' : 'Inactivo') : 'N/D')}</div>
               </div>
               <div className="bg-gray-50 p-4 rounded">
                 <div className="text-xs text-gray-500">Créditos usados</div>
