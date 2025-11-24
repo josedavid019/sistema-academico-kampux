@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Aula(models.Model):
     nombre_aula = models.CharField(max_length=100, unique=True)
     capacidad = models.IntegerField()
@@ -11,13 +12,15 @@ class Aula(models.Model):
     def __str__(self):
         return self.nombre_aula
 
+
 class SensorAsistencia(models.Model):
     codigo_aula = models.ForeignKey(
         Aula,
         on_delete=models.SET_NULL,
-        blank=True, null=True,
-        related_name='sensores',
-        db_index=True
+        blank=True,
+        null=True,
+        related_name="sensores",
+        db_index=True,
     )
     identificador_sensor = models.CharField(max_length=100, unique=True)
     descripcion = models.CharField(max_length=150, blank=True, null=True)
@@ -28,20 +31,23 @@ class SensorAsistencia(models.Model):
     def __str__(self):
         return self.identificador_sensor
 
+
 class Asistencia(models.Model):
     docente = models.ForeignKey(
-        'usuarios.Docente',
+        "usuarios.Docente",
         on_delete=models.SET_NULL,
-        blank=True, null=True,
-        related_name='asistencias',
-        db_index=True
+        blank=True,
+        null=True,
+        related_name="asistencias",
+        db_index=True,
     )
     materia = models.ForeignKey(
-        'academico.Materia',
+        "academico.Materia",
         on_delete=models.SET_NULL,
-        blank=True, null=True,
-        related_name='asistencias',
-        db_index=True
+        blank=True,
+        null=True,
+        related_name="asistencias",
+        db_index=True,
     )
     grupo = models.CharField(max_length=20, blank=True, null=True)
     tema = models.CharField(max_length=150, blank=True, null=True)
@@ -50,16 +56,18 @@ class Asistencia(models.Model):
     aula = models.ForeignKey(
         Aula,
         on_delete=models.SET_NULL,
-        blank=True, null=True,
-        related_name='asistencias',
-        db_index=True
+        blank=True,
+        null=True,
+        related_name="asistencias",
+        db_index=True,
     )
     sensor = models.ForeignKey(
         SensorAsistencia,
         on_delete=models.SET_NULL,
-        blank=True, null=True,
-        related_name='asistencias',
-        db_index=True
+        blank=True,
+        null=True,
+        related_name="asistencias",
+        db_index=True,
     )
     activo = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -68,22 +76,24 @@ class Asistencia(models.Model):
     def __str__(self):
         return f"Asistencia {self.pk} - {self.fecha} {self.hora}"
 
+
 class DetalleAsistencia(models.Model):
     ESTADO_CHOICES = (
-        ('Presente','Presente'), ('Ausente','Ausente'), ('Tarde','Tarde'), ('Justificado','Justificado')
+        ("Presente", "Presente"),
+        ("Ausente", "Ausente"),
+        ("Tarde", "Tarde"),
+        ("Justificado", "Justificado"),
     )
     asistencia = models.ForeignKey(
-        Asistencia,
-        on_delete=models.CASCADE,
-        related_name='detalles',
-        db_index=True
+        Asistencia, on_delete=models.CASCADE, related_name="detalles", db_index=True
     )
     estudiante = models.ForeignKey(
-        'usuarios.Estudiante',
+        "usuarios.Estudiante",
         on_delete=models.SET_NULL,
-        blank=True, null=True,
-        related_name='detalles_asistencia',
-        db_index=True
+        blank=True,
+        null=True,
+        related_name="detalles_asistencia",
+        db_index=True,
     )
     identificacion = models.CharField(max_length=30, blank=True, null=True)
     nombre = models.CharField(max_length=120, blank=True, null=True)

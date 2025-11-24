@@ -19,6 +19,7 @@ class ProgramaSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ("id", "created_at", "updated_at")
 
+
 class MateriaListSerializer(serializers.ListSerializer):
     def create(self, validated_data):
         """
@@ -30,6 +31,7 @@ class MateriaListSerializer(serializers.ListSerializer):
         # bulk_create devuelve la lista de objetos creados
         created = model_class.objects.bulk_create(objs)
         return created
+
 
 class MateriaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -56,9 +58,13 @@ class MateriaDocenteSerializer(serializers.ModelSerializer):
         materia = data.get("materia")
         rol = data.get("rol")
         if docente and materia and self.instance is None:
-            exists = MateriaDocente.objects.filter(docente=docente, materia=materia, rol=rol).exists()
+            exists = MateriaDocente.objects.filter(
+                docente=docente, materia=materia, rol=rol
+            ).exists()
             if exists:
-                raise serializers.ValidationError("Ya existe esa asignación docente-materia con ese rol.")
+                raise serializers.ValidationError(
+                    "Ya existe esa asignación docente-materia con ese rol."
+                )
         return data
 
 
@@ -80,6 +86,8 @@ class CargaAcademicaSerializer(serializers.ModelSerializer):
     def validate(self, data):
         # Ejemplo de validación simple: hora válida y no vacío de grupo
         if not data.get("grupo"):
-            raise serializers.ValidationError({"grupo": "El campo 'grupo' es obligatorio."})
+            raise serializers.ValidationError(
+                {"grupo": "El campo 'grupo' es obligatorio."}
+            )
         # Opcional: puedes añadir validaciones de conflicto de horario aquí
         return data

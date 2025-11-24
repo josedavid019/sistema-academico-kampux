@@ -1,18 +1,20 @@
 from django.db import models
 
+
 class Microcurriculo(models.Model):
     programa = models.ForeignKey(
-        'academico.Programa',
+        "academico.Programa",
         on_delete=models.PROTECT,
-        related_name='microcurriculos',
-        db_index=True
+        related_name="microcurriculos",
+        db_index=True,
     )
     materia = models.ForeignKey(
-        'academico.Materia',
+        "academico.Materia",
         on_delete=models.SET_NULL,
-        blank=True, null=True,
-        related_name='microcurriculos',
-        db_index=True
+        blank=True,
+        null=True,
+        related_name="microcurriculos",
+        db_index=True,
     )
     nivel_superior = models.IntegerField(default=0)
     nivel_normal = models.IntegerField(default=0)
@@ -38,12 +40,13 @@ class Microcurriculo(models.Model):
     def __str__(self):
         return f"Micro {self.pk} - {self.programa}"
 
+
 class ContenidoCompetenciasEspecificas(models.Model):
     microcurriculo = models.ForeignKey(
         Microcurriculo,
         on_delete=models.CASCADE,
-        related_name='contenidos_competencias',
-        db_index=True
+        related_name="contenidos_competencias",
+        db_index=True,
     )
     unidad_tematica = models.CharField(max_length=150, blank=True, null=True)
     competencias_especificas = models.TextField(blank=True, null=True)
@@ -59,26 +62,26 @@ class ContenidoCompetenciasEspecificas(models.Model):
     def __str__(self):
         return f"Contenido {self.pk} - {self.unidad_tematica or ''}"
 
+
 class PlanMicrocurriculo(models.Model):
     microcurriculo = models.ForeignKey(
-        Microcurriculo,
-        on_delete=models.PROTECT,
-        related_name='planes',
-        db_index=True
+        Microcurriculo, on_delete=models.PROTECT, related_name="planes", db_index=True
     )
     docente = models.ForeignKey(
-        'usuarios.Docente',
+        "usuarios.Docente",
         on_delete=models.SET_NULL,
-        blank=True, null=True,
-        related_name='planes_micro',
-        db_index=True
+        blank=True,
+        null=True,
+        related_name="planes_micro",
+        db_index=True,
     )
     materia = models.ForeignKey(
-        'academico.Materia',
+        "academico.Materia",
         on_delete=models.SET_NULL,
-        blank=True, null=True,
-        related_name='planes_micro',
-        db_index=True
+        blank=True,
+        null=True,
+        related_name="planes_micro",
+        db_index=True,
     )
     creditos = models.IntegerField(blank=True, null=True)
     tipo_asignatura = models.CharField(max_length=50, blank=True, null=True)
@@ -95,12 +98,13 @@ class PlanMicrocurriculo(models.Model):
     def __str__(self):
         return f"Plan {self.pk} - Micro {self.microcurriculo.pk}"
 
+
 class DetallePlanMicrocurriculo(models.Model):
     plan = models.ForeignKey(
         PlanMicrocurriculo,
         on_delete=models.CASCADE,
-        related_name='detalles',
-        db_index=True
+        related_name="detalles",
+        db_index=True,
     )
     semana = models.IntegerField()
     tema = models.CharField(max_length=200, blank=True, null=True)
@@ -110,7 +114,7 @@ class DetallePlanMicrocurriculo(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['semana']
+        ordering = ["semana"]
 
     def __str__(self):
         return f"Semana {self.semana} - {self.plan}"
