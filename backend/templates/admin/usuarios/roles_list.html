@@ -1,0 +1,89 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+
+<div style="margin-bottom:1.5rem;">
+  <a class="button" href="{% url 'admin:usuarios_usuario_changelist' %}">Volver a Usuarios</a>
+</div>
+
+{% if administradores %}
+  <h2>Administradores ({{ administradores|length }})</h2>
+  <table class="adminlist">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Documento</th>
+        <th>Activo</th>
+        <th>Creado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for a in administradores %}
+        <tr>
+          <td><a href="{% url 'admin:usuarios_usuario_change' a.user.id %}">{{ a.user.email }}</a></td>
+          <td>{{ a.user.numero_documento }}</td>
+          <td>{{ a.activo }}</td>
+          <td>{{ a.created_at }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>No hay administradores registrados.</p>
+{% endif %}
+
+{% if docentes %}
+  <h2>Docentes ({{ docentes|length }})</h2>
+  <table class="adminlist">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Nombre</th>
+        <th>Activo</th>
+        <th>Creado</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for d in docentes %}
+        <tr>
+          <td><a href="{% url 'admin:usuarios_docente_change' d.id %}">{{ d.user.email }}</a></td>
+          <td>{{ d.user.nombre }} {{ d.user.apellido }}</td>
+          <td>{{ d.activo }}</td>
+          <td>{{ d.created_at }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>No hay docentes registrados.</p>
+{% endif %}
+
+{% if estudiantes %}
+  <h2>Estudiantes ({{ estudiantes|length }})</h2>
+  <table class="adminlist">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Nombre</th>
+        <th>Programa</th>
+        <th>Activo</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for e in estudiantes %}
+        <tr>
+          <td><a href="{% url 'admin:usuarios_estudiante_change' e.id %}">{{ e.user.email }}</a></td>
+          <td>{{ e.user.nombre }} {{ e.user.apellido }}</td>
+          <td>{{ e.programa }}</td>
+          <td>{{ e.activo }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>No hay estudiantes registrados.</p>
+{% endif %}
+
+{% endblock %}

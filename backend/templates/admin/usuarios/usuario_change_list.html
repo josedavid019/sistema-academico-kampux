@@ -1,0 +1,11 @@
+{% extends "admin/change_list.html" %}
+{% load i18n static %}
+
+{% block object-tools %}
+  {{ block.super }}
+  <ul class="object-tools">
+    <li>
+      <a href="{% url 'admin:usuarios_roles_list' %}" class="addlink">Usuarios por rol</a>
+    </li>
+  </ul>
+{% endblock %}

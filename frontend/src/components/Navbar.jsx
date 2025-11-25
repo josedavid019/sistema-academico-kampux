@@ -230,7 +230,7 @@ export function Navbar() {
                                 : "text-gray-700 hover:bg-gray-100 rounded-lg"
                             }`}
                           >
-                            Usuarios
+                            Lista de usuarios
                           </Link>
                         )}
                       </Menu.Item>

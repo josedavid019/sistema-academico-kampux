@@ -5,8 +5,8 @@ const horariosApi = axios.create({
 });
 
 // HorarioEstudiante
-export const getHorarioEstudiantes = async () => {
-  const res = await horariosApi.get("horario-estudiantes/");
+export const getHorarioEstudiantes = async (params = {}) => {
+  const res = await horariosApi.get("horario-estudiantes/", { params });
   return res.data;
 };
 export const getHorarioEstudiante = async (id) => {

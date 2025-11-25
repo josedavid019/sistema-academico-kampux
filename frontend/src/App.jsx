@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useAuthStore } from "./store/authStore";
 import { Navbar } from "./components/Navbar";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
@@ -35,6 +36,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ErrorBoundary>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -42,10 +44,7 @@ function App() {
           path="/"
           element={
             isAuthenticated ? (
-              <>
-                <Navbar />
-                <Navigate to="/dashboard" />
-              </>
+              <Navigate to="/dashboard" replace />
             ) : (
               <>
                 <Navbar />
@@ -201,6 +200,7 @@ function App() {
         <Route path="/404" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
+      </ErrorBoundary>
     </BrowserRouter>
   );
 }
