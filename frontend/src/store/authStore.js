@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import {
   loginUsuario,
-  registerUsuario,
   logoutUsuario,
 } from "../api/usuarios.api";
 
@@ -76,31 +75,7 @@ export const useAuthStore = create((set) => ({
     }
   },
 
-  // Register action
-  register: async (userData) => {
-    set({ isLoading: true, error: null });
-    try {
-      const user = await registerUsuario(userData);
-      set({
-        user,
-        isAuthenticated: !!user,
-        isLoading: false,
-      });
-      try {
-        localStorage.setItem("kampux_user", JSON.stringify(user));
-      } catch (e) {}
-      return user;
-    } catch (error) {
-      const respData = error.response?.data;
-      const msg =
-        parseApiError(respData) || error.message || "Error en el registro";
-      set({
-        error: msg,
-        isLoading: false,
-      });
-      throw error;
-    }
-  },
+  // Registration is disabled on the frontend. Use backend/admin tools to create users.
 
   // Logout action
   logout: async () => {

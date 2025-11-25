@@ -331,12 +331,6 @@ export function Navbar() {
           >
             Iniciar Sesión
           </Link>
-          <Link
-            to="/register"
-            className="px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 rounded-lg transition font-medium text-sm"
-          >
-            Registrarse
-          </Link>
         </div>
       )}
     </nav>

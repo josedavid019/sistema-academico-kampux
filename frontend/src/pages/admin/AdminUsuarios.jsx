@@ -11,7 +11,10 @@ import {
   putUsuario,
   deleteUsuario,
 } from '../../api/usuarios.api';
+import { toastSuccess, toastError } from '../../utils/toast';
 import { getFacultades, getProgramas } from '../../api/academico.api';
+
+
 
 function randomPassword(len = 10) {
   const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=';
@@ -29,6 +32,9 @@ export function AdminUsuarios() {
   const [showAdminModal, setShowAdminModal] = useState(false);
   const [docenteForm, setDocenteForm] = useState({ email: '', nombre: '', apellido: '' });
   const [adminForm, setAdminForm] = useState({ email: '', nombre: '', apellido: '' });
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editingUserId, setEditingUserId] = useState(null);
+  const [editForm, setEditForm] = useState({ email: '', nombre: '', apellido: '' });
   const [docentes, setDocentes] = useState([]);
   const [estudiantes, setEstudiantes] = useState([]);
   const [administradores, setAdministradores] = useState([]);
@@ -76,49 +82,26 @@ export function AdminUsuarios() {
 
   const handleEditUsuario = async (userId) => {
     const usuario = usersMap[userId];
-    if (!usuario) { alert('Información del usuario no disponible para editar.'); return; }
-    const email = prompt('Email', usuario.email || '') || usuario.email || '';
-    const nombre = prompt('Nombre', usuario.nombre || '') || usuario.nombre || '';
-    const apellido = prompt('Apellido', usuario.apellido || '') || usuario.apellido || '';
-    try {
-      await putUsuario(userId, { email, nombre, apellido });
-      alert('Usuario actualizado correctamente.');
-      await loadLists();
-    } catch (err) {
-      console.error(err);
-      alert('Error actualizando usuario: ' + (err.response?.data || err.message));
-    }
+    if (!usuario) { toastError('Información del usuario no disponible para editar.'); return; }
+    setEditingUserId(userId);
+    setEditForm({ email: usuario.email || '', nombre: usuario.nombre || '', apellido: usuario.apellido || '' });
+    setShowEditModal(true);
   };
 
   const handleDeleteUsuario = async (userId) => {
     if (!window.confirm('¿Confirma eliminar este usuario? Esta acción no se puede deshacer.')) return;
     try {
       await deleteUsuario(userId);
-      alert('Usuario eliminado.');
+      toastSuccess('Usuario eliminado.');
       await loadLists();
     } catch (err) {
       console.error(err);
-      alert('Error eliminando usuario: ' + (err.response?.data || err.message));
+      const msg = err.response?.data ? (typeof err.response.data === 'string' ? err.response.data : JSON.stringify(err.response.data)) : err.message || String(err);
+      toastError('Error eliminando usuario: ' + msg);
     }
   };
 
-  const handleCreateAdmin = async () => {
-    const email = prompt('Email del nuevo administrador');
-    if (!email) return;
-    const nombre = prompt('Nombre (opcional)') || '';
-    const apellido = prompt('Apellido (opcional)') || '';
-    const password = randomPassword(12);
-    try {
-      // Primero crear el usuario (register)
-      const user = await registerUsuario({ email, password, password2: password, nombre, apellido });
-      // Luego asignar perfil administrador
-      await postAdministrador({ user: user.id });
-      alert('Administrador creado correctamente. Contraseña temporal: ' + password + '\nRecomienda cambiarla al iniciar sesión.');
-    } catch (err) {
-      console.error(err);
-      alert('Error creando administrador: ' + (err.response?.data || err.message));
-    }
-  };
+  // Creating users from the frontend has been disabled; use admin backend.
 
   // filter lists locally for a more responsive UI
   const q = (query || '').trim().toLowerCase();
@@ -282,7 +265,7 @@ export function AdminUsuarios() {
                       <button onClick={() => setShowStudentModal(false)} className="px-4 py-2 bg-gray-100 rounded">Cancelar</button>
                       <button onClick={async () => {
                         const { email, nombre, apellido, facultad, programa } = studentForm;
-                        if (!email) { alert('Email requerido'); return; }
+                        if (!email) { toastError('Email requerido'); return; }
                         const password = randomPassword(10);
                         try {
                           const user = await registerUsuario({ email, password, password2: password, nombre, apellido });
@@ -290,13 +273,14 @@ export function AdminUsuarios() {
                           if (facultad) payload.facultad = facultad;
                           if (programa) payload.programa = programa;
                           await postEstudiante(payload);
-                          alert('Estudiante creado. Contraseña temporal: ' + password);
+                          toastSuccess('Estudiante creado. Contraseña temporal: ' + password);
                           setStudentForm({ email: '', nombre: '', apellido: '', facultad: '', programa: '' });
                           setShowStudentModal(false);
                           await loadLists();
                         } catch (err) {
                           console.error(err);
-                          alert('Error creando estudiante: ' + (err.response?.data || err.message));
+                          const msg = err.response?.data ? (typeof err.response.data === 'string' ? err.response.data : JSON.stringify(err.response.data)) : err.message || String(err);
+                          toastError('Error creando estudiante: ' + msg);
                         }
                       }} className="px-4 py-2 bg-indigo-600 text-white rounded">Crear</button>
                     </div>
@@ -318,16 +302,16 @@ export function AdminUsuarios() {
                       <button onClick={() => setShowDocenteModal(false)} className="px-4 py-2 bg-gray-100 rounded">Cancelar</button>
                       <button onClick={async () => {
                         const { email, nombre, apellido } = docenteForm;
-                        if (!email) { alert('Email requerido'); return; }
+                        if (!email) { toastError('Email requerido'); return; }
                         const password = randomPassword(10);
                         try {
                           const user = await registerUsuario({ email, password, password2: password, nombre, apellido });
                           await postDocente({ user: user.id });
-                          alert('Docente creado. Contraseña temporal: ' + password);
+                          toastSuccess('Docente creado. Contraseña temporal: ' + password);
                           setDocenteForm({ email: '', nombre: '', apellido: '' });
                           setShowDocenteModal(false);
                           await loadLists();
-                        } catch (err) { console.error(err); alert('Error creando docente: ' + (err.response?.data || err.message)); }
+                        } catch (err) { console.error(err); const msg = err.response?.data ? (typeof err.response.data === 'string' ? err.response.data : JSON.stringify(err.response.data)) : err.message || String(err); toastError('Error creando docente: ' + msg); }
                       }} className="px-4 py-2 bg-green-700 text-white rounded">Crear</button>
                     </div>
                   </div>
@@ -348,17 +332,46 @@ export function AdminUsuarios() {
                       <button onClick={() => setShowAdminModal(false)} className="px-4 py-2 bg-gray-100 rounded">Cancelar</button>
                       <button onClick={async () => {
                         const { email, nombre, apellido } = adminForm;
-                        if (!email) { alert('Email requerido'); return; }
+                        if (!email) { toastError('Email requerido'); return; }
                         const password = randomPassword(12);
                         try {
                           const user = await registerUsuario({ email, password, password2: password, nombre, apellido });
                           await postAdministrador({ user: user.id });
-                          alert('Administrador creado. Contraseña temporal: ' + password + '\nRecomienda cambiarla al iniciar sesión.');
+                          toastSuccess('Administrador creado. Contraseña temporal: ' + password + '\nRecomienda cambiarla al iniciar sesión.');
                           setAdminForm({ email: '', nombre: '', apellido: '' });
                           setShowAdminModal(false);
                           await loadLists();
-                        } catch (err) { console.error(err); alert('Error creando administrador: ' + (err.response?.data || err.message)); }
+                        } catch (err) { console.error(err); const msg = err.response?.data ? (typeof err.response.data === 'string' ? err.response.data : JSON.stringify(err.response.data)) : err.message || String(err); toastError('Error creando administrador: ' + msg); }
                       }} className="px-4 py-2 bg-yellow-600 text-white rounded">Crear</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {showEditModal && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center">
+                <div className="absolute inset-0 bg-black opacity-30" onClick={() => setShowEditModal(false)} />
+                <div className="bg-white rounded-lg shadow-lg z-10 w-full max-w-md p-6">
+                  <h3 className="text-lg font-semibold mb-3">Editar Usuario</h3>
+                  <div className="grid grid-cols-1 gap-3">
+                    <input placeholder="Email" value={editForm.email} onChange={(e) => setEditForm(s => ({...s, email: e.target.value}))} className="p-2 border rounded" />
+                    <input placeholder="Nombre (opcional)" value={editForm.nombre} onChange={(e) => setEditForm(s => ({...s, nombre: e.target.value}))} className="p-2 border rounded" />
+                    <input placeholder="Apellido (opcional)" value={editForm.apellido} onChange={(e) => setEditForm(s => ({...s, apellido: e.target.value}))} className="p-2 border rounded" />
+                    <div className="flex justify-end gap-2 mt-2">
+                      <button onClick={() => setShowEditModal(false)} className="px-4 py-2 bg-gray-100 rounded">Cancelar</button>
+                      <button onClick={async () => {
+                        if (!editingUserId) return;
+                        const { email, nombre, apellido } = editForm;
+                        if (!email) { toastError('Email requerido'); return; }
+                        try {
+                          await putUsuario(editingUserId, { email, nombre, apellido });
+                          toastSuccess('Usuario actualizado correctamente.');
+                          setShowEditModal(false);
+                          setEditingUserId(null);
+                          await loadLists();
+                        } catch (err) { console.error(err); const msg = err.response?.data ? (typeof err.response.data === 'string' ? err.response.data : JSON.stringify(err.response.data)) : err.message || String(err); toastError('Error actualizando usuario: ' + msg); }
+                      }} className="px-4 py-2 bg-indigo-600 text-white rounded">Guardar</button>
                     </div>
                   </div>
                 </div>

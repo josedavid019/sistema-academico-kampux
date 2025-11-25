@@ -9,6 +9,7 @@ import {
   LanguageIcon,
   ArrowLeftIcon,
 } from "@heroicons/react/24/outline";
+import { toastSuccess } from "../utils/toast";
 
 export function Configuracion() {
   const navigate = useNavigate();
@@ -32,7 +33,9 @@ export function Configuracion() {
 
   const handleSave = () => {
     // TODO: Implementar guardado en backend
-    alert("Configuración guardada (próximamente se conectará al backend)");
+    toastSuccess(
+      "Configuración guardada (próximamente se conectará al backend)"
+    );
   };
 
   return (

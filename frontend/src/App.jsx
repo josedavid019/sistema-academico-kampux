@@ -6,7 +6,6 @@ import { Navbar } from "./components/Navbar";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { Login } from "./pages/Login";
-import { Register } from "./pages/Register";
 import { Home } from "./pages/Home";
 import { Manuales } from "./pages/Manuales";
 import { Soporte } from "./pages/Soporte";
@@ -39,7 +38,6 @@ function App() {
       <ErrorBoundary>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
         <Route
           path="/"
           element={

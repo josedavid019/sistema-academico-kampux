@@ -12,6 +12,7 @@ const usuariosApi = axios.create({
 export const loginUsuario = async (usuario) =>
   (await usuariosApi.post("login/", usuario)).data;
 
+// Internal helper to create users (used by admin UI only).
 export const registerUsuario = async (usuario) =>
   (await usuariosApi.post("register/", usuario)).data;
 
