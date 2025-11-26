@@ -14,7 +14,8 @@ export const createActividad = async (cursoId, actividad) =>
   (await cursosApi.post(`${cursoId}/actividades/`, actividad)).data;
 
 export const updateActividad = async (cursoId, actividadId, actividad) =>
-  (await cursosApi.put(`${cursoId}/actividades/${actividadId}/`, actividad)).data;
+  (await cursosApi.put(`${cursoId}/actividades/${actividadId}/`, actividad))
+    .data;
 
 export const deleteActividad = async (cursoId, actividadId) =>
   (await cursosApi.delete(`${cursoId}/actividades/${actividadId}/`)).data;

@@ -6,7 +6,9 @@ export default function HorarioDetalleModal({ clase, onClose }) {
   useEffect(() => {
     if (clase) {
       // Encontrar la tarjeta de la clase en el DOM y posicionar el modal encima
-      const claseElement = document.querySelector(`[data-clase-id="${clase.materia}"]`);
+      const claseElement = document.querySelector(
+        `[data-clase-id="${clase.materia}"]`
+      );
       if (claseElement) {
         const rect = claseElement.getBoundingClientRect();
         const scrollTop = window.scrollY;
@@ -35,19 +37,38 @@ export default function HorarioDetalleModal({ clase, onClose }) {
           {clase.materia}
         </span>
         <div className="text-xs text-gray-600 mb-2">
-          {new Date(clase.inicio).toLocaleDateString("es-ES", { day: "2-digit", month: "2-digit", year: "numeric" })}, {new Date(clase.inicio).toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" })} - {new Date(clase.fin).toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" })}
+          {new Date(clase.inicio).toLocaleDateString("es-ES", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+          })}
+          ,{" "}
+          {new Date(clase.inicio).toLocaleTimeString("es-ES", {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}{" "}
+          -{" "}
+          {new Date(clase.fin).toLocaleTimeString("es-ES", {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
         </div>
         <div className="text-xs mb-1">
-          <span className="font-semibold text-gray-800">Asignatura:</span> <span className="text-blue-600">{clase.asignatura || clase.materia}</span>
+          <span className="font-semibold text-gray-800">Asignatura:</span>{" "}
+          <span className="text-blue-600">
+            {clase.asignatura || clase.materia}
+          </span>
         </div>
         {clase.docente && (
           <div className="text-xs mb-1">
-            <span className="font-semibold text-gray-800">Docente:</span> <span className="text-gray-700">{clase.docente}</span>
+            <span className="font-semibold text-gray-800">Docente:</span>{" "}
+            <span className="text-gray-700">{clase.docente}</span>
           </div>
         )}
         {clase.aula && (
           <div className="text-xs mb-1">
-            <span className="font-semibold text-gray-800">Aula:</span> <span className="text-gray-700">{clase.aula}</span>
+            <span className="font-semibold text-gray-800">Aula:</span>{" "}
+            <span className="text-gray-700">{clase.aula}</span>
           </div>
         )}
       </div>

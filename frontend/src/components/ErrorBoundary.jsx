@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ export class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, info) {
-    console.error('ErrorBoundary caught error:', error, info);
+    console.error("ErrorBoundary caught error:", error, info);
   }
 
   render() {
@@ -20,7 +20,10 @@ export class ErrorBoundary extends React.Component {
         <div className="min-h-screen flex items-center justify-center p-6">
           <div className="max-w-2xl w-full bg-white rounded-lg shadow p-6">
             <h2 className="text-xl font-bold mb-2">Ha ocurrido un error</h2>
-            <p className="text-sm text-gray-700 mb-4">Se detectó un error al renderizar la aplicación. Revisa la consola del navegador para más detalles.</p>
+            <p className="text-sm text-gray-700 mb-4">
+              Se detectó un error al renderizar la aplicación. Revisa la consola
+              del navegador para más detalles.
+            </p>
             <details className="text-xs text-gray-600 whitespace-pre-wrap">
               {String(this.state.error)}
             </details>

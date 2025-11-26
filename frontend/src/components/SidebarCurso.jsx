@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export function SidebarCurso({ groups = [], onNavigate = () => {} }) {
   return (
@@ -10,7 +10,9 @@ export function SidebarCurso({ groups = [], onNavigate = () => {} }) {
       <nav className="p-4 max-h-[60vh] overflow-auto">
         {groups.map((group) => (
           <div key={group.id} className="mb-4">
-            <div className="text-xs font-bold text-gray-500 mb-2 uppercase">{group.title}</div>
+            <div className="text-xs font-bold text-gray-500 mb-2 uppercase">
+              {group.title}
+            </div>
             <ul className="space-y-1">
               {group.children.map((it, idx) => (
                 <li key={it}>
@@ -18,7 +20,9 @@ export function SidebarCurso({ groups = [], onNavigate = () => {} }) {
                     onClick={() => onNavigate(`${group.id}-${idx}`)}
                     className="w-full text-left px-3 py-2 rounded hover:bg-gray-50 text-sm text-gray-700 flex items-center gap-3 transition-colors"
                   >
-                    <span className="inline-flex items-center justify-center w-6 h-6 bg-blue-50 text-blue-600 rounded-full text-xs font-semibold">•</span>
+                    <span className="inline-flex items-center justify-center w-6 h-6 bg-blue-50 text-blue-600 rounded-full text-xs font-semibold">
+                      •
+                    </span>
                     <span className="truncate">{it}</span>
                   </button>
                 </li>

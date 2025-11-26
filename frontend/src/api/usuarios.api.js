@@ -86,7 +86,9 @@ export const deleteAdministrador = async (id) =>
 
 export const getUsuarios = async () => (await usuariosApi.get("")).data;
 export const getUsuario = async (id) => (await usuariosApi.get(`${id}/`)).data;
-export const putUsuario = async (id, usuario) => (await usuariosApi.put(`${id}/`, usuario)).data;
-export const deleteUsuario = async (id) => (await usuariosApi.delete(`${id}/`)).data;
+export const putUsuario = async (id, usuario) =>
+  (await usuariosApi.put(`${id}/`, usuario)).data;
+export const deleteUsuario = async (id) =>
+  (await usuariosApi.delete(`${id}/`)).data;
 
 // Note: estudiantes list/detail are defined earlier; avoid duplicate exports.

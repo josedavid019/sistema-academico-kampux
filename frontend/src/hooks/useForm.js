@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 /**
  * Hook personalizado para manejar el estado de un formulario
@@ -14,22 +14,22 @@ export function useForm(initialValues, onSubmit) {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setValues(prev => ({
+    setValues((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === "checkbox" ? checked : value,
     }));
     // Limpiar error del campo mientras se escribe
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: '',
+        [name]: "",
       }));
     }
   };
 
   const handleBlur = (e) => {
     const { name } = e.target;
-    setTouched(prev => ({
+    setTouched((prev) => ({
       ...prev,
       [name]: true,
     }));
@@ -46,14 +46,14 @@ export function useForm(initialValues, onSubmit) {
   };
 
   const setFieldValue = (name, value) => {
-    setValues(prev => ({
+    setValues((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
   const setFieldError = (name, error) => {
-    setErrors(prev => ({
+    setErrors((prev) => ({
       ...prev,
       [name]: error,
     }));

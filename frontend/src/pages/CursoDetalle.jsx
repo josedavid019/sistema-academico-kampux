@@ -23,7 +23,12 @@ export function CursoDetalle() {
   const [nuevaDescripcion, setNuevaDescripcion] = useState("");
 
   const canEdit = !!(
-    user && (user.is_staff || user.role === "docente" || user.role === "administrador" || user.role === "Docente" || user.role === "Administrador")
+    user &&
+    (user.is_staff ||
+      user.role === "docente" ||
+      user.role === "administrador" ||
+      user.role === "Docente" ||
+      user.role === "Administrador")
   );
 
   // Por ahora usamos datos simulados (mock) para diseño UI.
@@ -34,7 +39,9 @@ export function CursoDetalle() {
       try {
         const m = await getMateria(id);
         const cargas = await getCargaAcademicas();
-        const cargasMateria = (cargas || []).filter((c) => String(c.materia) === String(id));
+        const cargasMateria = (cargas || []).filter(
+          (c) => String(c.materia) === String(id)
+        );
 
         setCurso({
           id: m.id,
@@ -47,14 +54,22 @@ export function CursoDetalle() {
         const acts = (cargasMateria || []).map((c) => ({
           id: c.id,
           titulo: `${c.grupo} — ${c.dia} ${c.hora}`,
-          descripcion: `Aula: ${c.aula || '-'} — Docente: ${c.docente || '-'}`,
+          descripcion: `Aula: ${c.aula || "-"} — Docente: ${c.docente || "-"}`,
         }));
 
         if (acts.length === 0) {
           // Si no hay cargas, crear un par de actividades de ejemplo
           setActividades([
-            { id: Date.now() + 1, titulo: "Actividad ejemplo 1", descripcion: "Descripción ejemplo" },
-            { id: Date.now() + 2, titulo: "Actividad ejemplo 2", descripcion: "Descripción ejemplo" },
+            {
+              id: Date.now() + 1,
+              titulo: "Actividad ejemplo 1",
+              descripcion: "Descripción ejemplo",
+            },
+            {
+              id: Date.now() + 2,
+              titulo: "Actividad ejemplo 2",
+              descripcion: "Descripción ejemplo",
+            },
           ]);
         } else {
           setActividades(acts);
@@ -72,8 +87,16 @@ export function CursoDetalle() {
           descripcion: `Descripción de ejemplo para el curso ${id}. Esta es solo una maqueta de la interfaz.`,
         };
         const acts = [
-          { id: 101, titulo: "Actividad 1", descripcion: "Descripción actividad 1" },
-          { id: 102, titulo: "Actividad 2", descripcion: "Descripción actividad 2" },
+          {
+            id: 101,
+            titulo: "Actividad 1",
+            descripcion: "Descripción actividad 1",
+          },
+          {
+            id: 102,
+            titulo: "Actividad 2",
+            descripcion: "Descripción actividad 2",
+          },
         ];
         setCurso(c);
         setActividades(acts);
@@ -98,7 +121,9 @@ export function CursoDetalle() {
   };
 
   const handleUpdateActividad = (actividadId, cambios) => {
-    setActividades((s) => s.map((a) => (a.id === actividadId ? { ...a, ...cambios } : a)));
+    setActividades((s) =>
+      s.map((a) => (a.id === actividadId ? { ...a, ...cambios } : a))
+    );
   };
 
   const handleModalSave = (payload) => {
@@ -118,7 +143,11 @@ export function CursoDetalle() {
 
   const handleSaveCurso = () => {
     // Mock: actualizar solo en cliente
-    setCurso((c) => ({ ...c, nombre: nuevoTitulo, descripcion: nuevaDescripcion }));
+    setCurso((c) => ({
+      ...c,
+      nombre: nuevoTitulo,
+      descripcion: nuevaDescripcion,
+    }));
   };
 
   if (loading) return <div className="p-6">Cargando curso...</div>;
@@ -126,8 +155,26 @@ export function CursoDetalle() {
   if (!curso) return <div className="p-6">Curso no encontrado</div>;
   // Diseño estilo: banner grande + sidebar + contenido principal
   const sidebarItems = [
-    { id: "general", title: "General", children: ["Avisos", "Microcurriculo", "Calendario Academico", "Presentacion Institucional", "Reglamento Estudiantil"] },
-    { id: "corte1", title: "Corte 1", children: ["Creatividad e Innovacion", "Link Grabacion Clase 11", "Semana del 18 al 23"] },
+    {
+      id: "general",
+      title: "General",
+      children: [
+        "Avisos",
+        "Microcurriculo",
+        "Calendario Academico",
+        "Presentacion Institucional",
+        "Reglamento Estudiantil",
+      ],
+    },
+    {
+      id: "corte1",
+      title: "Corte 1",
+      children: [
+        "Creatividad e Innovacion",
+        "Link Grabacion Clase 11",
+        "Semana del 18 al 23",
+      ],
+    },
   ];
 
   const scrollTo = (anchor) => {
@@ -140,7 +187,9 @@ export function CursoDetalle() {
       {/* Title bar */}
       <div className="bg-blue-900 text-white py-4 shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-2xl sm:text-3xl font-bold truncate">{curso.nombre}</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold truncate">
+            {curso.nombre}
+          </h1>
         </div>
       </div>
 
@@ -158,12 +207,28 @@ export function CursoDetalle() {
               <div className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-800">{curso.nombre}</h3>
-                    <p className="text-sm text-gray-500">Código: {curso.codigo}</p>
+                    <h3 className="text-xl font-semibold text-gray-800">
+                      {curso.nombre}
+                    </h3>
+                    <p className="text-sm text-gray-500">
+                      Código: {curso.codigo}
+                    </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <button onClick={() => navigate(-1)} className="px-3 py-2 bg-gray-100 rounded">Volver</button>
-                    {canEdit && <button onClick={handleSaveCurso} className="px-3 py-2 bg-blue-900 text-white rounded">Guardar curso</button>}
+                    <button
+                      onClick={() => navigate(-1)}
+                      className="px-3 py-2 bg-gray-100 rounded"
+                    >
+                      Volver
+                    </button>
+                    {canEdit && (
+                      <button
+                        onClick={handleSaveCurso}
+                        className="px-3 py-2 bg-blue-900 text-white rounded"
+                      >
+                        Guardar curso
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -172,38 +237,72 @@ export function CursoDetalle() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="lg:col-span-2 space-y-6">
                 {/* General Card */}
-                <section id="general-0" className="bg-white rounded-lg shadow p-6">
+                <section
+                  id="general-0"
+                  className="bg-white rounded-lg shadow p-6"
+                >
                   <h4 className="text-lg font-bold mb-3">General</h4>
                   <p className="text-gray-700 mb-4">{curso.descripcion}</p>
                   <div className="prose max-w-none text-sm text-gray-700">
                     <p>
-                      En los actuales momentos la creatividad se constituye en una de las ventajas competitivas perdurables que tenemos las
-                      personas. El emprender no se puede ver como una etapa sola en el inicio de la vida de una persona, desde sus pilares nos
-                      ayuda, no solo a generar negocios o empresas, también se emprenden proyectos personales.
+                      En los actuales momentos la creatividad se constituye en
+                      una de las ventajas competitivas perdurables que tenemos
+                      las personas. El emprender no se puede ver como una etapa
+                      sola en el inicio de la vida de una persona, desde sus
+                      pilares nos ayuda, no solo a generar negocios o empresas,
+                      también se emprenden proyectos personales.
                     </p>
                   </div>
                 </section>
 
                 {/* Corte 1 and other sections from sidebar mock */}
                 {sidebarItems[1].children.map((it, idx) => (
-                  <section key={it} id={`corte1-${idx}`} className="bg-white rounded-lg shadow p-6">
+                  <section
+                    key={it}
+                    id={`corte1-${idx}`}
+                    className="bg-white rounded-lg shadow p-6"
+                  >
                     <h4 className="font-semibold mb-2">{it}</h4>
-                    <p className="text-sm text-gray-600">Contenido de ejemplo para la sección “{it}”. Aquí irían descripciones, enlaces y recursos.</p>
+                    <p className="text-sm text-gray-600">
+                      Contenido de ejemplo para la sección “{it}”. Aquí irían
+                      descripciones, enlaces y recursos.
+                    </p>
                   </section>
                 ))}
 
                 {/* Actividades */}
-                <section id="actividades" className="bg-white rounded-lg shadow p-6">
+                <section
+                  id="actividades"
+                  className="bg-white rounded-lg shadow p-6"
+                >
                   <div className="flex items-center justify-between mb-4">
                     <h4 className="font-bold">Actividades</h4>
-                    {canEdit && <button onClick={handleAddActividad} className="px-3 py-2 bg-green-600 text-white rounded">+ Nueva actividad</button>}
+                    {canEdit && (
+                      <button
+                        onClick={handleAddActividad}
+                        className="px-3 py-2 bg-green-600 text-white rounded"
+                      >
+                        + Nueva actividad
+                      </button>
+                    )}
                   </div>
                   <div className="space-y-3">
                     {actividades.map((act) => (
-                      <ActivityCard key={act.id} actividad={act} onEdit={handleEditClick} onDelete={handleDelete} canEdit={canEdit} />
+                      <ActivityCard
+                        key={act.id}
+                        actividad={act}
+                        onEdit={handleEditClick}
+                        onDelete={handleDelete}
+                        canEdit={canEdit}
+                      />
                     ))}
                   </div>
-                  <ActivityModal open={modalOpen} onClose={() => setModalOpen(false)} initial={editingActivity} onSave={handleModalSave} />
+                  <ActivityModal
+                    open={modalOpen}
+                    onClose={() => setModalOpen(false)}
+                    initial={editingActivity}
+                    onSave={handleModalSave}
+                  />
                 </section>
               </div>
 
@@ -212,16 +311,46 @@ export function CursoDetalle() {
                 <div className="bg-white rounded-lg shadow p-4">
                   <h5 className="font-semibold mb-2">Información</h5>
                   <ul className="text-sm text-gray-600 space-y-1">
-                    <li><strong>Semestre:</strong> REMOTO 25-2</li>
-                    <li><strong>Código:</strong> {curso.codigo}</li>
-                    <li><strong>Docente:</strong> Prof. Ejemplo</li>
+                    <li>
+                      <strong>Semestre:</strong> REMOTO 25-2
+                    </li>
+                    <li>
+                      <strong>Código:</strong> {curso.codigo}
+                    </li>
+                    <li>
+                      <strong>Docente:</strong> Prof. Ejemplo
+                    </li>
                   </ul>
                 </div>
 
                 <div className="bg-white rounded-lg shadow p-4">
                   <h5 className="font-semibold mb-2">Progreso</h5>
-                  <div className="text-sm text-gray-600 mb-2">{Math.min(100, Math.round((actividades.length / Math.max(1, actividades.length + 2)) * 100))}% completado</div>
-                  <div className="w-full bg-gray-200 rounded-full h-2"><div className="bg-blue-900 h-2 rounded-full" style={{ width: `${Math.min(100, Math.round((actividades.length / Math.max(1, actividades.length + 2)) * 100))}%` }} /></div>
+                  <div className="text-sm text-gray-600 mb-2">
+                    {Math.min(
+                      100,
+                      Math.round(
+                        (actividades.length /
+                          Math.max(1, actividades.length + 2)) *
+                          100
+                      )
+                    )}
+                    % completado
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div
+                      className="bg-blue-900 h-2 rounded-full"
+                      style={{
+                        width: `${Math.min(
+                          100,
+                          Math.round(
+                            (actividades.length /
+                              Math.max(1, actividades.length + 2)) *
+                              100
+                          )
+                        )}%`,
+                      }}
+                    />
+                  </div>
                 </div>
               </aside>
             </div>

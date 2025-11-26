@@ -197,7 +197,9 @@ export function Perfil() {
                 <EnvelopeIcon className="w-5 h-5 text-gray-400" />
                 <div className="flex-1">
                   <p className="text-sm text-gray-600">Email</p>
-                  <p className="font-medium text-gray-900">{profileData.email}</p>
+                  <p className="font-medium text-gray-900">
+                    {profileData.email}
+                  </p>
                 </div>
               </div>
 
@@ -205,7 +207,9 @@ export function Perfil() {
                 <PhoneIcon className="w-5 h-5 text-gray-400" />
                 <div className="flex-1">
                   <p className="text-sm text-gray-600">Teléfono</p>
-                  <p className="font-medium text-gray-900">{profileData.phone}</p>
+                  <p className="font-medium text-gray-900">
+                    {profileData.phone}
+                  </p>
                 </div>
               </div>
 
@@ -213,7 +217,9 @@ export function Perfil() {
                 <BuildingLibraryIcon className="w-5 h-5 text-gray-400" />
                 <div className="flex-1">
                   <p className="text-sm text-gray-600">Universidad</p>
-                  <p className="font-medium text-gray-900">{profileData.university}</p>
+                  <p className="font-medium text-gray-900">
+                    {profileData.university}
+                  </p>
                 </div>
               </div>
 
@@ -221,7 +227,9 @@ export function Perfil() {
                 <AcademicCapIcon className="w-5 h-5 text-gray-400" />
                 <div className="flex-1">
                   <p className="text-sm text-gray-600">Programa Académico</p>
-                  <p className="font-medium text-gray-900">{profileData.program}</p>
+                  <p className="font-medium text-gray-900">
+                    {profileData.program}
+                  </p>
                 </div>
               </div>
             </div>
@@ -238,12 +246,18 @@ export function Perfil() {
           <div className="space-y-4">
             <button className="w-full text-left px-4 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
               <p className="font-medium text-gray-900">Cambiar Contraseña</p>
-              <p className="text-sm text-gray-600">Actualiza tu contraseña regularmente</p>
+              <p className="text-sm text-gray-600">
+                Actualiza tu contraseña regularmente
+              </p>
             </button>
 
             <button className="w-full text-left px-4 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
-              <p className="font-medium text-gray-900">Autenticación de Dos Factores</p>
-              <p className="text-sm text-gray-600">Añade una capa extra de seguridad</p>
+              <p className="font-medium text-gray-900">
+                Autenticación de Dos Factores
+              </p>
+              <p className="text-sm text-gray-600">
+                Añade una capa extra de seguridad
+              </p>
             </button>
           </div>
         </div>

@@ -9,7 +9,9 @@ export function NotFound() {
           <h1 className="text-9xl font-bold text-blue-600">404</h1>
         </div>
 
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">Página No Encontrada</h2>
+        <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          Página No Encontrada
+        </h2>
 
         <p className="text-gray-600 text-lg mb-8 max-w-md mx-auto">
           Lo sentimos, la página que buscas no existe o ha sido movida.

@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 export function FormInput({
   label,
-  type = 'text',
+  type = "text",
   name,
   placeholder,
   value,
@@ -10,7 +10,7 @@ export function FormInput({
   error,
   required = false,
   disabled = false,
-  autoComplete = 'off',
+  autoComplete = "off",
 }) {
   return (
     <div className="mb-4">
@@ -29,14 +29,10 @@ export function FormInput({
         disabled={disabled}
         autoComplete={autoComplete}
         className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${
-          error
-            ? 'border-red-500 bg-red-50'
-            : 'border-gray-300 bg-white'
-        } ${disabled ? 'bg-gray-100 cursor-not-allowed' : ''}`}
+          error ? "border-red-500 bg-red-50" : "border-gray-300 bg-white"
+        } ${disabled ? "bg-gray-100 cursor-not-allowed" : ""}`}
       />
-      {error && (
-        <p className="mt-1 text-sm text-red-500">{error}</p>
-      )}
+      {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
     </div>
   );
 }

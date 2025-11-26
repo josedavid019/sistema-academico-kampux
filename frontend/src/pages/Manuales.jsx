@@ -72,7 +72,8 @@ export function Manuales() {
           📚 Manuales
         </h1>
         <p className="text-gray-600 text-lg">
-          Encuentra todos los manuales y guías que necesitas para aprovechar al máximo Kampux
+          Encuentra todos los manuales y guías que necesitas para aprovechar al
+          máximo Kampux
         </p>
       </div>
 
@@ -112,8 +113,12 @@ export function Manuales() {
       {/* CTA Section */}
       <div className="max-w-7xl mx-auto mt-12">
         <div className="bg-blue-600 rounded-lg text-white p-8 text-center">
-          <h2 className="text-2xl font-bold mb-4">¿No encontraste lo que buscas?</h2>
-          <p className="mb-6">Contacta con nuestro equipo de soporte para ayuda personalizada</p>
+          <h2 className="text-2xl font-bold mb-4">
+            ¿No encontraste lo que buscas?
+          </h2>
+          <p className="mb-6">
+            Contacta con nuestro equipo de soporte para ayuda personalizada
+          </p>
           <button className="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-2 px-6 rounded-lg transition">
             Contactar Soporte
           </button>

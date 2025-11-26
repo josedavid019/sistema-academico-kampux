@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 /**
  * Hook que ejecuta una función cuando se hace click fuera del elemento
@@ -15,9 +15,9 @@ export function useClickOutside(handler) {
       }
     };
 
-    document.addEventListener('mousedown', handleClick);
+    document.addEventListener("mousedown", handleClick);
     return () => {
-      document.removeEventListener('mousedown', handleClick);
+      document.removeEventListener("mousedown", handleClick);
     };
   }, [handler]);
 
