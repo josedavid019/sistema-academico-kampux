@@ -67,7 +67,7 @@ export function Login() {
       if (role === "estudiante") navigate("/dashboard");
       else if (role === "docente") navigate("/dashboard");
       else if (role === "coordinador") navigate("/dashboard");
-      else if (role === "administrador") navigate("/dashboard");
+      else if (role === "administrador") navigate("/admin");
       else navigate("/dashboard");
     } catch (err) {
       // error ya almacenado por el store; opcionalmente mostrar algo local
@@ -129,7 +129,9 @@ export function Login() {
         </div>
 
         <div className="text-center">
-          <p className="text-gray-600 text-sm">Contacta al administrador para crear una cuenta.</p>
+          <p className="text-gray-600 text-sm">
+            Contacta al administrador para crear una cuenta.
+          </p>
         </div>
 
         <div className="text-center">

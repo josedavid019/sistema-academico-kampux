@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export function AuthLayout({ children, title, subtitle }) {
   return (
@@ -25,10 +25,10 @@ export function AuthLayout({ children, title, subtitle }) {
             <div className="flex flex-col justify-center p-8 md:p-12">
               {title && (
                 <div className="mb-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-2">{title}</h2>
-                  {subtitle && (
-                    <p className="text-gray-600">{subtitle}</p>
-                  )}
+                  <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                    {title}
+                  </h2>
+                  {subtitle && <p className="text-gray-600">{subtitle}</p>}
                 </div>
               )}
               {children}

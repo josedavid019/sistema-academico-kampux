@@ -1,8 +1,8 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { useAuthStore } from '../store/authStore';
+import React from "react";
+import { Navigate } from "react-router-dom";
+import { useAuthStore } from "../store/authStore";
 
-export function AdminRoute({ children, redirectTo = '/login' }) {
+export function AdminRoute({ children, redirectTo = "/login" }) {
   const { isAuthenticated, isLoading, user } = useAuthStore();
 
   if (isLoading) {
@@ -14,7 +14,11 @@ export function AdminRoute({ children, redirectTo = '/login' }) {
   }
 
   const isAdmin = !!(
-    user && (user.rol === 'administrador' || user.role === 'administrador' || user.is_staff || user.is_superuser)
+    user &&
+    (user.rol === "administrador" ||
+      user.role === "administrador" ||
+      user.is_staff ||
+      user.is_superuser)
   );
 
   if (!isAuthenticated) return <Navigate to={redirectTo} replace />;

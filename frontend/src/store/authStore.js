@@ -1,8 +1,5 @@
 import { create } from "zustand";
-import {
-  loginUsuario,
-  logoutUsuario,
-} from "../api/usuarios.api";
+import { loginUsuario, logoutUsuario } from "../api/usuarios.api";
 
 function parseApiError(data) {
   if (!data) return null;
@@ -23,22 +20,25 @@ function parseApiError(data) {
 export const useAuthStore = create((set) => ({
   user: null,
   isAuthenticated: false,
-  isLoading: false,
+  // start as loading until we read localStorage to avoid
+  // redirecting protected routes before state is restored
+  isLoading: true,
   error: null,
 
   // Load user from localStorage (or later from /auth/me)
   loadUser: () => {
+    set({ isLoading: true, error: null });
     const raw = localStorage.getItem("kampux_user");
     if (raw) {
       try {
         const user = JSON.parse(raw);
-        set({ user, isAuthenticated: true });
+        set({ user, isAuthenticated: true, isLoading: false });
       } catch (e) {
         localStorage.removeItem("kampux_user");
-        set({ user: null, isAuthenticated: false });
+        set({ user: null, isAuthenticated: false, isLoading: false });
       }
     } else {
-      set({ user: null, isAuthenticated: false });
+      set({ user: null, isAuthenticated: false, isLoading: false });
     }
   },
 

@@ -1,13 +1,13 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { useAuthStore } from '../store/authStore';
+import React from "react";
+import { Navigate } from "react-router-dom";
+import { useAuthStore } from "../store/authStore";
 
 /**
  * Componente para proteger rutas que requieren autenticación
  * @param {React.ReactNode} children - Componente a renderizar si está autenticado
  * @param {string} redirectTo - Ruta a redirigir si no está autenticado (default: '/login')
  */
-export function ProtectedRoute({ children, redirectTo = '/login' }) {
+export function ProtectedRoute({ children, redirectTo = "/login" }) {
   const { isAuthenticated, isLoading } = useAuthStore();
 
   if (isLoading) {
