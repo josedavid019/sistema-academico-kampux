@@ -66,7 +66,7 @@ export function Login() {
       // redirigir según rol (ajusta rutas a tu preferencia)
       if (role === "estudiante") navigate("/dashboard");
       else if (role === "docente") navigate("/dashboard");
-      else if (role === "coordinador") navigate("/dashboard");
+      else if (role === "coordinador") navigate("/coordinador");
       else if (role === "administrador") navigate("/admin");
       else navigate("/dashboard");
     } catch (err) {

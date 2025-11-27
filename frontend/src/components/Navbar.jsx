@@ -21,6 +21,15 @@ export function Navbar() {
       user.is_staff ||
       user.is_superuser)
   );
+
+  const isCoordinador = !!(
+    user &&
+    (user.rol === "coordinador" || user.role === "coordinador")
+  );
+  const isDocente = !!(
+    user &&
+    (user.rol === "docente" || user.role === "docente")
+  );
   const [isLoggingOut, setIsLoggingOut] = React.useState(false);
 
   const handleLogout = async () => {
@@ -41,7 +50,17 @@ export function Navbar() {
     <nav className="h-16 bg-[#1f2e40] flex justify-between items-center px-4 md:px-6 shadow-lg">
       <div className="flex items-center gap-6">
         <Link
-          to={isAuthenticated ? (isAdmin ? "/admin" : "/dashboard") : "/"}
+          to={
+            isAuthenticated
+              ? isAdmin
+                ? "/admin"
+                : isCoordinador
+                ? "/coordinador"
+                : isDocente
+                ? "/docente"
+                : "/dashboard"
+              : "/"
+          }
           className="flex items-center gap-2"
         >
           <img
@@ -55,8 +74,8 @@ export function Navbar() {
         </Link>
         {isAuthenticated && (
           <>
-            {/* Botón Dashboard - solo para no admins */}
-            {!isAdmin && (
+            {/* Botón Dashboard - solo para usuarios estudiante (no admins, no coordinadores, no docentes) */}
+            {!isAdmin && !isCoordinador && !isDocente && (
               <Link
                 to="/dashboard"
                 className={`font-medium px-3 py-2 transition relative z-20 ${
@@ -74,14 +93,18 @@ export function Navbar() {
               </Link>
             )}
 
-            {/* Menú Académico - solo para no admins */}
-            {!isAdmin && (
+            {/* Menú Académico - solo para usuarios estudiante (no admins, no coordinadores, no docentes) */}
+            {!isAdmin && !isCoordinador && !isDocente && (
               <Menu as="div" className="relative inline-block text-left">
                 <Menu.Button
                   className={`font-medium px-3 py-2 transition flex items-center gap-1 focus:outline-none cursor-pointer relative z-20 ${
-                    ["/horarios", "/prematricula", "/resultados"].includes(
-                      location.pathname
-                    )
+                    [
+                      "/horarios",
+                      "/prematricula",
+                      "/resultados",
+                      "/materiales",
+                      "/mis-tareas",
+                    ].includes(location.pathname)
                       ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
                       : "text-white hover:bg-[#2a3f52] rounded-lg"
                   }`}
@@ -148,10 +171,97 @@ export function Navbar() {
                           </Link>
                         )}
                       </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <Link
+                            to="/materiales"
+                            className={`block px-4 py-2 text-sm transition relative z-10 ${
+                              location.pathname === "/materiales"
+                                ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                                : active
+                                ? "bg-gray-100 text-gray-700"
+                                : "text-gray-700 hover:bg-gray-100 rounded-lg"
+                            }`}
+                          >
+                            Materiales
+                          </Link>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <Link
+                            to="/mis-tareas"
+                            className={`block px-4 py-2 text-sm transition relative z-10 ${
+                              location.pathname === "/mis-tareas"
+                                ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                                : active
+                                ? "bg-gray-100 text-gray-700"
+                                : "text-gray-700 hover:bg-gray-100 rounded-lg"
+                            }`}
+                          >
+                            Mis Tareas
+                          </Link>
+                        )}
+                      </Menu.Item>
                     </div>
                   </Menu.Items>
                 </Transition>
               </Menu>
+            )}
+            {/* Botones Coordinación - visible solo para coordinadores */}
+            {isCoordinador && (
+              <>
+                <Link
+                  to="/coordinador"
+                  className={`font-medium px-3 py-2 transition relative z-20 ${
+                    location.pathname === "/coordinador"
+                      ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                      : "text-white hover:bg-[#2a3f52] rounded-lg"
+                  }`}
+                >
+                  Panel Coordinación
+                </Link>
+                <Link
+                  to="/coordinador/estudiantes"
+                  className={`font-medium px-3 py-2 transition relative z-20 ${
+                    location.pathname === "/coordinador/estudiantes"
+                      ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                      : "text-white hover:bg-[#2a3f52] rounded-lg"
+                  }`}
+                >
+                  Estudiantes
+                </Link>
+                <Link
+                  to="/coordinador/solicitudes"
+                  className={`font-medium px-3 py-2 transition relative z-20 ${
+                    location.pathname === "/coordinador/solicitudes"
+                      ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                      : "text-white hover:bg-[#2a3f52] rounded-lg"
+                  }`}
+                >
+                  Solicitudes
+                </Link>
+                <Link
+                  to="/coordinador/docentes"
+                  className={`font-medium px-3 py-2 transition relative z-20 ${
+                    location.pathname === "/coordinador/docentes"
+                      ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                      : "text-white hover:bg-[#2a3f52] rounded-lg"
+                  }`}
+                >
+                  Docentes
+                </Link>
+                <Link
+                  to="/coordinador/reportes"
+                  className={`font-medium px-3 py-2 transition relative z-20 ${
+                    location.pathname === "/coordinador/reportes"
+                      ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                      : "text-white hover:bg-[#2a3f52] rounded-lg"
+                  }`}
+                >
+                  Reportes
+                </Link>
+              </>
             )}
             {/* Botones Administración - visible solo para admins */}
             {isAdmin && (
@@ -187,6 +297,16 @@ export function Navbar() {
                   Programas
                 </Link>
                 <Link
+                  to="/admin/matriculas"
+                  className={`font-medium px-3 py-2 transition relative z-20 ${
+                    location.pathname === "/admin/matriculas"
+                      ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                      : "text-white hover:bg-[#2a3f52] rounded-lg"
+                  }`}
+                >
+                  Matrículas
+                </Link>
+                <Link
                   to="/admin/usuarios"
                   className={`font-medium px-3 py-2 transition relative z-20 ${
                     location.pathname === "/admin/usuarios"
@@ -196,10 +316,30 @@ export function Navbar() {
                 >
                   Lista de usuarios
                 </Link>
+                <Link
+                  to="/admin/reportes"
+                  className={`font-medium px-3 py-2 transition relative z-20 ${
+                    location.pathname === "/admin/reportes"
+                      ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                      : "text-white hover:bg-[#2a3f52] rounded-lg"
+                  }`}
+                >
+                  Reportes
+                </Link>
+                <Link
+                  to="/admin/configuracion"
+                  className={`font-medium px-3 py-2 transition relative z-20 ${
+                    location.pathname === "/admin/configuracion"
+                      ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                      : "text-white hover:bg-[#2a3f52] rounded-lg"
+                  }`}
+                >
+                  Configuración
+                </Link>
               </>
             )}
-            {/* Botón Mis cursos - solo para no admins */}
-            {!isAdmin && (
+            {/* Botón Mis cursos - solo para usuarios estudiante (no admins, no coordinadores, no docentes) */}
+            {!isAdmin && !isCoordinador && !isDocente && (
               <Link
                 to="/cursos"
                 className={`font-medium px-3 py-2 transition relative z-20 ${
@@ -210,6 +350,81 @@ export function Navbar() {
               >
                 Mis cursos
               </Link>
+            )}
+            {/* Enlaces para docentes */}
+            {isDocente && (
+              <>
+                <Link
+                  to="/docente"
+                  className={`font-medium px-3 py-2 transition relative z-20 ${
+                    location.pathname === "/docente"
+                      ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                      : "text-white hover:bg-[#2a3f52] rounded-lg"
+                  }`}
+                >
+                  Panel docente
+                </Link>
+                <Link
+                  to="/docente/cursos"
+                  className={`font-medium px-3 py-2 transition relative z-20 ${
+                    location.pathname === "/docente/cursos"
+                      ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                      : "text-white hover:bg-[#2a3f52] rounded-lg"
+                  }`}
+                >
+                  Cursos
+                </Link>
+                <Link
+                  to="/docente/contenidos"
+                  className={`font-medium px-3 py-2 transition relative z-20 ${
+                    location.pathname === "/docente/contenidos"
+                      ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                      : "text-white hover:bg-[#2a3f52] rounded-lg"
+                  }`}
+                >
+                  Contenidos
+                </Link>
+                <Link
+                  to="/docente/actividades"
+                  className={`font-medium px-3 py-2 transition relative z-20 ${
+                    location.pathname === "/docente/actividades"
+                      ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                      : "text-white hover:bg-[#2a3f52] rounded-lg"
+                  }`}
+                >
+                  Actividades
+                </Link>
+                <Link
+                  to="/docente/estudiantes"
+                  className={`font-medium px-3 py-2 transition relative z-20 ${
+                    location.pathname === "/docente/estudiantes"
+                      ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                      : "text-white hover:bg-[#2a3f52] rounded-lg"
+                  }`}
+                >
+                  Estudiantes
+                </Link>
+                <Link
+                  to="/docente/calificaciones"
+                  className={`font-medium px-3 py-2 transition relative z-20 ${
+                    location.pathname === "/docente/calificaciones"
+                      ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                      : "text-white hover:bg-[#2a3f52] rounded-lg"
+                  }`}
+                >
+                  Calificaciones
+                </Link>
+                <Link
+                  to="/docente/comunicacion"
+                  className={`font-medium px-3 py-2 transition relative z-20 ${
+                    location.pathname === "/docente/comunicacion"
+                      ? "bg-white text-[#2563eb] rounded-t-lg mb-[-16px] pb-6"
+                      : "text-white hover:bg-[#2a3f52] rounded-lg"
+                  }`}
+                >
+                  Comunicación
+                </Link>
+              </>
             )}
           </>
         )}
